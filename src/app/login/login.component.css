@@ -1,0 +1,68 @@
+#formlogin{
+    margin-top: 40em;
+    padding-left: 5em;
+    margin-right: 5em;
+    margin-right: 30em;
+    margin-top: 10em;
+    /* background-image: url('/img/fondo4.jpg')!important; */
+   
+
+
+}
+
+.form-control{
+    padding-right: 5em;
+    width: 10em;
+    padding-left: 5em;
+   
+    align-items: center;
+}
+
+#login{
+    margin-left: 25em;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.733),black);
+    color: white;
+    
+    box-shadow: 10px 30px 60px 10px rgb(0,0,0);
+    transition: 0.5s;
+    border-style: none;
+    padding: 3em 3em  ;
+    margin-right: 30em;
+    margin-top: 0em;
+    padding-left: 10em;
+    padding-bottom: 5em;
+     margin-bottom: auto;
+     margin-top: auto; 
+    background-color: transparent;
+}
+
+
+ .divlogin:hover{
+     background-color: rgba(0,0,0,0.541);
+    transition:0.5 s;
+    box-shadow: 20px 30px 200px 0px rgb(0,0,0);
+   
+    
+   
+
+} 
+
+#btnentrar{
+    background-color: #B7378A;
+    margin-left: 2em;
+}
+ #divlogin{
+
+    background-image: url('~/assets/img/explosion.jpg') !important ;
+    background-position:center;
+   background-size: cover;
+   background-repeat: no-repeat;
+
+   padding-bottom: 30em;
+   padding-top: 15em;
+
+
+   vertical-align: middle;
+
+} 

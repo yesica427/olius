@@ -1,0 +1,51 @@
+.navbar{
+    color:#efe5f5 !important;
+   
+
+}
+
+nav{
+    background:linear-gradient(360deg,#000000,#B7378A)!important;
+   
+    background-size: 400% 400%;
+
+    
+}
+.navbar-light .navbar-nav .active>.nav-link{
+    color: white;
+}
+
+.nav-link .nav-link{
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color:white;
+}
+
+.btn-outline-success{
+    background-color:radial-gradient(black,#411257);
+
+}
+
+.navbar-brand{
+    color :white;
+
+}
+
+.btn-outline-success:hover{
+    background-color: black;
+    color: white;
+
+}
+.btn ,btn-default{
+    color: white;
+}
+
+.btn-outline-success{
+    border: black;
+}
+
+nav{
+    margin-bottom: 0% !important;
+}

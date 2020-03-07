@@ -1,0 +1,38 @@
+#hregisrtrarse{
+    margin-top: 5rem;
+    margin-bottom: 0em;
+    align-items: center;
+    margin-left: 13em;
+}
+
+
+
+
+.form-control{
+    padding-right: 5em;
+    width: 23em;
+    padding-left: 5em;
+   
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.tamano{
+    margin-bottom: 2em;
+   
+
+}
+
+#btnregistrar{
+padding: 1em;
+text-align: center;
+margin-left: 26em;
+background-color:#B7378A ;
+color: white;
+}
+
+hr {
+    height: 2px;
+    background-color:#B7378A;
+  }
