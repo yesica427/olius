@@ -9,6 +9,15 @@ import { BodyLandingPageComponent } from './body-landing-page/body-landing-page.
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { CreatePageComponent } from './create-page/create-page.component';
+import { UserinputComponent } from './userinput/userinput.component';
+import { NewentryComponent } from './newentry/newentry.component';
+import { CommentsComponent } from './comments/comments.component';
+import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
+import {SidebarComponent} from './sidebar/sidebar.component';
+ 
+
 
 @NgModule({
   declarations: [
@@ -18,7 +27,15 @@ import { RegisterComponent } from './register/register.component';
     BodyLandingPageComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    CreatePageComponent,
+    UserinputComponent,
+    NewentryComponent,
+    CommentsComponent,
+    EntrycategoryComponent,
+    SidebarComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+.icono {
+  margin-right: .5em;
+}
+
+#tipoUsuarioSelect {
+  width: 10em;
+}
+
+.botonOpciones {
+  margin-left: .5em !important;
+  margin-right: .5em !important;
+}

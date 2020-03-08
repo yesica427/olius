@@ -1,0 +1,21 @@
+#ac{
+    width: 30em;
+}
+
+table{
+    margin-top: 5em;
+}
+
+
+input,button,option,section{
+    border-color: #B7378A;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+  }
+  #content {
+    margin-left: 20% !important;
+    width: 80% !important;
+  }

@@ -1,0 +1,11 @@
+#postsList {
+
+  max-width: 80% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.botonOpciones {
+  margin-left: .5em !important;
+  margin-right: .5em !important;
+}

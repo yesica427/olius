@@ -2,16 +2,16 @@
     margin-top: 5rem;
     margin-bottom: 0em;
     align-items: center;
-    margin-left: 13em;
+    margin-left: 9em;
 }
 
 
 
 
 .form-control{
-    padding-right: 5em;
+    padding-right: 3em;
     width: 23em;
-    padding-left: 5em;
+    padding-left: 3em;
    
     align-items: center;
     margin-left: 0;
@@ -25,14 +25,24 @@
 }
 
 #btnregistrar{
-padding: 1em;
+padding: 0em;
 text-align: center;
-margin-left: 26em;
+margin-left: 15em;
 background-color:#B7378A ;
 color: white;
+margin-bottom: 3em;
 }
 
 hr {
     height: 2px;
     background-color:#B7378A;
   }
+
+ 
+
+#fc{
+    border-radius: 2px;
+   
+    /* background-image: url('~/assets/img/fondo4.jpg')!important; */
+    
+}

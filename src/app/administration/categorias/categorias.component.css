@@ -1,0 +1,19 @@
+.botonOpciones {
+  margin-left: .5em !important;
+  margin-right: .5em !important;
+}
+
+.verCategorias {
+  margin-top: 5em;
+}
+
+.busquedaForm {
+  margin-bottom: 2em;
+  margin-left: 50%;
+}
+
+#iputBusqueda {
+  margin-right: 1em;
+  width: 70% !important;
+
+}
