@@ -10,6 +10,7 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { UserinputComponent } from './userinput/userinput.component';
 import { NewentryComponent } from './newentry/newentry.component';
 import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
+import { PagesCreatedComponent } from './pages-created/pages-created.component';
 
 
 const routes: Routes = [
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path:'entradausuario', component: UserinputComponent ,},
   {path:'nuevaentrada', component: NewentryComponent ,},
   {path:'categoriaentrada', component: EntrycategoryComponent ,},
-  { path: 'admin', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) }
-  
+  { path: 'admin', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) },
+  {path:'paginacreada', component:PagesCreatedComponent ,},
 
 
 ];

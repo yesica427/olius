@@ -16,6 +16,7 @@ import { NewentryComponent } from './newentry/newentry.component';
 import { CommentsComponent } from './comments/comments.component';
 import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import { PagesCreatedComponent } from './pages-created/pages-created.component';
  
 
 
@@ -35,6 +36,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
     CommentsComponent,
     EntrycategoryComponent,
     SidebarComponent,
+    PagesCreatedComponent,
     
   ],
   imports: [
