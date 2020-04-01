@@ -2,46 +2,46 @@
 <h1 id="hregisrtrarse">Registrarse</h1>
 <hr>
 
-<form style="align-items: center;"  id="fc">
+<form  [formGroup]="formularioRegistro"  style="align-items: center;"  id="fc">
   <div style="align-items: center;" class="form-row">
 
     <div class="col col-lg-3 ">
-      <input type="text" class="form-control tamano" placeholder="Primer Nombre">
+      <input formControlName="primerNombre" type="text" class=" tamano" placeholder="Primer Nombre">
       
     </div>
     <div class="col col-lg-4">
-      <input type="text" class="form-control tamano ajuste" placeholder="Primer Apellido">
+      <input formControlName="segundoNombre" type="text" class=" tamano ajuste" placeholder="segundo nombre">
     </div>
     <div class="col col-lg-5">
      
     </div>
     <div class="col col-lg-3">
-      <input type="text" class="form-control tamano" placeholder="Segundo nombre">
+      <input formControlName="primerApellido" type="text" class=" tamano" placeholder="Primer apellido">
     </div>
     <div class="col col-lg-4">
-      <input type="text" class=" form-control tamano" placeholder="segundo Apellido">
+      <input formControlName="segundoApellido" type="text" class="  tamano" placeholder="segundo Apellido">
     </div>
     <div class="col col-lg-5">
      
     </div>
     
     <div class="col col-lg-3">
-      <input type="text" class="form-control tamano" placeholder="Ingresa tu contraseña ">
+      <input formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
     </div>
     <div class="col col-lg-4">
-      <input type="text" class="form-control tamano" placeholder="Escribe tu contraseña de nuevo">
+      <input formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
     </div>
     <div class="col col-lg-5">
      
     </div>
     <div class="col col-lg-3">
-      <input type="text" class="form-control tamano" placeholder="Ingresa Tu Identidad">
+      <input formControlName="identidad"  type="text" class=" tamano" placeholder="Ingresa Tu Identidad">
     </div>
     <div class="col col-lg-7">
-      <input type="text" class="form-control tamano" placeholder="Ingresa Tu correo Electronico">
+      <input formControlName="correo" type="text" class=" tamano" placeholder="Ingresa Tu correo Electronico">
     </div>
   </div>
-<button id="btnregistrar" class="btn btn-lg" routerLink='/login'>Registrarse</button>
+<button (click)="guardar()" id="btnregistrar" class="btn btn-lg" routerLink='/login'>Registrarse</button>
 
 </form>
 <app-footer></app-footer>

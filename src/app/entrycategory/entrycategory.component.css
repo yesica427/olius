@@ -19,3 +19,8 @@ input,button,option,section{
     margin-left: 20% !important;
     width: 80% !important;
   }
+
+  .btn{
+    background-color: #B7378A;
+    color: white;
+  }

@@ -8,4 +8,14 @@
 .botonOpciones {
   margin-left: .5em !important;
   margin-right: .5em !important;
+  border-color:#B7378A !important;
+  background-color:#B7378A !important;
+  color:white;
+
+};
+
+btn{
+  background-color:#B7378A !important;
+  color:white;
+
 }

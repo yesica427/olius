@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +21,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { PagesCreatedComponent } from './pages-created/pages-created.component';
- 
+
 
 
 @NgModule({
@@ -36,12 +40,13 @@ import { PagesCreatedComponent } from './pages-created/pages-created.component';
     CommentsComponent,
     EntrycategoryComponent,
     SidebarComponent,
-    PagesCreatedComponent,
-    
+    PagesCreatedComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,9 @@
 
   border: black solid thick;
   border-style: dotted;
+  
+  
+  border-color:#B7378A !important;
 
   height: 20em !important;
 }
