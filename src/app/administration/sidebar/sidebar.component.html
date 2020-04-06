@@ -70,7 +70,7 @@
           <a>Todas las páginas</a>
         </li>
         <li>
-          <a>Añadir Nueva</a>
+          <a routerLink="nuevapagina">Añadir Nueva</a>
         </li>
       </ul>
     </li>
@@ -149,6 +149,11 @@
         </li>
 
       </ul>
+    </li>
+
+    <li>
+      <Button type="button" style="margin-right: 2em;" class="btn color borde" style="margin-top:1em;" id="botonSalir"
+        (click)="salir()"><i class="fas fa-sign-out-alt"></i>Salir</Button>
     </li>
   </ul>
 

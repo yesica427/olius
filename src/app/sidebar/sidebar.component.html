@@ -17,7 +17,7 @@
           <a routerLink="posts">Todos los Posts</a>
         </li>
         <li>
-          <a  routerLink='/nuevaentrada'>Añadir Posts</a>
+          <a routerLink='/nuevaentrada'>Añadir Posts</a>
         </li>
         <li>
           <a routerLink='/categoriaentrada'>Categorías</a>
@@ -42,14 +42,14 @@
       </ul>
     </li>
 
-  
+
     <li>
       <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
 
         <i class="fas fa-file" style="display: inline; margin-right: .5em;"></i><span>Gestionar Paginas</span></a>
       <ul class="collapse list-unstyled" id="pageSubmenu">
         <li>
-          <a routerLink='/home' >Todas las páginas</a>
+          <a routerLink='/home'>Todas las páginas</a>
         </li>
         <li>
           <a routerLink='/crearpagina'>Añadir Nueva</a>
@@ -57,7 +57,7 @@
       </ul>
     </li>
 
-    
+
     <li>
       <a href="#gestionComentarios" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gestion de
         comentarios</a>
@@ -74,7 +74,7 @@
 
       </ul>
     </li>
-   
+
     <li>
       <a href="#temas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Temas</a>
       <ul class="collapse list-unstyled" id="temas">
@@ -86,6 +86,11 @@
         </li>
 
       </ul>
+    </li>
+
+    <li>
+      <Button type="button" class="btn btn-danger" style="margin-top:1em;" id="botonSalir"
+        (click)="salir()">Salir</Button>
     </li>
   </ul>
 

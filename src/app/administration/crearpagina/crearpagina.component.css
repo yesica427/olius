@@ -1,0 +1,29 @@
+.form-control {
+  width: 30em !important;
+  background-color: papayawhip;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#content {
+  margin-left: 20% !important;
+  width: 80% !important;
+}
+
+
+
+.btn {
+  background-color: #B7378A;
+  color: white;
+  margin-top: 5em;
+}
+
+.fondo{
+  width: 120%!important;
+  height:  100em!important;
+  background-color: black;
+  
+}

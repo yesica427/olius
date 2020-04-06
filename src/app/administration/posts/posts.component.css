@@ -19,3 +19,16 @@ btn{
   color:white;
 
 }
+
+#colorfondo{
+  background-color: black;
+  size: cover ;
+  width: 100%;
+  height: 100%!important;
+  margin-bottom: 0%!important;
+}
+
+.color{
+  color:#B7378A !important;
+
+}

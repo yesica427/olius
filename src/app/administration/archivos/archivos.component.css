@@ -21,3 +21,25 @@
 .encabezado {
   margin-top: 1em !important;
 }
+
+
+.colorfondo{
+  background-color: black;
+}
+
+
+.color{
+  
+  color: #B7378A;
+}
+
+.botonOpciones {
+  
+  background-color:#B7378A !important;
+    color: white !important;
+}
+
+.borde{
+  border-bottom: 1px!important;
+  border-color: #B7378A;
+}

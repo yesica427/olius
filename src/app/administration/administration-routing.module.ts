@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ArchivosComponent } from './archivos/archivos.component';
 import { NuevoArchivoComponent } from './nuevo-archivo/nuevo-archivo.component';
+import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
 
 const routes: Routes = [{
   path: '', component: AdministrationComponent,
@@ -29,6 +30,10 @@ const routes: Routes = [{
     },
     {
       path: 'nuevoArchivo', component: NuevoArchivoComponent
+    },
+
+    {
+      path: 'nuevapagina', component: CrearpaginaComponent
     },
     //{ path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     //{

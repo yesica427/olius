@@ -1,50 +1,53 @@
-
-
 <app-header-logged-out></app-header-logged-out>
 <div class="divlogin" id="divlogin">
   <!-- <img src="assets/img/chispa.jpg" alt=""
     style="position: absolute ;top: 0%; height: 100%;width: 100%s; opacity: .5;  z-index:  auto  100 inherit;"> -->
 
 
-   <form [formGroup]="formularioInicioSesion" id="login">
-  
-    <div class="form-group" >
-     
-  
+  <form [formGroup]="formularioInicioSesion" id="login">
+
+    <div class="form-group">
+
+
       <label for="exampleInputEmail1">Email address</label>
-      <input  formControlName="email"  type="email"  id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div *ngIf="email.invalid && (email.dirty || email.touched ) " class="alert alert-danger" role="alert" style="width: 13em;padding: 0em;">¡Error su Email no es correcto!
-      
+      <input formControlName="email" type="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div *ngIf="email.invalid && (email.dirty || email.touched ) " class="alert alert-danger" role="alert"
+        style="width: 13em;padding: 0em;">¡Error su Email no es correcto!
+
         <span class="error" *ngIf="email.errors.required">Error el campo es Obligatorio</span>
         <span *ngIf="email.errors.pattern">El Email no es valido</span>
-      
-      
-      
+
+
+
       </div>
     </div>
-  <div class="form-group">
+    <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input formControlName="password"  id="exampleInputPassword1">
-      <div *ngIf="password.invalid && (password.dirty || password.touched ) " class="alert alert-danger" role="alert" style="width: 13em;padding: 0em;">¡Error su password no es correcto!
-      
-     <span *ngIf="password.errors.required">Error el campo es Obligatorio</span>
-     <span *ngIf="password.errors.minLength">El tamaño minimo son 8 caracteres</span>
-     <span *ngIf="password.errors.pattern">Al menos 1 Digito y una letra  mayuscula </span>
+      <input formControlName="password" id="exampleInputPassword1">
+      <div *ngIf="password.invalid && (password.dirty || password.touched ) " class="alert alert-danger" role="alert"
+        style="width: 13em;padding: 0em;">¡Error su password no es correcto!
+
+        <span *ngIf="password.errors.required">Error el campo es Obligatorio</span>
+        <span *ngIf="password.errors.minLength">El tamaño minimo son 8 caracteres</span>
+        <span *ngIf="password.errors.pattern">Al menos 1 Digito y una letra mayuscula </span>
 
 
-      
+
       </div>
     </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      <button [disabled]="!formularioInicioSesion.valid" type="button" (click)="entrar()"  id="btnentrar"  class="btn btn-lg " routerLink="/home"><i class="fas fa-sign-in-alt"></i>Entrar</button>
-    </div>
-    
-  </form>
-   
+      <button [disabled]="!formularioInicioSesion.valid"  type="button" (click)="entrar()" id="btnentrar"
+        class="btn btn-lg "><i class="fas fa-sign-in-alt"></i>Entrar</button>
 
-  
+      <!-- routerLink="/home" -->
+    </div>
+
+  </form>
+
+
+
 </div>
 
 

@@ -1,0 +1,68 @@
+img {
+  width: 200px;
+  height: 200px;
+}
+
+
+#discontinuo {
+  border-style: dashed;
+  border-color: #B7378A;
+  text-align: center;
+
+}
+
+#agregarpagina {
+  background-color: #B7378A;
+  margin-top: 5em;
+  color: white;
+}
+
+.color{
+  color:white!important;
+
+}
+.coloriconos{
+  color: #B7378A;
+}
+
+#Acciones {
+  margin-top: 10em !important;
+ 
+}
+
+#titulo {
+  font-family: 'Monoton', arial;
+  color: #B7378A;
+  text-align: center;
+  margin-bottom: 2em;
+  text-align: center!important;
+  margin-left: 6em;
+}
+
+
+h4 {
+  margin-bottom: 1em;
+
+}
+
+
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#content {
+  /* margin-left: 20% !important;
+  width: 80% !important; */
+}
+.fondodash{
+  background-image: url('~/assets/img/fondoled3.jpg') !important ;
+  background-position:center;
+   background-size: cover;
+   background-repeat: no-repeat;
+
+}
+.fondodash{
+  background-color: black;
+}

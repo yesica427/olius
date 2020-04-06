@@ -11,10 +11,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ArchivosComponent } from './archivos/archivos.component';
 import { NuevoArchivoComponent } from './nuevo-archivo/nuevo-archivo.component';
+import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
 
 
 @NgModule({
-  declarations: [AdministrationComponent, SidebarComponent, HeaderComponent, UsersComponent, PostsComponent, DashboardComponent, CategoriasComponent, ArchivosComponent, NuevoArchivoComponent],
+  declarations: [AdministrationComponent, SidebarComponent, HeaderComponent, UsersComponent, PostsComponent, DashboardComponent, CategoriasComponent, ArchivosComponent, NuevoArchivoComponent, CrearpaginaComponent],
   imports: [
     CommonModule,
     AdministrationRoutingModule

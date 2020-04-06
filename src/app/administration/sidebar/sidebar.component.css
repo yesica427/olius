@@ -115,3 +115,14 @@ ul ul a {
   padding-left: 30px !important;
   background:linear-gradient(360deg,#000000,#B7378A)!important;
 }
+
+.color{
+  color:white;
+
+}
+
+
+.borde{
+  border-bottom: 1px!important;
+  border-color: white;
+}
