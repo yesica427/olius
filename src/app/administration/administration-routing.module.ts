@@ -9,6 +9,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { ArchivosComponent } from './archivos/archivos.component';
 import { NuevoArchivoComponent } from './nuevo-archivo/nuevo-archivo.component';
 import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
+import { NuevoPostComponent }   from   './nuevo-post/nuevo-post.component';
 
 const routes: Routes = [{
   path: '', component: AdministrationComponent,
@@ -35,6 +36,12 @@ const routes: Routes = [{
     {
       path: 'nuevapagina', component: CrearpaginaComponent
     },
+
+    {
+      path: 'nuevopost', component: NuevoPostComponent
+    },
+
+
     //{ path: 'balance', loadChildren: () => import(`./balance/balance.module`).then(m => m.BalanceModule) },
     //{
     //  path: '', redirectTo: 'apply', pathMatch: 'full'

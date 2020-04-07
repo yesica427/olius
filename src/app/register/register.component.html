@@ -77,7 +77,7 @@
 
       <div class="col col-lg-3 ">
         <input [ngClass]="{'input-error':contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) }"
-          formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
+          formControlName="contrasena1" type="password" name="password" class=" tamano" placeholder="Ingresa tu contraseña ">
         <div *ngIf="contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) " class="alert alert-danger"
           role="alert" style="width: 13em"> Error campo invalido
 
@@ -90,7 +90,7 @@
       </div>
       <div class="col col-lg-4">
         <input [ngClass]="{'input-error':contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) }"
-          formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
+          formControlName="contrasena2" type="password" name="password" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
         <div *ngIf="contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) " class="alert alert-danger"
           role="alert" style="width: 13em"> Error campo no valido</div><br>
         <span class="error" *ngIf=" contrasenavalida()==false && (contrasena2.dirty || contrasena2.touched )">Contrasena

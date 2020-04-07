@@ -1,0 +1,21 @@
+.colorfondo{
+    background-color: black;
+    margin-right: 100em !important;
+  }
+
+
+
+#tamano{
+    width: 100% !important;
+    height: 300%!important;
+}
+
+.color{
+    color: #B7378A;
+}
+
+.borde{
+    border-radius: 4px!important;
+    border-color: #B7378A;
+    color: white;
+  }
