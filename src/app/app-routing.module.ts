@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 //components
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import { LoginComponent } from './login/login.component';
@@ -11,6 +12,7 @@ import { UserinputComponent } from './userinput/userinput.component';
 import { NewentryComponent } from './newentry/newentry.component';
 import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
 import { PagesCreatedComponent } from './pages-created/pages-created.component';
+
 
 
 const routes: Routes = [
