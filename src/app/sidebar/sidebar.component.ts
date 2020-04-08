@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { Usuario } from '../usuario.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,32 +12,23 @@ export class SidebarComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router) { }
 
+
+  private usuarioActual: Usuario;
+
   ngOnInit() {
-
-    this.verificarSiEstaLogueado();
-  }
-
-  salir() {
-    this.loginService.logOut();
-    this.navigate()
-  }
-
-
-  navigate() {
-    this.router.navigateByUrl('/index');
-  }
-
-  verificarSiEstaLogueado() {
-
-    var usuarioActual = this.loginService.traerUsuarioActual();
-    console.log(usuarioActual)
-    if (usuarioActual == null) {
-      //el usuario en local storage es nulls
-      this.navigate();
+    this.usuarioActual = this.loginService.traerUsuarioActual();
+    if (this.usuarioActual == null) {
+      this.navegarIndex()
     }
   }
 
+  salir() {
+    this.loginService.logOut()
+    this.navegarIndex()
 
+  }
 
-
+  navegarIndex() {
+    this.router.navigateByUrl("/index");
+  }
 }

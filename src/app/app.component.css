@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* @media (max-width: 768px) {
+    #content {
+      margin-left: 40% !important;
+      width: 60% !important;
+    }
+  } */
+
+#content {
+  margin-left: 20% !important;
+  width: 80% !important;
+}

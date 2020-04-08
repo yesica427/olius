@@ -1,0 +1,99 @@
+<div class="wrapper  " >
+
+  <app-sidebar></app-sidebar>
+
+  <div class="content  " style="margin-left: 7% !important;width: 100% !important; ">
+
+    <div  id=" tamano"  class=" container colorfondo" >
+      <div class="row">
+
+
+      <div id="entradasdiv" class="color">
+        <h3>Entradas</h3>
+
+        <br>
+
+        <div class="">
+          <h4 class="color">Filtra las entradas:</h4>
+          <div style="display: inline;">
+            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
+              <option value="value1">Ordenar por fecha</option>
+              <option value="value2" selected>Ordenar por categoria</option>
+            </select>
+          </div>
+          <div style="display: inline;">
+            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
+              <option value="value1" selected>Todas las categorías</option>
+
+            </select>
+          </div>
+          <div style="display: inline; margin-bottom: 5em;">
+            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
+              <option value="value1" selected>Privacidad</option>
+              <option value="value1">Públicos</option>
+              <option value="value1">Privados</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="col col-lg-12" style="width: 150%!important; height: 100%;" >
+        <table  class="table table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg " 
+          id="postsList" style="width:inherit; ">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Comentarios</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Opciones</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Hola mundo</td>
+              <td>-</td>
+              <td>titulos</td>
+              <td>4</td>
+              <td>07/03/20</td>
+              <td> <button type="button" class="btn botonOpciones">Eliminar</button>
+                <button type="button" class="btn  botonOpciones">Editar</button> </td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              
+              <td>Hola mundo</td>
+              <td>-</td>
+              <td>titulos</td>
+              <td>4</td>
+
+              <td>07/03/20</td>
+              <td> <button type="button" class="btn  botonOpciones">Eliminar</button>
+                <button type="button" class="btn  botonOpciones">Editar</button> </td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Hola mundo</td>
+              <td>-</td>
+              <td>titulos</td>
+              <td>4</td>
+
+              <td>07/03/20</td>
+              <td> <button type="button" class="btn btn-lg botonOpciones">Eliminar</button>
+                <button type="button" class="btn btn-lg botonOpciones">Editar</button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+</div>

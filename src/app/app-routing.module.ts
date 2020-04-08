@@ -1,33 +1,60 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
-//components
-import {LandingPageComponent} from "./landing-page/landing-page.component";
+import { CategoriaComponent } from './categoria/categoria.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { CreatePageComponent } from './create-page/create-page.component';
-import { UserinputComponent } from './userinput/userinput.component';
-import { NewentryComponent } from './newentry/newentry.component';
-import { EntrycategoryComponent } from './entrycategory/entrycategory.component';
+import { PostsComponent } from './posts/posts.component';
+import { UsersComponent } from './users/users.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArchivosComponent } from './archivos/archivos.component';
+import { NuevoArchivoComponent } from './nuevo-archivo/nuevo-archivo.component';
+import { NuevoPostComponent } from './nuevo-post/nuevo-post.component';
 import { PagesCreatedComponent } from './pages-created/pages-created.component';
-
+import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 
 
 const routes: Routes = [
-  {path:'index', component:LandingPageComponent},
-  {path:'',redirectTo:'/index', pathMatch: 'full',},
+  {
+    path: 'admin/categorias', component: CategoriaComponent
+  },
+  { path: 'index', component: LandingPageComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full', },
+  { path: 'pageNotFound', component: PageNotFoundComponent, },
+  { path: 'login', component: LoginComponent, },
+  { path: 'register', component: RegisterComponent, },
+  {
+    path: 'admin/posts', component: PostsComponent
+  },
+  {
+    path: 'admin/users', component: UsersComponent
+  },
+  {
+    path: 'admin/dashboard', component: DashboardComponent
+  },
 
-  {path:'login', component: LoginComponent,},
-  {path:'register', component: RegisterComponent,},
-  {path:'home', component: HomeComponent,},
-  {path:'crearpagina', component: CreatePageComponent,},
-  {path:'entradausuario', component: UserinputComponent ,},
-  {path:'nuevaentrada', component: NewentryComponent ,},
-  {path:'categoriaentrada', component: EntrycategoryComponent ,},
-  { path: 'admin', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) },
-  {path:'paginacreada', component:PagesCreatedComponent ,},
+  {
+    path: 'admin/archivos', component: ArchivosComponent
+  },
+  {
+    path: 'admin/nuevoArchivo', component: NuevoArchivoComponent
+  },
+
+  {
+    path: 'admin/nuevopost', component: NuevoPostComponent
+  },
+  { path: 'paginacreada', component: PagesCreatedComponent, },
+
+  { path: 'admin/crearpagina', component: CrearpaginaComponent, },
+
+ 
+  { path: 'admin/registro', component:  RegistroAdminComponent, },
+  
+  { path: '**', redirectTo: '/pageNotFound', pathMatch: 'full', }
+
+
 
 
 ];

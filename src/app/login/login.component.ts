@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
 
   navigate() {
-    this.router.navigateByUrl('/admin');
+    this.router.navigateByUrl('/admin/dashboard');
   }
 
 }

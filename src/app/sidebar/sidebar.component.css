@@ -11,7 +11,6 @@
   }
 
 } */
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 #sidebar {
@@ -21,7 +20,7 @@
   left: 0;
   height: 100vh;
   z-index: 1;
-  background:linear-gradient(360deg,#000000,#B7378A)!important;
+  background: #7386D5;
   color: #fff;
   transition: all 0.3s;
   overflow-x: hidden;
@@ -74,14 +73,14 @@ a:focus {
 
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
-  background:linear-gradient(360deg,#000000,#B7378A)!important;
+  background: linear-gradient(360deg, #000000, #B7378A) !important;
   color: #fff;
   transition: all 0.3s;
 }
 
 #sidebar .sidebar-header {
   padding: 15px;
-  background:linear-gradient(360deg,#000000,#B7378A)!important;
+  background: linear-gradient(360deg, #000000, #B7378A) !important;
 }
 
 #sidebar ul.components {
@@ -108,15 +107,22 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: black;
-  background:linear-gradient(360deg,#000000,#B7378A)!important;
+  background: linear-gradient(360deg, #000000, #B7378A) !important;
 }
 
 ul ul a {
   font-size: 14px !important;
   padding-left: 30px !important;
-  background:linear-gradient(360deg,#000000,#B7378A)!important;
+  background: linear-gradient(360deg, #000000, #B7378A) !important;
 }
-h3{
-font-family: 'Monoton', arial!important;
-color:white ;
+
+.color {
+  color: white;
+
+}
+
+
+.borde {
+  border-bottom: 1px !important;
+  border-color: white;
 }

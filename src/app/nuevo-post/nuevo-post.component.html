@@ -1,0 +1,48 @@
+<div class="wrapper ">
+
+  <app-sidebar></app-sidebar>
+
+  <div class="content fondo" style="margin-left: 15% !important;width: 100% !important;">
+
+    <div class="container colorfondo" id="tamano">
+      <div class="row">
+        <div class="col col-lg-6" style="margin-top: 5em;">
+          <h3 class="color"> Titulo post</h3>
+          <input type="text" style="width: 20em;">
+        </div>
+
+
+        <div class="col col-lg-6 " style="margin-top: 5em;" >
+          <div ><h4 class="color">Categoria Post</h4><select style="width: 20em;"><option>Futbol</option>
+            <option>Comida</option>
+          </select> </div>
+      
+        </div>
+
+
+
+
+
+
+        <div class="col-lg-12 " style="margin-top: 10em;">
+          <button class=" btn btn-lg borde" type="button" style="width: 10em; height: 4em;">Seleccionar Archivo</button>
+        </div>
+
+      </div>
+
+      <div class="row" style="margin-bottom:5em;">
+        <div class="col col-12">
+          <div style="margin-top: 3em;">
+            <div [froalaEditor]="options"></div>
+          </div>
+        </div>
+      </div>
+
+   
+    <div class=" col col-lg-12   colorfondo">
+
+    <button class=" btn btn-lg borde" type="button">Guardar Post</button>
+
+  </div>
+  </div>
+</div>
