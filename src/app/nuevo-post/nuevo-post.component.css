@@ -1,21 +1,36 @@
-.colorfondo{
-    background-color: black;
-    margin-right: 100em !important;
-  }
-
-
-
-#tamano{
-    width: 100% !important;
-    height: 400%!important;
+.colorfondo {
+  background-color: black;
+  margin-right: 100em !important;
 }
 
-.color{
-    color: #B7378A;
+
+
+#tamano {
+  width: 100% !important;
+  height: 300% !important;
 }
 
-.borde{
-    border-radius: 4px!important;
-    border-color: #B7378A;
-    color: white;
-  }
+.color {
+  color: #B7378A;
+}
+
+.borde {
+  border-radius: 4px !important;
+  border-color: #B7378A;
+  color: white;
+}
+
+#select-categorias {
+  width: 50%;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+#btn-guardar-post {}
+
+#btn-archivo {
+  height: 3em;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}

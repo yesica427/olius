@@ -127,7 +127,7 @@ export class RegistroAdminComponent implements OnInit {
 
 
   navigate() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/admin/users');
   }
 
 }
