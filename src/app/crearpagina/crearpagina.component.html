@@ -45,11 +45,36 @@
     </form>
 
 
+    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
+      <ngx-codemirror [(ngModel)]="contentJS" [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'javascript'
+    }"></ngx-codemirror>
+    </div>
 
+    <!-- <input type="text" [(ngModel)]="contentJS"> -->
+    <br>
+    <br>
+    <br>
+    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
+      <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'css'
+    }"></ngx-codemirror>
+    </div>
 
-
-
-
+    <br>
+    <br>
+    <br>
+    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
+      <ngx-codemirror [(ngModel)]="contentHTML" [options]="{
+        lineNumbers: true,
+        theme: 'material',
+        mode: 'xml'
+      }"></ngx-codemirror>
+    </div>
   </div>
 
 </div>

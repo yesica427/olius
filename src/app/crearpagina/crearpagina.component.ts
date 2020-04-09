@@ -9,6 +9,10 @@ export class CrearpaginaComponent implements OnInit {
 
   constructor() { }
 
+  public contentJS;
+  public contentHTML;
+  public contentCSS;
+
   ngOnInit(): void {
   }
 

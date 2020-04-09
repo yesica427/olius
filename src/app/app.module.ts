@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //editor froala
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CategoriaComponent } from './categoria/categoria.component';
@@ -56,7 +57,9 @@ import { RegistroAdminComponent } from './registro-admin/registro-admin.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+    CodemirrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

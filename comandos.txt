@@ -1,0 +1,52 @@
+Actualizar cli
+
+ng update @angular/core @angular/cli
+
+instalar el codemirror
+
+npm install @ctrl/ngx-codemirror codemirror
+
+app.module
+
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+
+CodemirrorModule
+
+main.ts
+
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/markdown/markdown';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/xml/xml';
+
+styles.css
+@import "~codemirror/lib/codemirror";
+@import "~codemirror/theme/material";
+
+crearPagina.ts
+  public contentJS;
+  public contentHTML;
+  public contentCSS;
+
+crearPagina.html
+
+<ngx-codemirror [(ngModel)]="contentHTML" [options]="{
+        lineNumbers: true,
+        theme: 'material',
+        mode: 'xml'
+      }"></ngx-codemirror>
+
+<ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'css'
+    }"></ngx-codemirror>
+
+<ngx-codemirror
+  [(ngModel)]="content"
+  [options]="{
+    lineNumbers: true,
+    theme: 'material',
+    mode: 'javascript'
+  }"
+></ngx-codemirror>

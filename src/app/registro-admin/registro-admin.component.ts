@@ -108,7 +108,7 @@ export class RegistroAdminComponent implements OnInit {
 
     var valores = this.formularioRegistro.value;
 
-    console.log(valores.primerNombre)
+    // console.log(valores.primerNombre)
 
 
     var resultado = this.loginService.registrarUsuario(valores.primerNombre, valores.segundoNombre, valores.PrimerApellido, valores.segundoApellido, valores.contrasena1, valores.correo, valores.identidad);
