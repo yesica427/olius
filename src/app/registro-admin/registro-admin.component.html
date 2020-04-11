@@ -1,149 +1,153 @@
-
 <div class="wrapper ">
 
-    <app-sidebar></app-sidebar>
-    <div class="content" style="margin-left: 15% !important;width: 100% !important;">
+  <app-sidebar></app-sidebar>
+  <div class="content" style="margin-left: 15% !important;width: 100% !important;">
 
-<div class="fondo" style="margin-top: 0;" >
-    
-  
-    <h1 id="hregisrtrarse">Registrarse</h1>
-    <hr>
-  
-    <form [formGroup]="formularioRegistro" style="align-items: center; " id="fc">
-      <div style="align-items: center; margin-left: 4em;" class="form-row ">
-  
-        <div class="col col-lg-3  ">
-          <input [ngClass]="{'input-error':primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) }"
-            formControlName="primerNombre" type="text" class=" tamano" placeholder="Primer Nombre">
-          <div *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) " class="alert alert-danger"
-            role="alert" style="width: 13em;"> campo no valido
-            <span class="error" *ngIf="primerNombre.errors.required">Error el campo es Obligatorio</span>
-            <span *ngIf="primerNombre.errors.pattern">solo se admiten letras</span>
-            <span *ngIf="primerNombre.errors.minLength"> El tamaño minimo son 8 caracteres</span>
-          </div>
-  
-        </div>
-        <div class="col col-lg-4 ">
-          <input [ngClass]="{'input-error':segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) }"
-            formControlName="segundoNombre" type="text" class=" tamano ajuste" placeholder="segundo nombre">
-          <div *ngIf="segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) "
-            class="alert alert-danger" role="alert" style="width: 13em"> ¡Error campo no valido!
-  
-  
-            <span class="error" *ngIf="segundoNombre.errors.required">Error el campo es Obligatorio</span>
-            <span *ngIf="segundoNombre.errors.pattern">solo se admiten letras</span>
-            <span *ngIf="segundoNombre.errors.minLength">El tamaño minimo son 5 caracteres</span>
-  
-  
-          </div>
-  
-        </div>
-  
-        <div class="col col-lg-5">
-  
-        </div>
-  
-  
-        <div class="col col-lg-3 ">
-          <input [ngClass]="{'input-error':PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) }"
-            formControlName="PrimerApellido" type="text" class=" tamano" placeholder="Primer apellido">
-          <div *ngIf="PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) "
-            class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
-  
-  
-            <span *ngIf="PrimerApellido.errors.pattern">solo se admiten letras</span>
-            <span *ngIf="PrimerApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
-  
-  
-  
-  
-          </div>
-        </div>
-        <div class="col col-lg-4 ">
-          <input
-            [ngClass]="{'input-error':segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) }"
-            formControlName="segundoApellido" type="text" class="  tamano" placeholder="segundo Apellido">
-          <div *ngIf="segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) "
-            class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
-  
-  
-  
-            <span *ngIf="segundoApellido.errors.pattern">solo se admiten letras</span>
-            <span *ngIf="segundoApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
-  
-  
-  
-  
-          </div>
-        </div>
-        <div class="col col-lg-5">
-  
-        </div>
-  
-        <div class="col col-lg-3 ">
-          <input [ngClass]="{'input-error':contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) }"
-            formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
-          <div *ngIf="contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) " class="alert alert-danger"
-            role="alert" style="width: 13em"> Error campo invalido
-  
-            <span *ngIf="contrasena1.errors.pattern">Al menos 1 Digito y una letra mayuscula</span>
-            <span *ngIf="contrasena1.errors.minLength">El tamaño minimo son 8 caracteres</span>
-          </div>
-  
-  
-  
-        </div>
-        <div class="col col-lg-4">
-          <input [ngClass]="{'input-error':contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) }"
-            formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
-          <div *ngIf="contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) " class="alert alert-danger"
-            role="alert" style="width: 13em"> Error campo no valido</div><br>
-          <span class="error" *ngIf=" contrasenavalida()==false && (contrasena2.dirty || contrasena2.touched )">Contrasena
-            no coincide</span>
-  
-  
-  
-  
-  
-        </div>
-        <div class="col col-lg-5">
-  
-        </div>
-        <div class="col col-lg-3">
-          <input [ngClass]="{'input-error':identidad.invalid && (identidad.dirty || identidad.touched ) }"
-            formControlName="identidad" type="text" class=" tamano" placeholder="Ingresa Tu Identidad">
-          <div *ngIf="identidad.invalid && (identidad.dirty || identidad.touched ) " class="alert alert-danger"
-            role="alert" style="width: 13em"> Error campo no valido
-  
-  
-            <span *ngIf="identidad.errors.minLength">se requieren 13 Digitos </span>
-  
-  
-  
-          </div>
-        </div>
-        <div class="col col-lg-7">
-          <input [ngClass]="{'input-error':correo.invalid && (correo.dirty || correo.touched ) }" formControlName="correo"
-            type="text" class=" tamano" placeholder="Ingresa Tu correo Electronico">
-          <div *ngIf="correo.invalid && (correo.dirty || correo.touched ) " class="alert alert-danger" role="alert"
-            style="width: 13em"> Error campo no valido
-          </div>
-        </div>
-      </div>
-      
-
-      <div class="col-lg-8"  style="margin-left:5em !important;" >
-          <h3>Tipo de usuario</h3><select><option>Administrador</option>
-            <option></option></select>
-      </div>
+    <div class="fondo" style="margin-top: 0;">
 
 
-      <button [disabled]="!formularioRegistro.valid" type="button" (click)="guardar()" id="btnregistrar"
-        class="btn btn-lg"><i class="fas fa-address-book fa-1x fa-lg "></i>Registrarse</button>
-  
-    </form>
-  </div>
+      <h1 id="hregisrtrarse">Registrarse</h1>
+      <hr>
+
+      <form [formGroup]="formularioRegistro" style="align-items: center; " id="fc">
+        <div style="align-items: center; margin-left: 4em;" class="form-row ">
+
+          <div class="col col-lg-3  ">
+            <input [ngClass]="{'input-error':primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) }"
+              formControlName="primerNombre" type="text" class=" tamano" placeholder="Primer Nombre">
+            <div *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) "
+              class="alert alert-danger" role="alert" style="width: 13em;"> campo no valido
+              <span class="error" *ngIf="primerNombre.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="primerNombre.errors.pattern">solo se admiten letras</span>
+              <span *ngIf="primerNombre.errors.minLength"> El tamaño minimo son 8 caracteres</span>
+            </div>
+
+          </div>
+          <div class="col col-lg-4 ">
+            <input [ngClass]="{'input-error':segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) }"
+              formControlName="segundoNombre" type="text" class=" tamano ajuste" placeholder="segundo nombre">
+            <div *ngIf="segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) "
+              class="alert alert-danger" role="alert" style="width: 13em"> ¡Error campo no valido!
+
+
+              <span class="error" *ngIf="segundoNombre.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="segundoNombre.errors.pattern">solo se admiten letras</span>
+              <span *ngIf="segundoNombre.errors.minLength">El tamaño minimo son 5 caracteres</span>
+
+
+            </div>
+
+          </div>
+
+          <div class="col col-lg-5">
+
+          </div>
+
+
+          <div class="col col-lg-3 ">
+            <input
+              [ngClass]="{'input-error':PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) }"
+              formControlName="PrimerApellido" type="text" class=" tamano" placeholder="Primer apellido">
+            <div *ngIf="PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) "
+              class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
+
+
+              <span *ngIf="PrimerApellido.errors.pattern">solo se admiten letras</span>
+              <span *ngIf="PrimerApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
+
+
+
+
+            </div>
+          </div>
+          <div class="col col-lg-4 ">
+            <input
+              [ngClass]="{'input-error':segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) }"
+              formControlName="segundoApellido" type="text" class="  tamano" placeholder="segundo Apellido">
+            <div *ngIf="segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) "
+              class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
+
+
+
+              <span *ngIf="segundoApellido.errors.pattern">solo se admiten letras</span>
+              <span *ngIf="segundoApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
+
+
+
+
+            </div>
+          </div>
+          <div class="col col-lg-5">
+
+          </div>
+
+          <div class="col col-lg-3 ">
+            <input [ngClass]="{'input-error':contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) }"
+              formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
+            <div *ngIf="contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) " class="alert alert-danger"
+              role="alert" style="width: 13em"> Error campo invalido
+
+              <span *ngIf="contrasena1.errors.pattern">Al menos 1 Digito y una letra mayuscula</span>
+              <span *ngIf="contrasena1.errors.minLength">El tamaño minimo son 8 caracteres</span>
+            </div>
+
+
+
+          </div>
+          <div class="col col-lg-4">
+            <input [ngClass]="{'input-error':contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) }"
+              formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
+            <div *ngIf="contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) " class="alert alert-danger"
+              role="alert" style="width: 13em"> Error campo no valido</div><br>
+            <span class="error"
+              *ngIf=" contrasenavalida()==false && (contrasena2.dirty || contrasena2.touched )">Contrasena
+              no coincide</span>
+
+
+
+
+
+          </div>
+          <div class="col col-lg-5">
+
+          </div>
+          <div class="col col-lg-3">
+            <input [ngClass]="{'input-error':identidad.invalid && (identidad.dirty || identidad.touched ) }"
+              formControlName="identidad" type="text" class=" tamano" placeholder="Ingresa Tu Identidad">
+            <div *ngIf="identidad.invalid && (identidad.dirty || identidad.touched ) " class="alert alert-danger"
+              role="alert" style="width: 13em"> Error campo no valido
+
+
+              <span *ngIf="identidad.errors.minLength">se requieren 13 Digitos </span>
+
+
+
+            </div>
+          </div>
+          <div class="col col-lg-7">
+            <input [ngClass]="{'input-error':correo.invalid && (correo.dirty || correo.touched ) }"
+              formControlName="correo" type="text" class=" tamano" placeholder="Ingresa Tu correo Electronico">
+            <div *ngIf="correo.invalid && (correo.dirty || correo.touched ) " class="alert alert-danger" role="alert"
+              style="width: 13em"> Error campo no valido
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-8" style="margin-left:5em !important;">
+          <h3>Tipo de usuario</h3>
+
+          <select id="select-tipoUsuario">
+            <option value="1">Administrador</option>
+            <option value="2">Normal</option>
+          </select>
+        </div>
+
+
+        <button [disabled]="!formularioRegistro.valid" type="button" (click)="guardar()" id="btnregistrar"
+          class="btn btn-lg"><i class="fas fa-address-book fa-1x fa-lg "></i>Registrarse</button>
+
+      </form>
     </div>
+  </div>
 </div>
-

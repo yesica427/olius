@@ -106,22 +106,26 @@ export class RegistroAdminComponent implements OnInit {
     console.log(this.formularioRegistro.value);
     console.log('iniciovalido:', this.formularioRegistro.valid)
 
+    var valorCategoria = (<HTMLSelectElement>document.getElementById('select-tipoUsuario')).value;
+
+
     var valores = this.formularioRegistro.value;
 
-    // console.log(valores.primerNombre)
 
+    var resultado = this.loginService.registrarUsuario(valores.primerNombre.toLowerCase(), valores.segundoNombre.toLowerCase(), valores.PrimerApellido.toLowerCase(), valores.segundoApellido.toLowerCase(), valores.contrasena1, valores.correo.toLowerCase(), valores.identidad, parseInt(valorCategoria));
 
-    var resultado = this.loginService.registrarUsuario(valores.primerNombre, valores.segundoNombre, valores.PrimerApellido, valores.segundoApellido, valores.contrasena1, valores.correo, valores.identidad);
+    resultado.subscribe((res) => {
+      console.log(res)
 
-    console.log(resultado)
-    if (resultado.registroCorrecto != false) {
-      this.navigate();
-    }
-    else {
-      //alert(resultado.mensaje)
-
-      console.log(resultado.mensaje)
-    }
+      var resJson = JSON.parse(JSON.stringify(res));
+      if (resJson.registroCorrecto != false) {
+        this.navigate();
+      }
+      else {
+        //alert(res.mensaje)
+        console.log(resJson.mensaje)
+      }
+    });
   }
 
 

@@ -9,27 +9,99 @@
 .botonOpciones {
   margin-left: .5em !important;
   margin-right: .5em !important;
-  background-color:#B7378A !important;
-  color:white;
+  background-color: #B7378A !important;
+  color: white;
 }
 
-.borde{
-  border-bottom: 1px!important;
+.borde {
+  border-bottom: 1px !important;
   border-color: #B7378A;
 }
 
-.fondo{
+.fondo {
   background-color: black;
-  width: 100%!important;
-  height:  100em!important;
-  max-width: 1200px!important;
+  width: 100% !important;
+  height: 100em !important;
+  max-width: 1200px !important;
 }
 
-.color{
+.color {
   color: #B7378A;
 }
 
 
-.colortable{
-  background-color: black!important;
+.colortable {
+  background-color: black !important;
+}
+
+
+.formulario {
+
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.5;
+  color: white;
+
+}
+
+
+.error {
+  color: brown !important;
+}
+
+.input-error {
+  border-color: red;
+}
+
+
+#btnregistrar {
+  padding: 0em;
+  text-align: center;
+  margin-left: 15em;
+  background-color: #B7378A;
+  ;
+  color: black;
+  margin-bottom: 3em;
+}
+
+hr {
+  height: 2px;
+  background-color: #B7378A;
+}
+
+
+
+#fc {
+  border-radius: 2px;
+  margin-left: 4 !important;
+  margin-right: 0;
+
+  /* background-image: url('~/assets/img/fondo4.jpg')!important; */
+
+}
+
+#hregisrtrarse {
+  margin-top: 5rem;
+  margin-bottom: 0em;
+  align-items: center;
+  margin-left: 6em;
+}
+
+
+
+
+.form-control {
+  padding-right: 3em;
+  width: 23em;
+  padding-left: 3em;
+
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tamano {
+  margin-bottom: 2em;
+
+
 }

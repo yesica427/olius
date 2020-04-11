@@ -21,13 +21,12 @@ export class RegisterComponent implements OnInit {
     contrasena2: new FormControl('', [Validators.required]),
     identidad: new FormControl('', [Validators.required, Validators.minLength(13)]),
     correo: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-
-
-
   });
 
 
   ngOnInit(): void {
+
+    this.formularioRegistro.get('primerNombre').setValue("Hola como estas");
   }
 
 
@@ -72,24 +71,15 @@ export class RegisterComponent implements OnInit {
 
 
   contrasenavalida() {
-
-
     if (this.formularioRegistro.get('contrasena1').value == this.formularioRegistro.get('contrasena2').value) {
       var bool = true;
       console.log(bool);
 
       return bool;
-
-
-
     }
-
     else {
-
       bool = false;
       return bool
-
-
     }
   }
 
@@ -108,17 +98,23 @@ export class RegisterComponent implements OnInit {
     console.log(valores.primerNombre)
 
 
-    var resultado = this.loginService.registrarUsuario(valores.primerNombre, valores.segundoNombre, valores.PrimerApellido, valores.segundoApellido, valores.contrasena1, valores.correo, valores.identidad);
+    var resultado = this.loginService.registrarUsuario(valores.primerNombre.toLowerCase(), valores.segundoNombre.toLowerCase(), valores.PrimerApellido.toLowerCase(), valores.segundoApellido.toLowerCase(), valores.contrasena1, valores.correo.toLowerCase(), valores.identidad, 2);
 
-    console.log(resultado)
-    if (resultado.registroCorrecto != false) {
-      this.navigate();
-    }
-    else {
-      //alert(resultado.mensaje)
 
-      console.log(resultado.mensaje)
-    }
+    resultado.subscribe((res) => {
+      console.log(res)
+
+      var resJson = JSON.parse(JSON.stringify(res));
+      if (resJson.registroCorrecto != false) {
+        this.navigate();
+      }
+      else {
+        //alert(res.mensaje)
+
+        console.log(resJson.mensaje)
+      }
+    });
+
   }
 
 

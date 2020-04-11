@@ -38,23 +38,34 @@ export class LoginComponent implements OnInit {
   entrar() {
 
     console.log(this.formularioInicioSesion.value);
-    console.log('iniciovalido:', this.formularioInicioSesion.valid)
+    //console.log('iniciovalido:', this.formularioInicioSesion.valid)
 
     var valores = this.formularioInicioSesion.value;
 
 
-    var res = this.loginService.login(valores.email, valores.password);
+    var respuesta = this.loginService.login(valores.email.toLowerCase(), valores.password);
     //console.log(res);
 
-    if (res.loginCorrecto) {
-      this.navigate();
-    }
-    else {
+    respuesta.subscribe((res) => {
 
-      console.log(res.mensaje);
-    }
+      console.log(res)
+
+      var resJson = JSON.parse(JSON.stringify(res));
+
+
+      if (resJson[0].loginCorrecto) {
+
+        localStorage.setItem('usuarioActual', JSON.stringify(res[1]));
+        this.navigate();
+      }
+      else {
+
+        console.log(resJson[0].mensaje);
+      }
+    });
+
+
   }
-
 
 
 

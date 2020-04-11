@@ -1,16 +1,16 @@
 export class Usuario {
-    id: number;
-    primerNombre: string;
-    segundoNombre: string;
-    PrimerApellido: string;
-    segundoApellido: string;
+    _id: string;
+    primernombre: string;
+    segundonombre: string;
+    primerapellido: string;
+    segundoapellido: string;
     contrasena: string;
     correo: string;
     identidad: string;
-    estLoggeado: boolean;
+    rol: number
 
     constructor(
-        id: number,
+
         primerNombre: string,
         segundoNombre: string,
         PrimerApellido: string,
@@ -18,18 +18,18 @@ export class Usuario {
         contrasena: string,
         correo: string,
         identidad: string,
-        estLoggeado: boolean) {
+        rol: number
+    ) {
 
-        this.id = id;
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.PrimerApellido = PrimerApellido;
-        this.segundoApellido = segundoApellido;
+
+        this.primernombre = primerNombre;
+        this.segundonombre = segundoNombre;
+        this.primerapellido = PrimerApellido;
+        this.segundoapellido = segundoApellido;
         this.contrasena = contrasena;
         this.correo = correo;
         this.identidad = identidad;
-        this.estLoggeado = estLoggeado;
-
+        this.rol = rol
 
     }
 

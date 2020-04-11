@@ -1,30 +1,28 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { Usuario } from "./usuario.model";
+import { HttpClient } from '@angular/common/http'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  urlBackend = 'http://localhost:8888';
 
   public listaDeUsuarios: Usuario[];
   public usuarioActual: Usuario;
 
 
-  traerUsuarios() {
+  public traerUsuarios() {
 
-    if (JSON.parse(localStorage.getItem('listaUsuarios')) == null) {
-      this.listaDeUsuarios = [];
-    }
-    else {
-      this.listaDeUsuarios = JSON.parse(localStorage.getItem('listaUsuarios'));
-    }
+    return this.http.get<Usuario[]>(this.urlBackend + "/usuarios");
   }
 
   registrarUsuario(
-
     primerNombre: string,
     segundoNombre: string,
     PrimerApellido: string,
@@ -32,74 +30,43 @@ export class LoginService {
     contrasena: string,
     correo: string,
     identidad: string,
+    rol: number
   ) {
 
-    this.traerUsuarios()
+    var usuario = new Usuario(
+      primerNombre,
+      segundoNombre,
+      PrimerApellido,
+      segundoApellido,
+      contrasena,
+      correo,
+      identidad,
+      rol);
 
-    //revisar si no existe un usuario con el mismo correo 
-
-    var usuario = this.listaDeUsuarios.filter(usuario => usuario.correo == correo.toLowerCase())[0];
-
-    if (usuario != null) {
-      //ya existe un usuario
-      //console.log("Ya existe un usuario con el mismo correo");
-
-      return { registroCorrecto: false, mensaje: "Ya existe un usuario con el mismo correo." };
-
-    }
-    else {
-
-      var id = this.listaDeUsuarios.length + 1;
-
-      var usuarioNuevo = new Usuario(id, primerNombre, segundoNombre, PrimerApellido, segundoApellido, contrasena, correo.toLocaleLowerCase(), identidad, false);
-
-      //guardar el usuario en la lista de usuarios
-      this.listaDeUsuarios.push(usuarioNuevo)
-
-      //guardar la lista de usuarios en localStorage
-      localStorage.setItem('listaUsuarios', JSON.stringify(this.listaDeUsuarios));
-
-      return { registroCorrecto: true, mensaje: "Regstro Correcto" };
-    }
-
-
-
-
+    return this.http.post(this.urlBackend + "/usuarios", usuario);
   }
 
   login(correo: string, contrasena: string) {
-    this.traerUsuarios();
 
-
-    var usuario = this.listaDeUsuarios.filter(usuario => usuario.correo == correo.toLocaleLowerCase())[0];
-
-
-    if (usuario == null) {
-      //console.log("No existe el usuario con el correo dado.");
-
-      return { loginCorrecto: false, mensaje: "No existe el usuario." };
-
-    }
-    else {
-
-      if (usuario.contrasena != contrasena) {
-        return { loginCorrecto: false, mensaje: "Contrasena Incorrecta" };
-      }
-      else {
-        usuario.estLoggeado = true;
-
-        this.usuarioActual = usuario;
-        localStorage.setItem('usuarioActual', JSON.stringify(usuario));
-
-        return { loginCorrecto: true, mensaje: "login correcto" };
-      }
-    }
+    return this.http.post(this.urlBackend + "/usuarios/login", {
+      correo: correo,
+      contrasena: contrasena
+    });
   }
 
   traerUsuarioActual() {
     this.usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
 
     return this.usuarioActual;
+  }
+
+  eliminarUsuario(correo) {
+
+    return this.http.delete(this.urlBackend + "/usuarios/" + correo)
+  }
+
+  actualizarUsuario(idUsuario, usuario) {
+    return this.http.put(this.urlBackend + "/usuarios/" + idUsuario, usuario);
   }
 
   logOut() {

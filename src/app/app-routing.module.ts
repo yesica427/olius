@@ -51,6 +51,7 @@ const routes: Routes = [
 
  
   { path: 'admin/registro', component:  RegistroAdminComponent, },
+  { path: 'admin', redirectTo: '/admin/dashboard', pathMatch: 'full', },
   
   { path: '**', redirectTo: '/pageNotFound', pathMatch: 'full', }
 
