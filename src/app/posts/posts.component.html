@@ -52,39 +52,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Hola mundo</td>
-              <td>-</td>
-              <td>titulos</td>
-              <td>4</td>
-              <td>07/03/20</td>
-              <td> <button type="button" class="btn botonOpciones">Eliminar</button>
+            <tr *ngFor='let post of listaPost; index as i'>
+              <th scope="row">{{i+1}}</th>
+              <td>{{post.titulopost}}</td>
+              <td>{{post.usuario}}</td>
+              <td>{{post.categoria}}</td>
+              <td>{{post.comentarios.length}}</td>
+              <td>{{post.fecha}}</td>
+              <td> <button type="button" class="btn botonOpciones" (click)="eliminarPost(post._id)">Eliminar</button>
                 <button type="button" class="btn  botonOpciones">Editar</button> </td>
             </tr>
-            <tr>
-              <th scope="row">1</th>
-              
-              <td>Hola mundo</td>
-              <td>-</td>
-              <td>titulos</td>
-              <td>4</td>
-
-              <td>07/03/20</td>
-              <td> <button type="button" class="btn  botonOpciones">Eliminar</button>
-                <button type="button" class="btn  botonOpciones">Editar</button> </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Hola mundo</td>
-              <td>-</td>
-              <td>titulos</td>
-              <td>4</td>
-
-              <td>07/03/20</td>
-              <td> <button type="button" class="btn btn-lg botonOpciones">Eliminar</button>
-                <button type="button" class="btn btn-lg botonOpciones">Editar</button> </td>
-            </tr>
+           
           </tbody>
         </table>
       </div>
