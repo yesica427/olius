@@ -122,6 +122,39 @@ router.get('/:id', async function(req,res){
  )
 
 
+//anadir comentario
+// router.post("/comentarios/:idpost", async function (req, res) {
+
+//   var idpost = ObjectID(req.params.idpost);
+
+//   var result = await client.db("Olius").collection("post").updateOne({
+//     "_id": idpost,
+//   }, {
+//     "$push": {
+//       "comentarios": req.body
+//     }
+//   });
+
+//   res.send(result);
+// })
+
+// //eliminar comentarios
+// router.delete("/comentarios/:idpost", async function (req, res) {
+
+//   var idpost = ObjectID(req.params.idpost);
+
+//   var result = await client.db("Olius").collection("post").updateOne({
+//     _id: idpost
+//   }, {
+//     $pull: {
+//       'comentarios': {
+//         "idcomentario": req.body.idcomentario
+//       }
+//     }
+//   });
+
+//   res.send(result);
+// })
 
 
 module.exports=router;

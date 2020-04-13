@@ -59,8 +59,9 @@
               <td>{{post.categoria}}</td>
               <td>{{post.comentarios.length}}</td>
               <td>{{post.fecha}}</td>
+
               <td> <button type="button" class="btn botonOpciones" (click)="eliminarPost(post._id)">Eliminar</button>
-                <button type="button" class="btn  botonOpciones">Editar</button> </td>
+                <button type="button" class="btn  botonOpciones" (click)="editarPost(post)"> Editar</button> </td>
             </tr>
            
           </tbody>
@@ -73,5 +74,84 @@
     </div>
 
   </div>
+
+  <div id="formularioeditar" *ngIf="postEditar">
+
+
+
+
+    <div class="container colorfondo" id="tamano">
+      <div class="row">
+        <!-- <div class="col col-lg-12" style="margin-top: 5em;">
+          <h3 class="color"> Titulo post</h3>
+          <input type="text" style="width: 20em;" id="titulo-post" [(ngModel)]="tituloPost">
+        </div> -->
+
+        <div class="col col-12">
+          <h3 class="color"> Titulo post</h3>
+          <div [formGroup]="nombrePostForm" style="width: 20em;" id="titulo-post">
+            <input [ngClass]="{'input-error':nombrePost.invalid && (nombrePost.dirty || nombrePost.touched ) }"
+              formControlName="nombrePost" type="text" placeholder="Titulo Post">
+            <div *ngIf="nombrePost.invalid && (nombrePost.dirty || nombrePost.touched )" class="alert alert-danger"
+              role="alert" style="width: 13em;"> Campo no válido:
+              <span class="error" *ngIf="nombrePost.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="nombrePost.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-12 " style="margin-top: 5em; text-align: center;">
+          <button class=" btn btn-lg borde" type="button" id="btn-archivo">Seleccionar
+            Archivo</button>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col col-12">
+          <div style="margin-top: 3em;">
+            <div [froalaEditor]="options" [(froalaModel)]="contenidoEditor"></div>
+
+            <div *ngIf="validarContenidoEditor()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+              La descripción no puede ir vacía.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-lg-12">
+        </div>
+
+        <div class="col col-lg-12">
+          <div>
+            <select id="select-categorias" class="form-control">
+              <option *ngFor="let categoria of listaDeCategorias" value="{{categoria.nombre}}">{{categoria.nombre}}
+              </option>
+            </select>
+
+            <label for="comentarios" style="color: white;">Incluir comentarios</label><br>
+            <input type="checkbox" id="comentarios" name="comentarios" value="true" style="color: white;">
+
+            <br>
+            <br>
+
+
+            <button type="button" id="btn-guardar-post" class="btn botonOpciones" (click)="guardarPost()"
+              [disabled]="!nombrePostForm.valid || validarContenidoEditor()==false">Guardar</button>
+              <button type="button" class="btn botonOpciones" (click)="postEditar=null">Cerrar Formulario</button>
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  
+
+
 </div>
 </div>
