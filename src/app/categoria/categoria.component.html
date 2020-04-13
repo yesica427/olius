@@ -19,16 +19,44 @@
             <p class="color">Añadir una nueva categoría</p>
           </strong>
           <form>
-            <div class="form-group color">
+            <div   [formGroup]="categoriasForm" class="form-group color">
               <label for="nombreCategoria ">Nombre: </label>
-              <input type="text" class="form-control" id="nombreCategoria">
-            </div>
-            <div class="form-group color">
-              <label for="descripcionCategoria">Descripcion</label>
-              <textarea class="form-control color" id="descripcionCategoria" cols="60" rows="10"></textarea>
+
+
+              
+              <input [ngClass]="{'input-error':nombreCategorias.invalid && (nombreCategorias.dirty || nombreCategorias.touched ) }"
+              formControlName="nombreCategorias"   type="text" class="form-control" id="nombreCategoria">
+        
+              <div *ngIf="nombreCategorias.invalid && (nombreCategorias.dirty || nombreCategorias.touched )" class="alert alert-danger"
+              role="alert" style="width: 13em;"> Campo no válido:
+              <span class="error" *ngIf="nombreCategorias.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="nombreCategorias.errors.minLength"> El tamaño minimo son 5 caracteres</span>
             </div>
 
-            <button type="button" class="btn  botonOpciones"><i class="fas fa-plus-circle"></i>Añadir nueva
+             
+
+
+            </div>
+            <div [formGroup]="categoriasForm"  class="form-group color">
+              <label for="descripcionCategoria">Descripcion</label>
+              <textarea    [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+              formControlName="descripcion"  class="form-control color" id="descripcionCategoria" cols="60" rows="10"></textarea>
+
+              <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+              role="alert" style="width: 13em;"> Campo no válido:
+              <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="descripcion.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+
+
+  
+
+
+              </div>
+
+
+            </div>
+
+            <button type="button" class="btn  botonOpciones"  (click)="guardarCategorias()"><i class="fas fa-plus-circle"></i>Añadir nueva
               categoría</button>
           </form>
         </div>
@@ -45,6 +73,7 @@
             class="table table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg fondotable">
             <thead>
               <tr>
+                <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Cantidad</th>
@@ -52,24 +81,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr scope="row">
-                <td scope="col">Viajes</td>
-                <td scope="col">Categoria sobre viajes</td>
+              <tr *ngFor='let categorias of listaCategorias; index as i'>
+                <th scope="row">{{i+1}}</th>
+                <td scope="col">{{categorias.nombrecategoria}}</td>
+                <td scope="col">{{categorias.descripcion}}</td>
                 <td scope="col">5</td>
                 <td>
-                  <button type="button" class="btn  botonOpciones"> <i class="fas fa-trash"></i>Eliminar</button>
+                  <button type="button" class="btn  botonOpciones" (click)="eliminarCategorias(categorias._id)" > <i class="fas fa-trash"></i>Eliminar</button>
                   <button type="button" class="btn  botonOpciones"><i class="fas fa-eye-dropper"></i>Editar</button>
                 </td>
               </tr>
-              <tr scope="row">
-                <td scope="col">Viajes</td>
-                <td scope="col">Categoria sobre viajes</td>
-                <td scope="col">5</td>
-                <td>
-                  <button type="button" class="btn  botonOpciones"><i class="fas fa-trash"></i>Eliminar</button>
-                  <button type="button" class="btn  botonOpciones"><i class="fas fa-eye-dropper"></i>Editar</button>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
