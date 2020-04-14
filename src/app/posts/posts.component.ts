@@ -62,6 +62,14 @@ editarPost(post:Post){
   this.postEditar=post;
   this.nombrePostForm.get('nombrePost').setValue(post.titulopost);
   this.contenidoEditor=post.descripcion;
+
+
+
+
+
+
+
+  
   
 
 }
