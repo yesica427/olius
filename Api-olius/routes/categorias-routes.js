@@ -126,4 +126,29 @@ res.send(result.result)
 })
 
 
+
+
+router.delete('/:id', async function (req, res) {
+    var id = ObjectID(req.params.id);
+
+    result = await client.db("Olius").collection("categorias")
+      .deleteOne({
+        "_id": id
+      }, {
+        $set: req.body
+      });
+  
+    res.send(result.result)
+
+
+
+
+  }
+ )
+
+
+
+
+
+
 module.exports=router;
