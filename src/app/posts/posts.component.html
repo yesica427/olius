@@ -16,24 +16,20 @@
         <div class="">
           <h4 class="color">Filtra las entradas:</h4>
           <div style="display: inline;">
-            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
-              <option value="value1">Ordenar por fecha</option>
-              <option value="value2" selected>Ordenar por categoria</option>
+            <select name="select" id="select-categoria"   (change)="filtrocategoria()" class="form-control" style="width: 20%; display: inline; margin: 1em;">
+              <option value="null"selected >Ordenar por categoria  </option>
+              <option value="musica" >musica </option>
+              <option value="anime" >anime </option>
+              <option value="series" >series </option>
             </select>
           </div>
           <div style="display: inline;">
-            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
-              <option value="value1" selected>Todas las categorías</option>
-
-            </select>
+           <input id="buscarautor"  placeholder="Introduzca el Autor">
+           <button type="button"   (click)="filtroAutor()" class="btn btn-lg  color"><i
+            class="fas fa-search"></i>Buscar</button>
           </div>
           <div style="display: inline; margin-bottom: 5em;">
-            <select name="select" class="form-control" style="width: 20%; display: inline; margin: 1em;">
-              <option value="value1" selected>Privacidad</option>
-              <option value="value1">Públicos</option>
-              <option value="value1">Privados</option>
-
-            </select>
+            
           </div>
         </div>
         <div class="col col-lg-12" style="width: 150%!important; height: 100%;" >

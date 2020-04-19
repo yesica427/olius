@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col col-lg-12 col-md-6 col-sm-1 encabezado">
           <h4 class="color " style="display: inline;">Banco de Archivos</h4>
-          <button type="button" class="btn btn-lg color borde"  style="display: inline; margin-left: 1em;"
-          data-toggle="modal" data-target="#bootstrapModel" (click)="openModal()">Añadir un
+          <button type="button" class="btn btn-lg color borde" style="display: inline; margin-left: 1em;"
+            data-toggle="modal" data-target="#bootstrapModel" (click)="openModal()">Añadir un
             archivo</button>
           <hr>
           <br>
@@ -21,17 +21,18 @@
 
 
           <div class="barraBusqueda">
-            <Select class="form-control" style="display: inline; width: 20% ;">
-              <option class="color " value="" selected>Tipo de archivo</option>
-              <option value="">Fotos</option>
-              <option value="">Videos</option>
-              <option value="">Música</option>
+            <Select (change)="filtro()" id="tipoarchivo" class="form-control" style="display: inline; width: 20% ;">
+              <option class="color " value="null" selected>Tipo de archivo</option>
+              <option value="imagen">Fotos</option>
+              <option value="Video">Videos</option>
+              <option value="musica">Música</option>
+              <option value="documento">Documentos</option>
             </Select>
 
             <div class="formBusqueda" style="display: inline; margin-left: 50%;">
               <input type="text" id="busquedaArchivo" style="display: inline; width: 20%; margin-right:1em;"
                 class=" form-control color" placeholder="Busca un archivo"><br>
-              <button type="button" class="btn btn-lg  color" style="display: inline;"     ><br><i
+              <button type="button" class="btn btn-lg  color" style="display: inline;" (click)="busquedanombre()"><br><i
                   class="fas fa-search"></i>Buscar</button>
 
             </div>
@@ -44,23 +45,40 @@
         </div>
       </div>
 
-      <div class="row" >
-        <div class="col col-lg-3 archivo  bordediv">
-          <div class="archivoDiv ">
-            <i class="fas fa-10x fa-file-video"></i>
+      <div class="row">
+        <div class="col col-lg-3 archivo  bordediv" *ngFor="let archivo of listaArchivos"
+          (click)="openModalEditar(archivo)">
+          <div class="archivoDiv" [ngSwitch]="archivo.tipo">
+
+            <div class="div-interno" *ngSwitchCase="'documento'">
+              <p style="color: white;">{{archivo.tipo}}</p>
+              <i class="fas fa-10x fa-file-alt"></i>
+              <p style="color: white;">{{archivo.titulo}}</p>
+            </div>
+
+            <div class="div-interno" *ngSwitchCase="'imagen'">
+              <p style="color: white;">{{archivo.tipo}}</p>
+              <img src="{{archivo.url}}" alt="" *ngSwitchCase="'imagen'"
+                style="max-width: 6em; height: auto; object-fit: cover">
+              <p style="color: white;">{{archivo.titulo}}</p>
+            </div>
+            <div class="div-interno" *ngSwitchCase="'video'">
+              <p style="color: white;">{{archivo.tipo}}</p>
+              <video width="320" height="240">
+                <source src="{{archivo.url}}" type="video/mp4">
+              </video>
+              <p style="color: white;">{{archivo.titulo}}</p>
+            </div>
+
+            <div class="div-interno" *ngSwitchCase="'audio'">
+              <p style="color: white;">{{archivo.tipo}}</p>
+              <i class="fas fa-10x fa-volume-down"></i>
+              <p style="color: white;">{{archivo.titulo}}</p>
+            </div>
+
           </div>
         </div>
-        <div class="col col-lg-3 archivo">
-          <div class="archivoDiv">
-            <i class="fas fa-10x fa-file-video"></i>
-          </div>
-        </div>
-        <div class="col col-lg-3 archivo">
-          <div class="archivoDiv">
-            <i class="fas fa-10x fa-file-video"></i>
-          </div>
-        </div>
-        
+
 
       </div>
     </div>
@@ -83,48 +101,154 @@
       </div>
       <div [formGroup]="archivosForm" class="modal-body  fondoblack" style="text-align: center;">
 
-        
+
+
+        <label for="file">Archivo</label>
+
+        <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)"
+          placeholder="Seleccione un archivo">
+
+        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+
+          <div *ngIf="f.file.errors.required">Campo requerido</div>
+
+        </div>
+
+        <div *ngIf="existeArchivo" class="alert alert-danger">Ya existe un archivo con el mismo nombre</div>
+
         <h4>Titulo</h4>
-        <input type="text"  [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
-        formControlName="titulo">
+        <input type="text" [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
+          formControlName="titulo">
 
 
-        <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )"
-                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido</div>
+        <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
+          style="width: 13em;"> Campo no válido</div>
 
 
 
         <h4>Categoria</h4>
-        <select><option>Deportes</option>
-          <option>musica</option>
-          <option>libross
-
-          </option></select>
+        <select id="select-categorias">
+          <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
+            {{categoria.nombrecategoria}}</option>
+          <!-- <option value="musica">musica</option>
+          <option value="libross">libross</option> -->
+        </select>
 
 
         <h4>Descripcion</h4>
-        <input type="text"   [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
-        formControlName="descripcion"   >
+        <input type="text"
+          [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+          formControlName="descripcion">
 
-        <div  *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )"
-        class="alert alert-danger" role="alert" style="width: 13em; margin-right: 20em!important;"> Campo no válido</div>
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+          role="alert" style="width: 13em; margin-right: 20em!important;"> Campo no válido</div>
+
+      </div>
+      <div class="modal-footer fondomodal">
+        <button type="button" class="btn btn-lg colorboton" [disabled]="!archivosForm.valid || existeArchivo"
+          (click)="guardarArchivo()">Guardar archivo</button>
+        <button type="button" class="btn btn-lg colorboton" data-dismiss="modal" (click)="close()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal editar -->
+
+
+<div id="bootstrapModel2" class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayModalEditar}"
+  style="margin-bottom: 10em;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header fondomodal">
+        <h5 class="modal-title color texto">Archivos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div [formGroup]="archivosFormEditar" class="modal-body  fondoblack" style="text-align: center;">
+
+        <div class="archivoDiv" [ngSwitch]="archivoEditar.tipo">
+
+          <div class="div-archivo" *ngSwitchCase="'documento'">
+            <!-- <i class="fas fa-10x fa-file-alt">
+            </i> -->
+
+            <a href="{{archivoEditar.url}}"> <i class="fas fa-10x fa-file-alt">
+              </i></a>
+            <p style="color: white;">{{archivoEditar.nombrearchivo}}</p>
+          </div>
+
+          <div class="div-archivo" *ngSwitchCase="'imagen'">
+
+            <img src="{{archivoEditar.url}}" alt="" *ngSwitchCase="'imagen'"
+              style="max-width: 6em; height: auto; object-fit: cover">
+            <p style="color: white;">{{archivoEditar.nombrearchivo}}</p>
+          </div>
+          <div class="div-archivo" *ngSwitchCase="'video'">
+
+            <video width="320" height="240" controls>
+              <source src="{{archivoEditar.url}}" type="video/mp4">
+            </video>
+            <p style="color: white;">{{archivoEditar.nombrearchivo}}</p>
+          </div>
+
+          <div class="div-archivo" *ngSwitchCase="'audio'">
+
+            <audio controls>
+              <source src="{{archivoEditar.url}}" type="audio/ogg">
+            </audio>
+            <p style="color: white;">{{archivoEditar.nombrearchivo}}</p>
+          </div>
+
+        </div>
+        <h4>Titulo</h4>
+        <input type="text" [ngClass]="{'input-error':tituloEditar.invalid && (tituloEditar.dirty || titulo.touched ) }"
+          formControlName="tituloEditar">
+
+
+        <div *ngIf="tituloEditar.invalid && (tituloEditar.dirty || titulo.touched )" class="alert alert-danger"
+          role="alert" style="width: 13em;"> Campo no válido</div>
+
+
+
+        <h4>Categoria</h4>
+        <select id="select-categorias-editar">
+          <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
+            {{categoria.nombrecategoria}}</option>
+          <!-- <option value="musica">musica</option>
+          <option value="libross">libross</option> -->
+        </select>
+
+
+        <h4>Descripcion</h4>
+        <input type="text"
+          [ngClass]="{'input-error':descripcionEditar.invalid && (descripcionEditar.dirty || descripcionEditar.touched ) }"
+          formControlName="descripcionEditar">
+
+        <div *ngIf="descripcionEditar.invalid && (descripcionEditar.dirty || descripcionEditar.touched )"
+          class="alert alert-danger" role="alert" style="width: 13em; margin-right: 20em!important;"> Campo no válido
+        </div>
 
 
 
 
         <h4>Shorcut</h4>
-        <input type="text" [ngClass]="{'input-error':shorcut.invalid && (shorcut.dirty || shorcut.touched ) }"
-        formControlName="shorcut">
+        <input type="text" [ngClass]="{'input-error':shortcut.invalid && (shortcut.dirty || shortcut.touched ) }"
+          formControlName="shortcut" disabled>
 
-        <div *ngIf="shorcut.invalid && (shorcut.dirty || shorcut.touched )"
-        class="alert alert-danger" role="alert" style="width: 13em;text-align: center;"> Campo no válido</div>
-
+        <div *ngIf="shortcut.invalid && (shortcut.dirty || shortcut.touched )" class="alert alert-danger" role="alert"
+          style="width: 13em; margin-right: 20em!important;"> Campo no válido
+        </div>
 
 
       </div>
       <div class="modal-footer fondomodal">
-        <button type="button" class="btn btn-lg colorboton">Save changes</button>
-        <button type="button" class="btn btn-lg colorboton" data-dismiss="modal" (click)="close()" >Close</button>
+        <button type="button" class="btn btn-lg colorboton" [disabled]="!archivosFormEditar.valid"
+          (click)=" actualizarArchivo()">Actualizar</button>
+        <button type="button" class="btn btn-lg colorboton" (click)=" eliminarArchivo()">Eliminar</button>
+        <button type="button" class="btn btn-lg colorboton" data-dismiss="modal"
+          (click)="closeModalEditar()">Cerrar</button>
       </div>
     </div>
   </div>

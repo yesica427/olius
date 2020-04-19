@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Post} from '../post.model';
+import {Categorias} from '../categorias.model';
 import { HttpClient } from '@angular/common/http';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
 
@@ -13,11 +14,30 @@ export class PostsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   public listaPost:Post[];
+  public  listaCategorias:Categorias[];
 
   ngOnInit() {
-
+    this.traerCategorias();
     this.traerPost();
+   
+    
   }
+
+
+
+  /*traer categorias*/
+
+  traerCategorias(){
+
+    this.http.get<Categorias[]>('http://localhost:8888/categorias').subscribe(
+      (res)=>{console.log(res)
+      this.listaCategorias=res;
+      this.copiascategorias=res;
+      }
+    )
+  }
+
+  
 
 /*metodo de traer post*/
 
@@ -26,6 +46,7 @@ traerPost(){
   this.http.get<Post[]>('http://localhost:8888/posts').subscribe(
     (res)=>{console.log(res)
     this.listaPost=res;
+    this.copiaPost=res;
     }
   )
 
@@ -146,5 +167,55 @@ guardarPost() {
 }
 
 
+
+copiascategorias:Categorias[];
+filtrocategoria(){
+  var categoriaSeleccionada=(<HTMLSelectElement>(
+    document.getElementById("select-categoria")
+  )).value;
+
+  this.listaCategorias=this.copiascategorias;
+
+  if (categoriaSeleccionada!="null"){
+    this.listaCategorias=this.listaCategorias.filter((Categorias) => {
+        return Categorias.nombrecategoria == categoriaSeleccionada;
+      });
+
+
+
+
+
+
+
+
+}
+}
+
+
+copiaPost:Post[];
+
+/*filtro por autor*/
+filtroAutor(){
+
+var valornombre = (<HTMLSelectElement>(
+  document.getElementById("buscarautor")
+)).value;
+
+
+
+
+this.listaPost=this.copiaPost;
+
+
+if (valornombre !=""){
+  
+  this.listaPost=this.listaPost.filter((post) => {
+    return post.usuario.includes(valornombre);
+  });
+ 
+
+
+}
+}
 
 }

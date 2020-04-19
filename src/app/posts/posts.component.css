@@ -34,6 +34,12 @@ btn{
 
 
 #tamano{
-  width: 100% !important;
-  height: 500%!important;
+  width: inherit!important;
+  height: inherit!important;
+}
+
+
+.color{
+  
+  color: #B7378A;
 }

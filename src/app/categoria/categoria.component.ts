@@ -31,6 +31,7 @@ export class CategoriaComponent implements OnInit {
       (res) => {
         console.log(res)
         this.listaCategorias = res;
+        this.copiaCategorias=res;
       }
     )
 
@@ -153,5 +154,36 @@ export class CategoriaComponent implements OnInit {
     }
 
   }
+
+
+
+  copiaCategorias:Categorias[];
+
+  busquedaNombrecategoria(){
+    var categoriaseleccionada = (<HTMLSelectElement>(
+      document.getElementById("iputBusqueda")
+    )).value;
+   
+    
+    
+
+    this.listaCategorias=this.copiaCategorias;
+
+
+    if (categoriaseleccionada !=""){
+      
+      this.listaCategorias=this.listaCategorias.filter((categorias) => {
+        return categorias.nombrecategoria.includes(categoriaseleccionada);
+      });
+     
+    
+
+
+    }
+  }
+
+
+
+
 
 }
