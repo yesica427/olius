@@ -11,7 +11,7 @@ import { Archivo } from '../archivo.model';
 })
 export class ArchivosComponent implements OnInit {
   display = 'none';
-  estado='desactivo';
+  estado = 'desactivo';
 
   backendURL = 'http://localhost:8888/archivos';
 
@@ -37,7 +37,7 @@ export class ArchivosComponent implements OnInit {
       console.log(res);
       this.listaArchivos = res;
       this.copiaListaArchivos = res;
-     this. copiaarchivos=res;
+
     });
   }
 
@@ -151,7 +151,7 @@ export class ArchivosComponent implements OnInit {
       (res) => {
 
         this.listaCategorias = res;
-        
+
       }
     )
 
@@ -216,13 +216,13 @@ export class ArchivosComponent implements OnInit {
     this.archivosFormEditar.get('tituloEditar').setValue(archivo.titulo);
     this.archivosFormEditar.get('descripcionEditar').setValue(archivo.descripcion);
 
-    var shortcut = `{'tipo':'${archivo.tipo}', '_id':'${archivo._id}'}`
+    var shortcut = `{"tipo":"${archivo.tipo}","_id":"${archivo._id}"}`
     this.archivosFormEditar.get('shortcut').setValue(shortcut);
   }
 
   closeModalEditar() {
 
-    this.archivoEditar = null;
+    //this.archivoEditar = null;
     this.displayModalEditar = 'none';
 
   }
@@ -294,52 +294,41 @@ export class ArchivosComponent implements OnInit {
   }
 
 
-  copiaListaArchivos:Archivo[];
-  filtro(){
-  
+  copiaListaArchivos: Archivo[];
+  filtro() {
+
 
     var Categoriaseleccionada = (<HTMLSelectElement>(
       document.getElementById("tipoarchivo")
     )).value;
 
-    this.listaArchivos=this.copiaListaArchivos;
+    this.listaArchivos = this.copiaListaArchivos;
 
-    if (Categoriaseleccionada!="null"){
-    this.listaArchivos=this.listaArchivos.filter((archivo) => {
+    if (Categoriaseleccionada != "null") {
+      this.listaArchivos = this.listaArchivos.filter((archivo) => {
         return archivo.tipo == Categoriaseleccionada;
       });
 
-      
-    }
- 
 
-    
-    
-  
+    }
 
   }
-  copiaarchivos:Archivo[];
 
-  busquedanombre(){
+
+  busquedanombre() {
     var valortitulo = (<HTMLSelectElement>(
       document.getElementById("busquedaArchivo")
     )).value;
-   
-    
-    
-
-    this.listaArchivos=this.copiaarchivos;
 
 
-    if (valortitulo !=""){
-      
-      this.listaArchivos=this.listaArchivos.filter((archivo) => {
+    this.listaArchivos = this.copiaListaArchivos;
+
+
+    if (valortitulo != "") {
+
+      this.listaArchivos = this.listaArchivos.filter((archivo) => {
         return archivo.titulo.includes(valortitulo);
       });
-     
-    
-
-
     }
   }
 
