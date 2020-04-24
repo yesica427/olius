@@ -18,6 +18,7 @@
 #content {
   margin-left: 20% !important;
   width: 80% !important;
+  color:white !important;
 }
 
 
@@ -32,5 +33,31 @@
   width: 120%!important;
   height:  100em!important;
   background-color: black;
+  color:#B7378A !important;
+
+  text-align: center;
+
   
+}
+
+
+.texto{
+  font-family: 'Monoton', arial;
+  color:#B7378A;
+
+}
+
+.input-error{
+  border-color: red 1px;
+}
+
+
+.fondodiv{
+  background-image: url('~/assets/img/fondo3.gif') !important ;
+ background-size: cover !important;
+ background-repeat: no-repeat;
+ width: 40em !important;
+ height: 20em !important;
+ background-position: center 50%;
+
 }

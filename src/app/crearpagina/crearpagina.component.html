@@ -2,48 +2,141 @@
 
   <app-sidebar></app-sidebar>
 
-  <div class="content fondo" style="margin-left: 15% !important;width: 100% !important;">
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;" style="margin-left: 15% !important;width: 100% !important;">
 
-    <form style="margin-top: 3em ;">
+    <form >
       <div class="container">
-        <div class="row">
-          <div class="col-col-lg-6">
+        <div class="row" >
 
-            <input type="email" style="padding-right:2em ;" class="form-control" placeholder="Escribir Titulo">
+
+          <div class="col col-lg-12 fondodiv" style="margin-bottom:2em; margin-left: auto;margin-right: auto;">
+            <h2 class="texto" style="margin-top: 5em;margin-left: auto;margin-right: auto;  " ><b> Crear Pagina</b></h2>   
+
+            
+          </div>
+          <div class="col col-lg-12 " style="margin-bottom:2em;">
+           
+           
 
           </div>
 
-          <div class="col col-lg-3">
-            <select style="width: 10em!important;" class="form-control form-control-lg">
-              <option>Elegir Categoria</option>
-              <option>futbol</option>
-              <option>comida</option>
-              <option>danza</option>
-              <option></option>
-            </select>
-          </div>
-          <div class="col-col-lg-3">
+         
 
-            <select style="width: 10em!important;" class="form-control form-control-lg border  ">
+   
+
+          <div class="col col-lg-6"  >
+            <div [formGroup]="formularioPagina" style="width: 20em; margin-left: auto ; margin-right: auto" id="titulo-pagina">
+
+            <input [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"     formControlName="titulo"  type="text"  style="padding-right:2em ;margin-left: 10 rem"  class="form-control" placeholder="Escribir Titulo">
+
+
+
+            <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger"
+              role="alert" style="width: 20em;"> Campo no válido:
+              <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+        
+          <div class="col-col-lg-4" style=" margin-left: auto;margin-right: auto;">
+
+         
+            <select id="pagina-tipo" style="width: 10em!important;" class="form-control form-control-lg border  ">
               <option>Tipo De Pagina</option>
-              <option>educativa</option>
-              <option>pasatiempo</option>
-              <option>Tabla</option>
-              <option></option>
+              <option value="Estatica">Estatica</option>
+              <option value="Dinamica">Dinamica</option>
+              
             </select>
 
           </div>
 
-          <div class="col-col-lg-6">
-            <button class="btn btn-lg" routerLink='/paginacreada'> Publicar</button>
+
+          <div class="col col-lg-2">
+
+          </div>
+
+
+
+          
+
+
+
+        <div class="col col-lg-6"  style="margin-top: 3em;">
+       
+
+       <div [formGroup]="formularioPagina" style="width: 20em ; margin-left: auto;margin-right: auto;" id="descripcion-pagina">
+      <input   [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"   placeholder="Descripcion"  formControlName="descripcion" class="form-control" type="text">
+
+
+      <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+      role="alert" style="width: 13em;"> Campo no válido:
+      <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+
+
+        </div>
+      </div>
+        </div>
+
+
+       <div class="col col-lg-1">
+
+       </div>
+        <div class="col col-lg-5" style="margin-top: 3em;margin-left: auto;margin-right: auto;">
+          <select id="pagina-categoria" style="width: 10em!important;" class="form-control form-control-lg">
+            <option>Elegir Categoria</option>
+            <option>futbol</option>
+            <option>comida</option>
+            <option>danza</option>
+            <option></option>
+          </select>
+        </div>
+
+
+
+        <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto " >
+          <h4>Desea encabezado</h4>
+         <input type="checkbox">
+   
+   
+           </div>
+
+
+
+
+           <div class="col col-lg-4"  style="margin-top: 3em; margin-left: auto ; margin-right: auto">
+            <h4>Desea Pie de pagina</h4>
+           <input type="checkbox">
+     
+     
+             </div>
+
+
+             <div class="col col-lg-4"  style="margin-top: 3em;margin-left: auto ; margin-right: auto">
+              <h4>Estado Activa</h4>
+             <input type="checkbox">
+       
+       
+               </div>
+
+
+
+
+
+          <div class="col col-lg-6" style="margin-left: auto ; margin-right:20rem;margin-top: 1em; margin-bottom: 3em;">
+            <button class="btn btn-lg" routerLink='/paginacreada' > Publicar</button>
           </div>
         </div>
 
       </div>
 
 
-    </form>
 
+    </form>
 
     <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
       <ngx-codemirror [(ngModel)]="contentJS" [options]="{

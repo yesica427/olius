@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl,FormGroup,Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-crearpagina',
@@ -15,5 +16,35 @@ export class CrearpaginaComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+
+
+formularioPagina = new FormGroup({
+  titulo: new FormControl("", [
+    Validators.required,
+    Validators.minLength(5),
+  ]),
+
+  descripcion: new FormControl("", [
+    Validators.required,
+    Validators.minLength(5),
+  ]),
+});
+
+
+
+get titulo(){
+  return this.formularioPagina.get("titulo");
+}
+
+
+
+get descripcion(){
+  return this.formularioPagina.get("descripcion");
+}
+
+
+
 
 }
