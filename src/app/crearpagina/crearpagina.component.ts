@@ -47,4 +47,27 @@ get descripcion(){
 
 
 
+/*categoria seleccionada*/
+
+categoriaSeleccionada(){
+
+var categoriaElegida=(<HTMLSelectElement>(
+  document.getElementById("pagina-categoria")
+)).value
+
+};
+
+
+
+tipopaginaSeleccionada(){
+  var categoriaElegida=(<HTMLSelectElement>(
+    document.getElementById("pagina-tipo")
+  )).value
+
+}
+
+
+
+
+
 }
