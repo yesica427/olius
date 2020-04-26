@@ -1,0 +1,79 @@
+.border{
+    border-radius: 2px;
+    border-color: #B7378A;
+  
+  }
+  
+  .wrapper {
+    display: flex;
+    width: 100%;
+  }
+  
+  #content {
+    margin-left: 20% !important;
+    width: 80% !important;
+    color:white !important;
+  }
+  
+  
+  .texto{
+    font-family: 'Monoton', arial;
+    color:#B7378A;
+  
+  }
+  
+  .btn {
+    background-color: #B7378A;
+    color: white;
+   
+  }
+  
+  .fondo{
+    width: 120%!important;
+    height:  100em!important;
+    background-color: black;
+    color:#B7378A !important;
+   
+  
+    text-align: center;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+   
+background-position: center center;
+
+
+
+    
+  }
+
+
+
+ 
+
+
+  
+.fondodiv{
+
+ background-size: cover !important;
+ background-repeat: no-repeat;
+ width: 40em !important;
+ height: 20em !important;
+ background-position: center 100%;
+ 
+ color: #B7378A; 
+
+ background-image: url('https://image.freepik.com/vector-gratis/explosion-color-polvo-pintura-holi-realista_107791-1821.jpg') !important ; 
+ 
+ border-image: fill!important;
+ border-image-outset: 1.5;
+
+}
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,7 @@ import { PagesCreatedComponent } from './pages-created/pages-created.component';
 import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
-
+import { NuevotemaComponent } from  './nuevotema/nuevotema.component';
 
 const routes: Routes = [
   {
@@ -51,6 +51,11 @@ const routes: Routes = [
 
  
   { path: 'admin/registro', component:  RegistroAdminComponent, },
+
+  { path: 'admin/nuevotema', component:  NuevotemaComponent, },
+
+
+
   { path: 'admin', redirectTo: '/admin/dashboard', pathMatch: 'full', },
   
   { path: '**', redirectTo: '/pageNotFound', pathMatch: 'full', }
