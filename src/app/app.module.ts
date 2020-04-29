@@ -28,6 +28,7 @@ import { CrearpaginaComponent } from './crearpagina/crearpagina.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 import { NuevotemaComponent } from './nuevotema/nuevotema.component';
+import { TemasComponent } from './temas/temas.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { NuevotemaComponent } from './nuevotema/nuevotema.component';
     CrearpaginaComponent,
     PageNotFoundComponent,
     RegistroAdminComponent,
-    NuevotemaComponent
+    NuevotemaComponent,
+    TemasComponent
 
   ],
   imports: [

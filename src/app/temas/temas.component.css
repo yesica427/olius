@@ -1,0 +1,112 @@
+.fondo{
+    width: 120%!important;
+    height:  100em!important;
+    background-color:black;
+    color:#B7378A !important;
+   
+}
+
+
+.wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+
+
+  .fondodiv{
+
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 40em !important;
+    height: 20em !important;
+    background-position: center 100%;
+    
+    color: #B7378A; 
+   
+    background-image: url('https://image.freepik.com/foto-gratis/explosion-rosada-polvo-fondo-negro_36326-2527.jpg') !important ;  
+    
+    
+   
+   }
+   
+   
+
+   .colortarjeta{
+       color:white;
+   }
+
+
+.texto{
+    font-family: 'Monoton', arial;
+    color:#B7378A;
+  
+  }
+  
+  .btn {
+    background-color: #B7378A;
+    color: white;
+   
+  }
+  
+
+.estilofondo{
+
+    background-image: url('https://i.pinimg.com/originals/67/79/c4/6779c4cbd9141097130a224e3dbc3b65.jpg') !important ;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 40em !important;
+    height: 50em !important;
+    background-position: center 100%;
+    position: relative;
+
+
+}
+
+
+
+.estilobordes{
+
+    
+ 
+    background-image: url('~/assets/img/oleo2.jpg') !important; 
+    background-color:black !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   
+
+
+}
+
+
+
+.bordecard{
+    border-bottom:#B7378A 2px !important;
+}
+
+
+.estilofondo:before {
+   
+	content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+}
+
+.estilofondo2{
+
+
+
+    background-image: url('https://elcorso.es/wp-content/uploads/2017/04/portada-buena.jpeg') !important ;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 40em !important;
+    height: 50em !important;
+    background-position: center 100%;
+    position: relative;
+
+}
