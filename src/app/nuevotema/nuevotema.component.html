@@ -41,7 +41,7 @@
 
 
 
-        <div class="col col-lg-4" >
+        <div class="col col-lg-4">
 
 
           <div [formGroup]="formularioTema" style="width: 20em ; margin-left: auto;margin-right: auto;"
@@ -61,70 +61,87 @@
 
 
 
+        <div class="col col-lg-11">
 
+          <div id="subir-archivos">
+            <div [formGroup]="formularioTema">
 
+              <div class="form-group">
+                <label for="file">Archivos</label>
+                <input formControlName="file" id="file" type="file" class="form-control" multiple
+                  (change)="seleccionarFotosMultiples($event)">
 
-        <div class="col col-lg-4" style="margin-left: auto ;">
-            <button class="btn btn-lg"  > <i class="fas fa-spinner"></i>Subir Imagen</button>
+                <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                  <div *ngIf="f.file.errors.required">Las fotos son requeridas</div>
+                </div>
+
+                <div class="alert alert-danger" *ngIf="cuentaIncorrecta">Seleccione al menos 3 fotos.</div>
+
+              </div>
+
+              <img *ngFor='let url of images' [src]="url" height="150" width="200px" style="margin: 3px;"> <br />
+
+            </div>
+
           </div>
 
+        </div>
 
 
 
-      
 
 
-          <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 10em;">
+
+
+        <div
+          style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 10em;text-align: left;">
+          <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
+
+          <div style="text-align: center;">
             <h4><i class="fas fa-code"></i>Editor javascript</h4>
-            <ngx-codemirror [(ngModel)]="contentJS" [options]="{
+          </div>
+          <ngx-codemirror [(ngModel)]="contentJS" [options]="{
             lineNumbers: true,
             theme: 'material',
             mode: 'javascript'
           }"></ngx-codemirror>
+        </div>
+
+
+
+        <br>
+        <br>
+        <br>
+        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+          <div style="text-align: center;">
+            <h4> <i class="fas fa-code"></i>Editor css</h4>
           </div>
-
-
-
-          <br>
-    <br>
-    <br>
-    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;">
-        <h4> <i class="fas fa-code"></i>Editor css</h4>
-      <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
       lineNumbers: true,
       theme: 'material',
       mode: 'css'
     }"></ngx-codemirror>
-    </div>
+        </div>
 
 
 
-    <br>
-    <br>
-    <br>
-   
-
-
-
+        <br>
+        <br>
+        <br>
 
 
 
 
 
+        <div class="col col-lg-12" style="margin-left: auto; margin-top: 2em;">
+          <button [disabled]="!formularioTema.valid || validarContenidoCSS()==false || validarContenidoJS()==false"
+            class="btn btn-lg" (click)=" guardarTema()">Guardar Tema</button>
+        </div>
 
-
-
-
-
-
-
-
-
-
-    
 
       </div>
     </div>
+
   </div>
 
 

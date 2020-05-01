@@ -1,13 +1,9 @@
 <div class="wrapper ">
 
-    <app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar>
 
 
-
-
-
-
-    <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;"
     style="margin-left: 15% !important;width: 100% !important;">
 
 
@@ -16,82 +12,93 @@
 
 
         <div class="col col-lg-12 fondodiv preloader" style=" margin-left: auto;margin-right: auto;">
-            <h2 class="texto" style="margin-top: 5em;margin-left: auto;margin-right: auto; text-align: center!important; "><i class="fas fa-palette"></i> Temas</h2>
-  
-  
+          <h2 class="texto"
+            style="margin-top: 5em;margin-left: auto;margin-right: auto; text-align: center!important; "><i
+              class="fas fa-palette"></i> Temas</h2>
+
+
+        </div>
+
+
+
+        <!-- <div class="col col-lg-12 estilofondo " style="margin-top:2em; text-align: center;">
+
+
+
+          <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
+            <div class="card-header bg-transparent  estilobordes colortarjeta">Raza Canina</div>
+            <img src="assets/img/imgplantilla3.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Familia Perruna</h5>
+              <p class="card-text">Se dice, y es totalmente cierto, que las mascotas y los perros devuelven el amor que
+                se les da multiplicado por diez..</p>
+            </div>
+
+            <div class="card-footer bg-transparent  estilobordes"></div>
+
+          </div>
+
+
+
+
+
+        </div> -->
+
+
+
+        <div *ngFor="let tema of listaTemas; index as i" class="col col-lg-12"
+          [style.background-image]="getBackground(tema.fotos[0])"
+          style="margin-top:2em; text-align: center;background-size:cover !important;background-repeat: no-repeat;width: 40em !important;height: 50em !important;background-position: center 100%;position: relative;">
+
+          <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
+            <div class="card-header bg-transparent  estilobordes colortarjeta">{{tema.titulo}}</div>
+            <img src="{{tema.fotos[2]}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{tema.titulo}}</h5>
+              <p class="card-text">{{tema.descripcion}}</p>
+
+              <button class="btn btn-lg">Utilizar Tema</button>
+            </div>
+
+            <div class="card-footer bg-transparent  estilobordes"></div>
+
           </div>
 
 
 
 
 
-          <div class="col col-lg-12 estilofondo " style="margin-top:2em; text-align: center;">
-            
-                
-
-                    <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
-                        <div class="card-header bg-transparent  estilobordes colortarjeta">Raza Canina</div>
-                        <img src="assets/img/imgplantilla3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Familia Perruna</h5>
-                          <p class="card-text">Se dice, y es totalmente cierto, que las mascotas y los perros devuelven el amor que se les da multiplicado por diez..</p>
-                        </div>
-                       
-                        <div class="card-footer bg-transparent  estilobordes"></div>
-
-                      </div>
-                    
+        </div>
 
 
 
+
+
+        <!-- <div class="col col-lg-12 estilofondo2 " style="margin-top:2em; text-align: center; ">
+
+
+
+          <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
+            <div class="card-header bg-transparent   estilobordes colortarjeta">Tecnologia</div>
+            <img src="assets/img/cerebro.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Inteligencia Artificial</h5>
+              <p class="card-text">Sistemas que piensan como humanos: automatizan actividades como la toma de
+                decisiones, la resolución de problemas y el aprendizaje.</p>
+            </div>
+
+            <div class="card-footer bg-transparent  estilobordes"></div>
 
           </div>
 
 
-  
-
-          <div class="col col-lg-12 estilofondo2 " style="margin-top:2em; text-align: center; ">
-            
-                
-
-            <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
-                <div class="card-header bg-transparent   estilobordes colortarjeta">Tecnologia</div>
-                <img src="assets/img/cerebro.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Inteligencia Artificial</h5>
-                  <p class="card-text">Sistemas que piensan como humanos: automatizan actividades como la toma de decisiones, la resolución de problemas y el aprendizaje.</p>
-                </div>
-               
-                <div class="card-footer bg-transparent  estilobordes"></div>
-
-              </div>
-            
 
 
 
+        </div> -->
 
+
+
+      </div>
+    </div>
   </div>
-
-  
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-    
-
-    </div>
-    </div>
-   </div>

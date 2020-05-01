@@ -8,7 +8,7 @@ var postsRoutes = require("./routes/post-routes");
 var categoriasRoutes = require("./routes/categorias-routes");
 var archivosRoutes = require("./routes/archivos-routes");
 var paginasRoutes = require("./routes/paginas-routes");
-
+var temasRoutes = require("./routes/temas-routes");
 
 
 
@@ -29,7 +29,7 @@ app.use("/posts", postsRoutes);
 app.use("/categorias", categoriasRoutes);
 app.use("/archivos", archivosRoutes);
 app.use("/paginas", paginasRoutes);
-
+app.use("/temas", temasRoutes);
 
 
 app.listen(8888, function () {
