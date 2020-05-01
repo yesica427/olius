@@ -1,0 +1,28 @@
+<div class="estilopost">
+  <h3><em>{{post.titulopost}}</em></h3>
+  <div class="descripcion-post" [innerHTML]="post.descripcion">
+  </div>
+  <p>Creado por: <strong>{{post.usuario}}</strong> </p>
+  <br>
+  <div *ngIf="post.permitecomentario">
+    <h5 class="coloricono">  <i class="far fa-comments coloricono"> </i>Comentarios</h5>
+   
+    <div class="estiloComentario" >
+      
+      
+      <app-comentario *ngFor="let comentario of post.comentarios" [comentario]="comentario"></app-comentario>
+    </div>
+  
+     
+    <div class="col col-lg-12" style="text-align: center;" > 
+    <input type="text" id="input-comentario"  class="confondo round curved form-control" style="width: 15em; text-align: center; margin-right: auto; margin-left: auto;" placeholder="Ingresa un nuevo comentario." [(ngModel)]="inputComentario">
+    <button (click)="nuevoComentario()" class="btn botonOpciones " style="margin-top: 2em;"> <i class="fas fa-comment-dots"></i>Comenta</button>
+  </div>
+    <div class="col col-lg-6">
+    
+  </div>
+ 
+</div>
+
+  <hr>
+</div>

@@ -1,19 +1,28 @@
 <!-- <img src="assets/img/ejemplopagina.jpg"> -->
-
-<button (click)="cambiarIdPagina()">Cambiar de id</button>
+<!-- 
+<button (click)="cambiarIdPagina(2)">Cambiar de id</button>
 <h5>Id pagina: {{idPagina}}</h5>
+ -->
 
 
-<!-- <div [innerHTML]="contenidoPost"></div> -->
-
-<div [innerHTML]="contenidoDivPost" id="div-posts"></div>
-
-
-<!-- contenido pagina dinamica -->
-<!-- poner el href dinamico -->
-<link rel="stylesheet" href="http://localhost:8888/estilos/pagina1.css">
+<div id="barraLinks">
+  <button *ngFor="let link of listaLinks" (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</button>
+</div>
+<!-- 
+<link rel="stylesheet" href="http://localhost:8888/estilos/pagina1.css"> -->
 
 
-<div [innerHTML]="contenidoPagina" id="div-pagina"></div>
+<div style="margin-left: auto;margin-right: auto; text-align: center;" [innerHTML]="contenidoPagina" id="div-pagina">
+</div>
 
-<script src="http://localhost:8888/js/pagina1.js"></script>
+
+
+
+<div  class="estilopost" *ngIf="!esPaginaEstatica">
+  <!-- <h2>Utilizando Post component</h2> -->
+
+  <app-post  *ngFor="let post of listaPosts" [post]="post"></app-post>
+
+</div>
+
+<!-- <script src="http://localhost:8888/js/pagina1.js"></script> -->

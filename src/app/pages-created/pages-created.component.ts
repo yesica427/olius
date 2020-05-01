@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
 import { ShortcutService } from "../shortcut.service";
 import { Post } from "../post.model";
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Pagina } from '../pagina.model';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pages-created',
@@ -13,7 +15,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class PagesCreatedComponent implements OnInit {
 
-  constructor(private shortcut: ShortcutService, private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private shortcut: ShortcutService, private http: HttpClient, private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer, private elRef: ElementRef, private renderer: Renderer2) { }
 
   listaPosts: Post[];
 
@@ -26,16 +28,20 @@ export class PagesCreatedComponent implements OnInit {
 
   public idPagina = 0;
 
+  postAPasar: Post;
+
   ngOnInit(): void {
 
-
-
+    console.log("LLamado ngInit");
     this.getParametrosURL();
 
-    this.traerPost();
+    this.cargarPagina(1);
+
+    this.traerLinksPaginas();
 
 
   }
+
 
   //guarda los parametros url en this.params
   getParametrosURL() {
@@ -44,34 +50,70 @@ export class PagesCreatedComponent implements OnInit {
 
       this.params = params;
 
-      console.log('App params', params);
+      //console.log('App params', params);
 
       const idpagina = params['idpagina'];
 
       console.log('idpagina', idpagina);
 
       this.idPagina = idpagina;
+
+      if (idpagina == null) {
+        //this.cargarPagina(1);
+
+      }
+      else {
+        //this.cargarPagina(idpagina);
+      }
+
     });
   }
 
-  traerPost() {
-    this.http.get<Post[]>("http://localhost:8888/posts").subscribe((res) => {
+  barraLinks: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(`<p>Aqui iran los lins</p>`);
+
+  public listaLinks: Pagina[];
+
+  traerLinksPaginas() {
+    this.http.get<Pagina[]>("http://localhost:8888/paginas/get/links").subscribe((res) => {
+
+      this.listaLinks = res;
+
+      // var stringTemp = "";
+      // // let html = this.sanitizer.bypassSecurityTrustHtml("<svg> blah </svg>");
+      // this.barraLinks = "";
+
+      // stringTemp += `<div id="barra-links-hijo">`
+      // for (let i = 0; i < res.length; i++) {
+      //   stringTemp += `<button class="buttonToClick" (click)="cambiarIdPagina(${res[i].url})">${res[i].titulomenu}</button>`;
+      // }
+      // stringTemp += `</div>`
+
+      // this.barraLinks = this.sanitizer.bypassSecurityTrustHtml(stringTemp);
+    });
+  }
+
+  traerPost(categoria: string) {
+    console.log("Llamado a traer post");
+    this.http.get<Post[]>("http://localhost:8888/posts/porcategoria/" + categoria).subscribe((res) => {
 
       this.listaPosts = res;
+      this.postAPasar = res[0];
       //console.log(res)
 
-      this.cargarPosts();
+      //this.cargarPosts();
     })
   }
 
 
   async cargarPosts() {
 
+
+
     for (let i = 0; i < this.listaPosts.length; i++) {
 
       var post = this.listaPosts[i];
 
-      this.contenidoDivPost += `
+      this.contenidoPagina += `
       <h3>${post.titulopost}</h3>
       <div class="descripcion-post">
       ${post.descripcion}
@@ -138,12 +180,46 @@ export class PagesCreatedComponent implements OnInit {
 
   intercambiar(viejo: string, nuevo: string) {
     console.log(viejo)
-    this.contenidoDivPost = this.contenidoDivPost.replace("<p>" + viejo.trim() + "</p>", nuevo);
+    this.contenidoPagina = this.contenidoPagina.replace(viejo.trim(), nuevo);
   }
 
 
-  cambiarIdPagina() {
-    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { "idpagina": "2" } });
+  cambiarIdPagina(idPagina: number) {
+    this.router.navigate(['.'], { relativeTo: this.route, queryParams: { "idpagina": idPagina } });
+
+    this.cargarPagina(idPagina)
+  }
+
+  esPaginaEstatica: boolean = false;
+  async cargarPagina(idpagina: number) {
+    this.contenidoPagina = "";
+
+    var res = await this.http.get("http://localhost:8888/paginas/" + idpagina).toPromise()
+
+
+    var resJson = JSON.parse(JSON.stringify(res));
+
+    console.log(resJson);
+
+    if (resJson.tipo == "dinamica") {
+      this.esPaginaEstatica = false;
+
+      this.contenidoPagina += `<h3>${resJson.descripcion}</h3>`
+     
+
+      //traer los post con la categoria de la pagina
+      this.traerPost(resJson.categoria)
+
+    } else if (resJson.tipo == "estatica") {
+      this.esPaginaEstatica = true;
+
+      console.log("estatica")
+
+      this.contenidoPagina = resJson.contenido;
+
+    }
+
+
   }
 
 

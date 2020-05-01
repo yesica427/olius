@@ -35,11 +35,11 @@ async function conectarse(client) {
 
 
 
- router.post('/',  async function (req, res) {
+router.post('/', async function (req, res) {
 
-    const result = await client.db("Olius").collection("post").insertOne(req.body);
+  const result = await client.db("Olius").collection("post").insertOne(req.body);
 
-   res.send(result.ops[0]);
+  res.send(result.ops[0]);
 
 
 })
@@ -49,19 +49,32 @@ async function conectarse(client) {
 /*obtener un post*/
 
 
-router.get('/:id', async function(req,res){
+router.get('/:id', async function (req, res) {
 
 
-    var id = ObjectID(req.params.id);
+  var id = ObjectID(req.params.id);
 
-    var result = await client.db("Olius").collection("post")
+  var result = await client.db("Olius").collection("post")
     .findOne({
       "_id": id
     });
-    
-    res.send(result);
+
+  res.send(result);
 
 
+})
+
+/*obtener un post por categoria*/
+router.get('/porcategoria/:categoria', async function (req, res) {
+
+  var categoria = req.params.categoria;
+
+  var result = await client.db("Olius").collection("post")
+    .find({
+      "categoria": categoria
+    });
+
+  res.send(await result.toArray());
 })
 
 
@@ -69,74 +82,73 @@ router.get('/:id', async function(req,res){
 
 /*obtener todos post*/
 
- router.get('/', async function (req, res) {
+router.get('/', async function (req, res) {
 
   var result = await client.db("Olius").collection("post")
-     .find({});
+    .find({});
 
 
-   res.send(await result.toArray());
- });
+  res.send(await result.toArray());
+});
 
 /*editar post*/
 
- router.put('/:id', async function (req, res) {
+router.put('/:id', async function (req, res) {
 
-    var id = ObjectID(req.params.id);
+  var id = ObjectID(req.params.id);
 
-   result = await client.db("Olius").collection("post")
-     .updateOne({
-       "_id": id
-     }, {
-       $set: req.body
-     });
+  result = await client.db("Olius").collection("post")
+    .updateOne({
+      "_id": id
+    }, {
+      $set: req.body
+    });
 
- res.send(result.result)
-
-
+  res.send(result.result)
 
 
 
- })
+
+
+})
 
 
 // /*delete post*/
 
 
- router.delete('/:id', async function (req, res) {
-    var id = ObjectID(req.params.id);
+router.delete('/:id', async function (req, res) {
+  var id = ObjectID(req.params.id);
 
-    result = await client.db("Olius").collection("post")
-      .deleteOne({
-        "_id": id
-      }, {
-        $set: req.body
-      });
-  
-    res.send(result.result)
+  result = await client.db("Olius").collection("post")
+    .deleteOne({
+      "_id": id
+    }, {
+      $set: req.body
+    });
 
-
+  res.send(result.result)
 
 
-  }
- )
+
+
+})
 
 
 //anadir comentario
-// router.post("/comentarios/:idpost", async function (req, res) {
+router.post("/comentarios/:idpost", async function (req, res) {
 
-//   var idpost = ObjectID(req.params.idpost);
+  var idpost = ObjectID(req.params.idpost);
 
-//   var result = await client.db("Olius").collection("post").updateOne({
-//     "_id": idpost,
-//   }, {
-//     "$push": {
-//       "comentarios": req.body
-//     }
-//   });
+  var result = await client.db("Olius").collection("post").updateOne({
+    "_id": idpost,
+  }, {
+    "$push": {
+      "comentarios": req.body
+    }
+  });
 
-//   res.send(result);
-// })
+  res.send(result);
+})
 
 // //eliminar comentarios
 // router.delete("/comentarios/:idpost", async function (req, res) {
@@ -157,4 +169,4 @@ router.get('/:id', async function(req,res){
 // })
 
 
-module.exports=router;
+module.exports = router;

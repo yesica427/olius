@@ -1,12 +1,12 @@
-export class Post{
-    _id:string;
-    titulopost:string;
-    categoria:string;
-    descripcion:string;
-    usuario:string;
-    permitecomentario:boolean;
-    comentarios:Comentario[];
-    fecha:Date;
+export class Post {
+    _id: string;
+    titulopost: string;
+    categoria: string;
+    descripcion: string;
+    usuario: string;
+    permitecomentario: boolean;
+    comentarios: Comentario[];
+    fecha: Date;
 
 
 
@@ -14,9 +14,9 @@ export class Post{
 }
 
 
-export class Comentario{
+export class Comentario {
 
-    idcomentario:number;
-    usuario:string;
-    comentarios:string;
+    idcomentario: number;
+    usuario: string;
+    comentario: string;
 }

@@ -2,55 +2,57 @@
 
   <app-sidebar></app-sidebar>
 
-  <div class="content fondo" style="margin-left: auto;margin-right: auto;" style="margin-left: 15% !important;width: 100% !important;">
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+    style="margin-left: 15% !important;width: 100% !important;">
 
-    <form >
+    <form>
       <div class="container">
-        <div class="row" >
+        <div class="row">
 
 
           <div class="col col-lg-12 fondodiv" style="margin-bottom:2em; margin-left: auto;margin-right: auto;">
-            <h2 class="texto" style="margin-top: 5em;margin-left: auto;margin-right: auto;  " ><b> Crear Pagina</b></h2>   
+            <h2 class="texto" style="margin-top: 5em;margin-left: auto;margin-right: auto;  "><b> Crear Pagina</b></h2>
 
-            
+
           </div>
           <div class="col col-lg-12 " style="margin-bottom:2em;">
-           
-           
+
+
 
           </div>
 
-         
-
-   
-
-          <div class="col col-lg-6"  >
-            <div [formGroup]="formularioPagina" style="width: 20em; margin-left: auto ; margin-right: auto" id="titulo-pagina">
-
-            <input [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"     formControlName="titulo"  type="text"  style="padding-right:2em ;margin-left: 10 rem"  class="form-control" placeholder="Escribir Titulo">
 
 
+          <div class="col col-lg-6">
+            <div [formGroup]="formularioPagina" style="width: 20em; margin-left: auto ; margin-right: auto"
+              id="titulo-pagina">
 
-            <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger"
-              role="alert" style="width: 20em;"> Campo no válido:
-              <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+              <input [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
+                formControlName="titulo" type="text" style="padding-right:2em ;margin-left: 10 rem" class="form-control"
+                placeholder="Escribir Titulo">
 
 
+
+              <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
+                style="width: 20em;"> Campo no válido:
+                <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+
+
+              </div>
             </div>
+
           </div>
 
-        </div>
 
 
-        
           <div class="col-col-lg-4" style=" margin-left: auto;margin-right: auto;">
 
-         
-            <select id="pagina-tipo" style="width: 10em!important;" class="form-control form-control-lg border  ">
-              <option>Tipo De Pagina</option>
-              <option value="Estatica">Estatica</option>
-              <option value="Dinamica">Dinamica</option>
-              
+
+            <select id="pagina-tipo" style="width: 10em!important;" class="form-control form-control-lg border"
+              (change)="cambiarTipoPagina()">
+              <option selected value="null">Tipo de página</option>
+              <option value="estatica">Estática</option>
+              <option value="dinamica">Dinámica</option>
             </select>
 
           </div>
@@ -61,74 +63,117 @@
           </div>
 
 
-
-          
-
+          <div class="col col-lg-6" style="margin-top: 3em;">
 
 
-        <div class="col col-lg-6"  style="margin-top: 3em;">
-       
-
-       <div [formGroup]="formularioPagina" style="width: 20em ; margin-left: auto;margin-right: auto;" id="descripcion-pagina">
-      <input   [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"   placeholder="Descripcion"  formControlName="descripcion" class="form-control" type="text">
-
-
-      <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
-      role="alert" style="width: 13em;"> Campo no válido:
-      <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+            <div [formGroup]="formularioPagina" style="width: 20em ; margin-left: auto;margin-right: auto;"
+              id="descripcion-pagina">
+              <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+                placeholder="Descripcion" formControlName="descripcion" class="form-control" type="text">
 
 
-        </div>
-      </div>
-        </div>
+              <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+                role="alert" style="width: 13em;"> Campo no válido:
+                <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
 
-
-       <div class="col col-lg-1">
-
-       </div>
-        <div class="col col-lg-5" style="margin-top: 3em;margin-left: auto;margin-right: auto;">
-          <select id="pagina-categoria" style="width: 10em!important;" class="form-control form-control-lg">
-            <option>Elegir Categoria</option>
-            <option>futbol</option>
-            <option>comida</option>
-            <option>danza</option>
-            <option></option>
-          </select>
-        </div>
+              </div>
+            </div>
+          </div>
 
 
 
-        <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto " >
-          <h4>Desea encabezado</h4>
-         <input type="checkbox">
-   
-   
-           </div>
+          <div class="col col-lg-1">
+
+          </div>
+          <div class="col col-lg-5" style="margin-top: 3em;margin-left: auto;margin-right: auto;">
+            <select id="pagina-categoria" style="width: 10em!important;" class="form-control form-control-lg">
+              <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
+                {{categoria.nombrecategoria}}</option>
+            </select>
+          </div>
+
+
+          <!-- palabras clave -->
+          <div class="col col-lg-6" style="margin-top: 3em;">
+
+
+            <div [formGroup]="formularioPagina" style="width: 20em ; margin-left: auto;margin-right: auto;"
+              id="palabras-clave">
+              <input
+                [ngClass]="{'input-error':palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched ) }"
+                placeholder="Palabras clave separadas por coma" formControlName="palabrasclave" class="form-control"
+                type="text">
+
+
+              <div *ngIf="palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched )"
+                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                <span class="error" *ngIf="palabrasclave.errors.required">Error el campo es Obligatorio</span>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- titulo menu -->
+          <div class="col col-lg-5" style="margin-top: 3em;">
+
+
+            <div [formGroup]="formularioPagina" style="width: 20em ; margin-left: auto;margin-right: auto;"
+              id="titulo-menu">
+              <input [ngClass]="{'input-error':titulomenu.invalid && (titulomenu.dirty || titulomenu.touched ) }"
+                placeholder="Título en el menú" formControlName="titulomenu" class="form-control" type="text">
+
+
+              <div *ngIf="titulomenu.invalid && (titulomenu.dirty || titulomenu.touched )" class="alert alert-danger"
+                role="alert" style="width: 13em;"> Campo no válido:
+                <span class="error" *ngIf="titulomenu.errors.required">Error el campo es Obligatorio</span>
+
+              </div>
+            </div>
+          </div>
 
 
 
+          <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto ">
+            <h4>Desea encabezado</h4>
+            <input type="checkbox" id="encabezado">
+          </div>
 
-           <div class="col col-lg-4"  style="margin-top: 3em; margin-left: auto ; margin-right: auto">
+
+          <div class="col col-lg-4" style="margin-top: 3em; margin-left: auto ; margin-right: auto">
             <h4>Desea Pie de pagina</h4>
-           <input type="checkbox">
-     
-     
-             </div>
+            <input type="checkbox" id="footer">
 
 
-             <div class="col col-lg-4"  style="margin-top: 3em;margin-left: auto ; margin-right: auto">
-              <h4>Estado Activa</h4>
-             <input type="checkbox">
-       
-       
-               </div>
+          </div>
 
+
+          <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto">
+            <h4>Estado Activa</h4>
+            <input type="checkbox" id="activa">
+
+
+          </div>
+
+          <!-- editor froala -->
+          <div class="col col-lg-12" style="margin-top: 3em;margin-left: auto ; margin-right: auto">
+
+            <div style="margin-top: 3em;" *ngIf="paginaEstatica">
+              <div [froalaEditor]="options" [(froalaModel)]="contenidoEditor"></div>
+
+              <div *ngIf="validarContenidoEditor()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+                La descripción no puede ir vacía.
+              </div>
+
+            </div>
+
+          </div>
 
 
 
 
           <div class="col col-lg-6" style="margin-left: auto ; margin-right:20rem;margin-top: 1em; margin-bottom: 3em;">
-            <button class="btn btn-lg" routerLink='/paginacreada' > Publicar</button>
+            <button class="btn btn-lg" [disabled]="!formularioPagina.valid || validarContenidoEditor()==false"
+              (click)="guardarPagina()"> Publicar</button>
           </div>
         </div>
 
@@ -138,36 +183,36 @@
 
     </form>
 
-    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;">
+    <!-- <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
       <ngx-codemirror [(ngModel)]="contentJS" [options]="{
       lineNumbers: true,
       theme: 'material',
       mode: 'javascript'
     }"></ngx-codemirror>
-    </div>
+    </div> -->
 
     <!-- <input type="text" [(ngModel)]="contentJS"> -->
+    <!-- <br>
     <br>
     <br>
-    <br>
-    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;">
+    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
       <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
       lineNumbers: true,
       theme: 'material',
       mode: 'css'
     }"></ngx-codemirror>
-    </div>
+    </div> -->
 
+    <!-- <br>
     <br>
     <br>
-    <br>
-    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;">
+    <div style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto;">
       <ngx-codemirror [(ngModel)]="contentHTML" [options]="{
         lineNumbers: true,
         theme: 'material',
         mode: 'xml'
       }"></ngx-codemirror>
-    </div>
+    </div> -->
   </div>
 
 </div>

@@ -3,6 +3,8 @@ import { LoginService } from "../login.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Post } from "../post.model";
 import { HttpClient } from "@angular/common/http";
+import { Categorias } from '../categorias.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-nuevo-post",
@@ -10,16 +12,14 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./nuevo-post.component.css"],
 })
 export class NuevoPostComponent implements OnInit {
-  public listaDeCategorias = [
-    { value: 1, nombre: "Deportes" },
-    { value: 2, nombre: "Musica" },
-    { value: 3, nombre: "Arte" },
-    { value: 4, nombre: "Viajes" },
-  ];
 
-  constructor(private loginService: LoginService, private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  constructor(private loginService: LoginService, private http: HttpClient, private router: Router) { }
+
+  ngOnInit(): void {
+
+    this.traerCategorias();
+  }
 
   //formulario reactivo para el nombre del post
   nombrePostForm = new FormGroup({
@@ -42,6 +42,18 @@ export class NuevoPostComponent implements OnInit {
   //aqui se guarda el contenido del editor
   public contenidoEditor: string = "Escriba una Descripcion de su post";
 
+
+  //traer categorias
+  listaCategorias: Categorias[];
+  traerCategorias() {
+
+    this.http.get<Categorias[]>("http://localhost:8888/categorias").subscribe((res) => {
+      this.listaCategorias = res;
+
+      console.log(res);
+    })
+  }
+
   //validar que sea mayor que 2
   validarContenidoEditor() {
     return this.contenidoEditor.length > 2;
@@ -63,7 +75,7 @@ export class NuevoPostComponent implements OnInit {
     var usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
 
     var nombreUsuario =
-      usuarioActual.primernombre + " "+ usuarioActual.primerapellido;
+      usuarioActual.primernombre + " " + usuarioActual.primerapellido;
 
     var nuevoPost = new Post();
     nuevoPost.titulopost = tituloPost;
@@ -73,16 +85,16 @@ export class NuevoPostComponent implements OnInit {
     nuevoPost.permitecomentario = estaSeleccionado;
     nuevoPost.comentarios = [];
     nuevoPost.usuario = nombreUsuario;
-    
 
 
-    this.http.post('http://localhost:8888/posts',nuevoPost).subscribe(
-      (res)=>{console.log(res)}
+
+    this.http.post('http://localhost:8888/posts', nuevoPost).subscribe(
+      (res) => { console.log(res); this.router.navigateByUrl('/admin/posts'); }
     )
 
 
- 
-    
+
+
 
     //TODO: Hacer el llamado a  la base y mandar el post
 

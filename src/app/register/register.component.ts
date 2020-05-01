@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formularioRegistro.get('primerNombre').setValue("Hola como estas");
+    // this.formularioRegistro.get('primerNombre').setValue("");
   }
 
 

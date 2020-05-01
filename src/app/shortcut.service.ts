@@ -48,87 +48,93 @@ export class ShortcutService {
     var primerResult = this.extractJSON(str);
 
     //console.log(str.length)
+    if (primerResult) {
 
 
-    var arregloDeShortcuts = [];
-    arregloDeShortcuts.push(primerResult);
+      var arregloDeShortcuts = [];
+      arregloDeShortcuts.push(primerResult);
 
-    var copiaCadena = str;
-    var largoString = str.length;
+      var copiaCadena = str;
+      var largoString = str.length;
 
-    var indexCierre = primerResult.cierre;
-    var indexCierreGlobal = primerResult.cierre;
+      var indexCierre = primerResult.cierre;
+      var indexCierreGlobal = primerResult.cierre;
 
-    var indexInicio = primerResult.inicio;
-    var indexInicioGlobal = primerResult.inicio;
+      //var indexInicio = primerResult.inicio;
+      //var indexInicioGlobal = primerResult.inicio;
 
-    while (largoString > 73) {
+      while (largoString > 73) {
 
-      copiaCadena = copiaCadena.substring(indexCierre);
-      //console.log("||||||||||||||||||||||||||||||" + copiaCadena + "|||||||||||||||||||||||")
+        copiaCadena = copiaCadena.substring(indexCierre);
+        //console.log("||||||||||||||||||||||||||||||" + copiaCadena + "|||||||||||||||||||||||")
 
-      largoString = copiaCadena.length;
-      //console.log("||||||||||||||||||||||||||||||Largo string: " + largoString + "|||||||||||||||||||||||")
-      if (largoString < 73) {
-        break;
+        largoString = copiaCadena.length;
+        //console.log("||||||||||||||||||||||||||||||Largo string: " + largoString + "|||||||||||||||||||||||")
+        if (largoString < 73) {
+          break;
+        }
+
+        var res = this.extractJSON(copiaCadena);
+
+        if (res == null) {
+          break;
+        }
+
+        indexCierre = res.cierre;
+
+        //console.log(res.inicio)
+        //console.log(res.cierre)
+
+        var copiaRes = res;
+
+        //console.log(indexCierreGlobal)
+
+        copiaRes.inicio += indexCierreGlobal;
+        copiaRes.cierre += indexCierreGlobal;
+
+
+
+        indexCierreGlobal += indexCierre;
+
+        arregloDeShortcuts.push(copiaRes);
       }
 
-      var res = this.extractJSON(copiaCadena);
+      //console.log(arregloDeShortcuts)
 
-      if (res == null) {
-        break;
-      }
+      //console.log(JSON.stringify(arregloDeShortcuts[0].json));
 
-      indexCierre = res.cierre;
+      return arregloDeShortcuts;
 
-      //console.log(res.inicio)
-      //console.log(res.cierre)
+      // var strNuevo = str;
 
-      var copiaRes = res;
+      // for (let i = 0; i < arregloDeShortcuts.length; i++) {
 
-      //console.log(indexCierreGlobal)
+      //   switch (arregloDeShortcuts[i].json.tipo) {
+      //     case "imagen":
+      //       strNuevo = strNuevo.replace("<p>" + JSON.stringify(arregloDeShortcuts[i].json) + "</p>", ` <img src="smiley.gif"  height="42" width="42"> `)
+      //       break;
 
-      copiaRes.inicio += indexCierreGlobal;
-      copiaRes.cierre += indexCierreGlobal;
+      //     case "video":
+
+      //       strNuevo = strNuevo.replace("<p>" + JSON.stringify(arregloDeShortcuts[i].json) + "</p>", `<video width="320" height="240" controls>
+      //       <source src="movie.mp4" type="video/mp4">
+      //       <source src="movie.ogg" type="video/ogg">
+      //       Your browser does not support the video tag.
+      //     </video> `)
+      //       break;
+      //   }
+
+      // }
+
+      //    console.log(strNuevo)
 
 
+      //console.log(str)
 
-      indexCierreGlobal += indexCierre;
-
-      arregloDeShortcuts.push(copiaRes);
     }
-
-    //console.log(arregloDeShortcuts)
-
-    //console.log(JSON.stringify(arregloDeShortcuts[0].json));
-
-    return arregloDeShortcuts;
-
-    // var strNuevo = str;
-
-    // for (let i = 0; i < arregloDeShortcuts.length; i++) {
-
-    //   switch (arregloDeShortcuts[i].json.tipo) {
-    //     case "imagen":
-    //       strNuevo = strNuevo.replace("<p>" + JSON.stringify(arregloDeShortcuts[i].json) + "</p>", ` <img src="smiley.gif"  height="42" width="42"> `)
-    //       break;
-
-    //     case "video":
-
-    //       strNuevo = strNuevo.replace("<p>" + JSON.stringify(arregloDeShortcuts[i].json) + "</p>", `<video width="320" height="240" controls>
-    //       <source src="movie.mp4" type="video/mp4">
-    //       <source src="movie.ogg" type="video/ogg">
-    //       Your browser does not support the video tag.
-    //     </video> `)
-    //       break;
-    //   }
-
-    // }
-
-    //    console.log(strNuevo)
-
-
-    //console.log(str)
+    else {
+      return [];
+    }
   }
 
   insertarElementos(str) {

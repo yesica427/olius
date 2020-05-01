@@ -6,7 +6,11 @@ var cors = require('cors');
 var usuariosRoutes = require("./routes/usuarios-routes");
 var postsRoutes = require("./routes/post-routes");
 var categoriasRoutes = require("./routes/categorias-routes");
-var archivosRoutes = require("./routes/archivos-routes")
+var archivosRoutes = require("./routes/archivos-routes");
+var paginasRoutes = require("./routes/paginas-routes");
+
+
+
 
 var app = express();
 app.use(cors());
@@ -24,6 +28,9 @@ app.use("/usuarios", usuariosRoutes);
 app.use("/posts", postsRoutes);
 app.use("/categorias", categoriasRoutes);
 app.use("/archivos", archivosRoutes);
+app.use("/paginas", paginasRoutes);
+
+
 
 app.listen(8888, function () {
   console.log("servidor levantado");
