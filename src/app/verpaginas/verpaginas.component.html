@@ -1,0 +1,339 @@
+<div class="wrapper  ">
+
+    <app-sidebar></app-sidebar>
+
+
+
+
+
+    <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+    style="margin-left: 15% !important;width: 100% !important;">
+
+
+    <div class="container">
+      <div class="row">
+
+
+        <div class="col col-lg-8 fondodiv preloader" style="margin-bottom:2em; margin-left: auto;margin-right: auto;align-items: center;">
+          <h2 class="texto" style="margin-top: 5em;margin-left: auto;margin-right: auto; text-align: center;  ">Paginas  <i class="fas fa-poll-h"></i> </h2>
+
+
+        </div>
+
+        <div class="col col-lg-8 " style="margin-top:2em; margin-left: auto;margin-right: auto;align-items: center;">
+         
+
+
+
+          <div class="col col-lg-12 "  *ngFor='let pagina of listapaginas;'  style="margin-top:4em; margin-left: auto;margin-right: auto;align-items: center;">
+            <div class="card"  style="text-align: center;">
+                <h5 class="card-header  estilobordes"></h5>
+                <div class="card-body">
+                  <h5 class="card-title titulopage "> {{pagina.titulo}} </h5>
+                  
+
+                  <div class="col col-lg-12">
+                    <label  class="estilotitulares">Titulo de el menu:</label>  
+                
+                    {{pagina.titulomenu}}
+
+                  </div>
+                 
+               
+                  <div class="col col-lg-12">
+                   
+
+                    <label  class="estilotitulares">Descripcion:</label>{{pagina.descripcion}}
+
+                  </div>
+
+
+                  <div class="col col-lg-12">
+                    <label   class="estilotitulares">Tipo De Pagina:</label> {{pagina.tipo}}
+
+
+                  </div>
+
+                  <div class="col col-lg-12">
+                    <label  class="estilotitulares">Categoria:</label> {{pagina.categoria}}
+                    
+
+                </div>
+                <div class="col col-lg-12">
+                    <label  class="estilotitulares">Palabras Claves:</label> {{pagina.palabrasclave}}
+
+
+                    
+                </div>
+               
+
+               
+                  
+                
+              
+
+                  <div class="col col-lg-12" style="text-align: center;margin-top: 4em;">
+                  <button type="button" class="btn "   data-toggle="modal" data-target="#myModal" (click)="openModal()" > <i class="fas fa-pencil-alt"></i>Editar
+                  </button>
+                  <button type="button" class="btn " style="margin-left: 2em;" (click)="eliminarPagina(pagina._id)"> <i class="fas fa-trash"></i>Eliminar
+                </button>
+
+        
+                </div>
+        
+               
+
+
+                </div>
+              </div>
+  
+  
+          </div>
+
+
+
+
+
+<!-- 
+          /*modal para editar la pagina*/ -->
+
+
+
+          <div  id="myModal" class="modal"  tabindex="-1" role="dialog"  >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header  fondomodal">
+                  <h5 class="modal-title  color texto"> <i class="fas fa-eye-dropper"></i>Editar pagina</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body "  >
+                  <div class="content">
+                    <div class="row">
+                        <div class="col col-lg-6">
+                            <div [formGroup]="formularioPagina" style="width: 15em; margin-left: auto ; margin-right: auto"
+                              id="titulo-pagina">
+                
+                              <input [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
+                                formControlName="titulo" type="text" style="padding-right:2em ;margin-left: 10 rem" class="form-control"
+                                placeholder="Escribir Titulo">
+                
+                
+                
+                              <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
+                                style="width: 20em;"> Campo no válido:
+                                <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+                
+                
+                              </div>
+                            </div>
+                
+                          </div>
+                
+                
+                
+                          <div class="col col-lg-6" style=" margin-left: auto;margin-right: auto;">
+                
+                
+                            <select id="pagina-tipo" style="width: 10em!important;" class="form-control form-control-lg border"
+                              (change)="cambiarTipoPagina()">
+                              <option selected value="null">Tipo de página</option>
+                              <option value="estatica">Estática</option>
+                              <option value="dinamica">Dinámica</option>
+                            </select>
+                
+                          </div>
+                
+                
+                
+                
+                          <div class="col col-lg-4" style="margin-top: 3em;">
+                
+                
+                            <div [formGroup]="formularioPagina" style="width: 15em ; margin-left: auto;margin-right: auto;"
+                              id="descripcion-pagina">
+                              <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+                                placeholder="Descripcion" formControlName="descripcion" class="form-control" type="text">
+                
+                
+                              <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+                                role="alert" style="width: 13em;"> Campo no válido:
+                                <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+                
+                              </div>
+                            </div>
+                          </div>
+                
+               
+                
+                          
+                          <div class="col col-lg-3" style="margin-top: 3em;margin-left: auto;margin-right: auto;">
+                            <select id="pagina-categoria" style="width: 10em!important;" class="form-control form-control-lg">
+                              <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
+                                {{categoria.nombrecategoria}}</option>
+                            </select>
+                          </div>
+                
+                
+                          <!-- palabras clave -->
+                          <div class="col col-lg-6" style="margin-top: 3em;">
+                
+                
+                            <div [formGroup]="formularioPagina" style="width: 15em ; margin-left: auto;margin-right: auto;"
+                              id="palabras-clave">
+                              <input
+                                [ngClass]="{'input-error':palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched ) }"
+                                placeholder="Palabras clave separadas por coma" formControlName="palabrasclave" class="form-control"
+                                type="text">
+                
+                
+                              <div *ngIf="palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched )"
+                                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                                <span class="error" *ngIf="palabrasclave.errors.required">Error el campo es Obligatorio</span>
+                
+                              </div>
+                            </div>
+                          </div>
+                
+                          <!-- titulo menu -->
+                          <div class="col col-lg-6" style="margin-top: 3em;">
+                
+                
+                            <div [formGroup]="formularioPagina" style="width: 15em ; margin-left: auto;margin-right: auto;"
+                              id="titulo-menu">
+                              <input [ngClass]="{'input-error':titulomenu.invalid && (titulomenu.dirty || titulomenu.touched ) }"
+                                placeholder="Título en el menú" formControlName="titulomenu" class="form-control" type="text">
+                
+                
+                              <div *ngIf="titulomenu.invalid && (titulomenu.dirty || titulomenu.touched )" class="alert alert-danger"
+                                role="alert" style="width: 13em;"> Campo no válido:
+                                <span class="error" *ngIf="titulomenu.errors.required">Error el campo es Obligatorio</span>
+                
+                              </div>
+                            </div>
+                          </div>
+                
+                
+                
+                          <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto ">
+                            <h5>Desea encabezado</h5>
+                            <input type="checkbox" id="encabezado">
+                          </div>
+                
+                
+                          <div class="col col-lg-4" style="margin-top: 3em; margin-left: auto ; margin-right: auto">
+                            <h5>Desea Pie de pagina</h5>
+                            <input type="checkbox" id="footer">
+                
+                
+                          </div>
+                
+                
+                          <div class="col col-lg-4" style="margin-top: 3em;margin-left: auto ; margin-right: auto">
+                            <h5>Estado Activa</h5>
+                            <input type="checkbox" id="activa">
+                
+                
+                          </div>
+                
+                          <!-- editor froala -->
+                          <div class="col col-lg-12" style="margin-top: 3em;margin-left: auto ; margin-right: auto">
+                
+                            <div style="margin-top: 3em;" *ngIf="paginaEstatica">
+                              <div [froalaEditor]="options" [(froalaModel)]="contenidoEditor"></div>
+                
+                              <div *ngIf="validarContenidoEditor()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+                                La descripción no puede ir vacía.
+                              </div>
+                
+                            </div>
+                
+                          </div>
+                
+                
+                
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                </div>
+                <div class="modal-footer fondomodal">
+                  <button type="button" class="btn btn-primary"> <i class="far fa-save"></i>Guardar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="close()"><i class="fas fa-times"></i>cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,90 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+
+.fondo{
+    width: 120%!important;
+    height:  100em!important;
+    background-color:black;
+    color:#B7378A !important;
+   
+}
+
+
+.wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+
+  .texto{
+    font-family: 'Monoton', arial;
+    color:#B7378A;
+  
+  }
+
+
+  .btn {
+    background-color: #B7378A;
+    color: white;
+   
+  }
+
+
+
+
+  .estilobordes{
+
+    
+ 
+    background-image: url('~/assets/img/oleo5.jpg') !important; 
+    background-color:black !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   
+
+
+}
+
+.titulopage{
+    color:  #B7378A !important;
+    font-family: 'Patua One', cursive;
+
+    /* text-shadow: 0 0 30px #fff;
+    box-shadow: 0 0 20px rgb(86, 92, 89); */
+
+
+}
+
+
+.texto{
+  font-family: 'Monoton', arial;
+}
+
+
+
+.color{
+  color:#B7378A!important;
+}
+
+    .fondomodal{
+      background-image: url('~/assets/img/nebula.jpg') !important;
+      background-repeat: no-repeat;
+      background-size: cover;
+     
+    
+    }
+
+
+
+.fondobodymodal{
+  background-color:rgb(52, 52, 52)!important;
+}
+
+
+.estilotitulares{
+  color:black!important;
+  font-weight: bold;
+  
+
+}

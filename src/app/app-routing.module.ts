@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 import { NuevotemaComponent } from  './nuevotema/nuevotema.component';
 import { TemasComponent }  from './temas/temas.component';
+import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 const routes: Routes = [
   {
     path: 'admin/categorias', component: CategoriaComponent
@@ -55,6 +56,8 @@ const routes: Routes = [
   { path: 'admin/nuevotema', component:  NuevotemaComponent, },
 
   { path: 'admin/temas', component:  TemasComponent, },
+  
+  { path: 'admin/verpaginas', component:  VerpaginasComponent, },
 
 
 

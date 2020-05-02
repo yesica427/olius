@@ -31,6 +31,7 @@ import { NuevotemaComponent } from './nuevotema/nuevotema.component';
 import { TemasComponent } from './temas/temas.component';
 import { PostComponent } from './post/post.component';
 import { ComentarioComponent } from './comentario/comentario.component';
+import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ComentarioComponent } from './comentario/comentario.component';
     NuevotemaComponent,
     TemasComponent,
     PostComponent,
-    ComentarioComponent
+    ComentarioComponent,
+    VerpaginasComponent
 
 
   ],
