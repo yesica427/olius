@@ -81,6 +81,23 @@
 
 
 
+.texto{
+    font-family: 'Monoton', arial;
+    color:#B7378A;
+  
+  }
+
+.fondomodal{
+    background-image: url('~/assets/img/oleo2.jpg') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+  
+  }
+
+
+
+
 .bordecard{
     border-bottom:#B7378A 2px !important;
 }
