@@ -2,40 +2,44 @@
 
   <app-sidebar></app-sidebar>
 
-  <div class="content  " style="margin-left: 6% !important;width: 100% !important; ">
+  <div class="content  " style="margin-left: 14% !important;width: 100% !important; text-align: center;">
 
-    <div id=" tamano" class=" container colorfondo" style="width: inherit ;height: inherit;">
+    <div id=" tamano" class=" container colorfondo" style="width: inherit ;height: 100%;">
       <div class="row">
 
-
-        <div id="entradasdiv" class="color">
-          <h3>Entradas</h3>
+      
+        <div id="entradasdiv " class="color col col-lg-12  " style="margin-bottom: 3em; margin-top: 3em;">
+          <h3> <i class="fas fa-sign-in-alt"></i>Entradas</h3>
+        
 
           <br>
 
-          <div class="">
+          <div class="col col-lg-12" style="margin-bottom: 3em;">
             <h4 class="color">Filtra las entradas:</h4>
-            <div style="display: inline;">
-              <select name="select" id="select-categoria" (change)="filtrocategoria()" class="form-control"
+            <div  class=" col col-lg-12" style="display: inline;">
+              <select name="select" class="txt" id="select-categoria" (change)="filtrocategoria()" class="form-control"
                 style="width: 20%; display: inline; margin: 1em;">
-                <option value="null" selected>Ordenar por categoria </option>
-                <option value="musica">musica </option>
-                <option value="anime">anime </option>
-                <option value="series">series </option>
+                <option class="optione txt" value="null" selected>Ordenar por categoria </option>
+                <option class="optione" value="musica">musica </option>
+                <option  class="optione" value="anime">anime </option>
+                <option    class="optione"  value="series">series </option>
               </select>
             </div>
-            <div style="display: inline;">
-              <input id="buscarautor" placeholder="Introduzca el Autor">
+
+            <div  class=" col col-lg-6"style="display: inline;">
+              <input id="buscarautor" class="txt form-control" style="width: 15em;margin-right: auto;margin-left: auto; text-align: center;" placeholder="Introduzca el Autor">
               <button type="button" (click)="filtroAutor()" class="btn btn-lg  color"><i
-                  class="fas fa-search"></i>Buscar</button>
+                class="fas fa-search"></i>Buscar</button>
             </div>
+             
+           
             <div style="display: inline; margin-bottom: 5em;">
 
             </div>
           </div>
-          <div class="col col-lg-12" style="width: 150%!important; height: 100%; margin-top: 5em;">
-            <table class="table table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg fondotable "
-              id="postsList" style="width:inherit; ">
+          <div class="col col-lg-12" style=" margin-top: 5em;width: 100%; ">
+            <table class="table table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg fondotable  "
+              id="postsList" style="width: inherit!important; height: inherit; ">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -58,8 +62,8 @@
                   <td>{{post.fecha}}</td>
 
                   <td> <button type="button" class="btn botonOpciones"
-                      (click)="eliminarPost(post._id)">Eliminar</button>
-                    <button type="button" class="btn  botonOpciones" (click)="editarPost(post)"> Editar</button> </td>
+                      (click)="eliminarPost(post._id) " style="margin-bottom: 2em;"> <i class="fas fa-trash"></i>Eliminar</button>
+                    <button type="button" class="btn  botonOpciones" (click)="editarPost(post)"> <i class="fas fa-pencil-alt"></i>Editar</button> </td>
                 </tr>
 
               </tbody>

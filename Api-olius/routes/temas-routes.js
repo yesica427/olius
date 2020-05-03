@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const multer = require('multer');
 const path = require("path");
+var fs = require("fs");
+
 
 
 /*conexion mongodb*/
@@ -147,6 +149,31 @@ router.put('/:id', async function (req, res) {
 router.delete('/:id', async function (req, res) {
   var id = ObjectID(req.params.id);
 
+
+  // obtener los archivos del tema
+  var tema = await client.db("Olius").collection("temas")
+    .findOne({
+      "_id": id
+    });
+
+  var fotos = tema.fotos;
+
+
+  fotos.forEach((foto) => {
+    var splits = foto.split("/");
+
+    var nombreFoto = splits[splits.length - 1];
+
+    //eliminar el archivo de la carpeta public
+    fs.unlink('./public/fotostemas/' + nombreFoto, async (err) => {
+      if (err) throw err;
+
+    });
+
+  })
+
+
+  //borrar de la base 
   result = await client.db("Olius").collection("temas")
     .deleteOne({
       "_id": id
@@ -159,6 +186,38 @@ router.delete('/:id', async function (req, res) {
 
 })
 
+
+
+router.put("/establecer/tema", async function (req, res) {
+
+  // obtener el tema
+  console.log("id")
+
+  console.log(req.body.id)
+  var id = ObjectID(req.body.id);
+
+  var result = await client.db("Olius").collection("temas")
+    .findOne({
+      "_id": id
+    });
+
+  // sobreescribir los archivos css y js 
+  fs.writeFile('./public/estilos/estilos_pagina.css', result.css, (err) => {
+    if (err) throw err;
+
+  });
+
+  fs.writeFile('./public/js/js_pagina.js', result.js, (err) => {
+    if (err) throw err;
+
+  });
+
+  res.send({
+    result: "ok"
+  });
+
+
+});
 
 
 

@@ -56,10 +56,13 @@
             <div class="card-body">
               <h5 class="card-title">{{tema.titulo}}</h5>
               <p class="card-text">{{tema.descripcion}}</p>
+              <p class="card-text">Creado por: {{tema.usuario}}</p>
 
-              <button class="btn btn-lg"> <i class="fas fa-eye-dropper"></i>Utilizar Tema</button>
-              <button class="btn btn-lg" style="margin-left: 2em;" data-toggle="modal" data-target="#myModal" (click)="openModal()"> <i class="fas fa-pencil-alt"    ></i>Editar</button>
-
+              <button class="btn btn-lg" (click)="establecerTema(tema._id)" style="margin-right:.5em;">Utilizar
+                Tema</button>
+              <button class="btn btn-lg" style="margin-right: .5em;" data-toggle="modal" data-target="#myModal"
+                (click)="openModal(tema)"> <i class="fas fa-pencil-alt"></i>Editar</button>
+              <button class="btn btn-lg" (click)="eliminarTema(tema._id)">Eliminar</button>
             </div>
 
             <div class="card-footer bg-transparent  estilobordes"></div>
@@ -74,198 +77,139 @@
 
 
 
- <!-- modal editar tema -->
-    
- <div class="modal" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header fondomodal">
-        <h5 class="modal-title  texto"><i class="fas fa-eye-dropper "></i> Editar Tema</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
 
-          
-            <div class="col col-lg-12">
-              <div [formGroup]="formularioTema" style="width: 15em; margin-left: auto ; margin-right: auto"
-                id="titulo-pagina">
-    
-                <label>Titulo</label><input [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
-                  formControlName="titulo" type="text" style="padding-right:2em ;margin-left: 10 rem" class="form-control"
-                  placeholder="Escribir Titulo">
-    
-    
-    
-                <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
-                  style="width: 20em;"> Campo no válido:
-                  <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
-    
-    
-                </div>
-              </div>
-    
+
+        <!-- <div class="col col-lg-12 estilofondo2 " style="margin-top:2em; text-align: center; ">
+
+
+
+          <div class="card" style="width: 30rem; margin-left: auto; margin-right: auto; margin-top: 4em;">
+            <div class="card-header bg-transparent   estilobordes colortarjeta">Tecnologia</div>
+            <img src="assets/img/cerebro.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Inteligencia Artificial</h5>
+              <p class="card-text">Sistemas que piensan como humanos: automatizan actividades como la toma de
+                decisiones, la resolución de problemas y el aprendizaje.</p>
             </div>
-    
-    
-    
-    
-            <div class="col col-lg-12" style="margin-top: 2em;">
-    
-    
-              <div [formGroup]="formularioTema" style="width: 15em ; margin-left: auto;margin-right: auto;"
-                id="descripcion-pagina">
-               <label>Descripcion</label> <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
-                  placeholder="Descripcion" formControlName="descripcion" class="form-control" type="text">
-    
-    
-                <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
-                  role="alert" style="width: 13em;"> Campo no válido:
-                  <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
-    
-    
-                </div>
-              </div>
-            </div>
-    
-    
-    
-            <div class="col col-lg-11">
-    
-              <div id="subir-archivos">
-                <div [formGroup]="formularioTema">
-    
-                  <div class="form-group">
-                    <label for="file">Archivos</label>
-                    <input formControlName="file" id="file" type="file" class="form-control" multiple
-                      (change)="seleccionarFotosMultiples($event)">
-    
-                    <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-                      <div *ngIf="f.file.errors.required">Las fotos son requeridas</div>
+
+            <div class="card-footer bg-transparent  estilobordes"></div>
+
+          </div>
+
+
+
+
+
+        </div> -->
+
+
+
+      </div>
+    </div>
+
+    <!-- modal editar tema -->
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header fondomodal">
+            <h5 class="modal-title  texto"><i class="fas fa-eye-dropper "></i> Editar Tema</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+
+
+                <div class="col col-lg-12">
+                  <div [formGroup]="formularioTema" style="width: 15em; margin-left: auto ; margin-right: auto"
+                    id="titulo-pagina">
+
+                    <label>Titulo</label><input
+                      [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"
+                      formControlName="titulo" type="text" style="padding-right:2em ;margin-left: 10 rem"
+                      class="form-control" placeholder="Escribir Titulo">
+
+
+
+                    <div *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger"
+                      role="alert" style="width: 20em;"> Campo no válido:
+                      <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+
+
                     </div>
-    
-                    <div class="alert alert-danger" *ngIf="cuentaIncorrecta">Seleccione al menos 3 fotos.</div>
-    
                   </div>
-    
-                  <img *ngFor='let url of images' [src]="url" height="150" width="200px" style="margin: 3px;"> <br />
-    
+
                 </div>
-    
-              </div>
-    
-            </div>
-    
-    
-    
-    
-    
-    
-    
-            <div
-              style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;text-align: left;">
-              <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
-    
-              <div style="text-align: center;">
-                <h4><i class="fas fa-code"></i>Editor javascript</h4>
-              </div>
-              <ngx-codemirror [(ngModel)]="contentJS" [options]="{
+
+                <div class="col col-lg-12" style="margin-top: 2em;">
+
+
+                  <div [formGroup]="formularioTema" style="width: 15em ; margin-left: auto;margin-right: auto;"
+                    id="descripcion-pagina">
+                    <label>Descripcion</label> <input
+                      [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+                      placeholder="Descripcion" formControlName="descripcion" class="form-control" type="text">
+
+
+                    <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )"
+                      class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                      <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em;text-align: left;">
+                  <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
+
+                  <div style="text-align: center;">
+                    <h4><i class="fas fa-code"></i>Editor javascript</h4>
+                  </div>
+                  <ngx-codemirror [(ngModel)]="contentJS" [options]="{
                 lineNumbers: true,
                 theme: 'material',
                 mode: 'javascript'
               }"></ngx-codemirror>
-            </div>
-    
-    
-    
-            <br>
-            <br>
-            <br>
-            <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
-              <div style="text-align: center;">
-                <h4> <i class="fas fa-code"></i>Editor css</h4>
-              </div>
-              <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+                </div>
+
+
+
+                <br>
+                <br>
+                <br>
+                <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                  <div style="text-align: center;">
+                    <h4> <i class="fas fa-code"></i>Editor css</h4>
+                  </div>
+                  <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
           lineNumbers: true,
           theme: 'material',
           mode: 'css'
         }"></ngx-codemirror>
+                </div>
+                <br>
+                <br>
+                <br>
+              </div>
             </div>
-    
-    
-    
-            <br>
-            <br>
-            <br>
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          </div>
+          <div class="modal-footer fondomodal">
+            <button type="button" class="btn btn-primary" (click)="guardarTema()"> <i
+                class="far fa-save"></i>Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #botonCerrar (click)="close()"><i
+                class="fas fa-times"></i>Cerrar</button>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="modal-footer fondomodal">
-        <button type="button" class="btn btn-primary"> <i class="far fa-save"></i>Guardar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()"><i class="fas fa-times"></i>Cerrar</button>
       </div>
     </div>
-  </div>
-</div>
 
 
 
 
 
-
-
-
-
-
-       
-
-
-      </div>
-    </div>
   </div>

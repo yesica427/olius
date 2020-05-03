@@ -11,5 +11,6 @@ export class Pagina {
     url: number;
     encabezado: boolean;
     footer: boolean;
+    usuario: string;
 
 }

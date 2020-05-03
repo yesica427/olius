@@ -68,13 +68,32 @@ router.post('/', upload.single('file'), async function (req, res) {
 
   } else {
 
-    //preparar el objeto para subir a mongo
-    //console.log(req.body);
+
+
+    // renombrar el archivo con el titulo 
+
+    //sacar la extension del archivo
+    var nombres = req.body.nombre.split(".");
+
+    var nuevoNombreArchivo = req.body.titulo + "." + nombres[1];
+
+    fs.rename('./public/' + req.body.nombre, './public/' + nuevoNombreArchivo, function (err) {
+      if (err) {
+        res.send({
+          success: false
+        })
+      }
+
+    });
 
     var tipo = "";
 
     switch (req.body.tipo) {
       case "image/jpeg":
+        tipo = "imagen"
+        break;
+
+      case "image/png":
         tipo = "imagen"
         break;
 
@@ -97,14 +116,13 @@ router.post('/', upload.single('file'), async function (req, res) {
 
     var nuevoArchivo = {
       titulo: req.body.titulo,
-      nombrearchivo: req.body.nombre,
-      url: req.body.url,
+      //nombrearchivo: req.body.nombre,
+      nombrearchivo: nuevoNombreArchivo,
+      url: "http://localhost:8888/" + nuevoNombreArchivo,
       descripcion: req.body.descripcion,
       categoria: req.body.categoria,
       tipo: tipo
     }
-
-    console.log(nuevoArchivo)
 
 
     const result = await client.db("Olius").collection("archivos").insertOne(nuevoArchivo);
@@ -156,13 +174,41 @@ router.get('/:id', async function (req, res) {
 /*editar un archivo*/
 router.put('/:id', async function (req, res) {
 
+
   var id = ObjectID(req.params.id);
+
+
+  var archivo = await client.db("Olius").collection("archivos")
+    .findOne({
+      "_id": id
+    });
+
+  var nombres = archivo.nombrearchivo.split(".");
+
+  var nuevoNombreArchivo = req.body.titulo + "." + nombres[1];
+
+  fs.rename('./public/' + archivo.nombrearchivo, './public/' + nuevoNombreArchivo, function (err) {
+    if (err) {
+      res.send({
+        success: false
+      })
+    }
+
+  });
+
+  var archivoEditar = {
+    titulo: req.body.titulo,
+    descripcion: req.body.descripcion,
+    categoria: req.body.categoria,
+    nombrearchivo: nuevoNombreArchivo,
+    url: "http://localhost:8888/" + nuevoNombreArchivo
+  }
 
   result = await client.db("Olius").collection("archivos")
     .updateOne({
       "_id": id
     }, {
-      $set: req.body
+      $set: archivoEditar //req.body
     });
 
   res.send(result.result)

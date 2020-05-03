@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Pagina } from '../pagina.model';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,26 +13,23 @@ import { Categorias } from "../categorias.model";
 export class VerpaginasComponent implements OnInit {
   display = 'none';
 
-  
-  
+
+
   constructor(private http: HttpClient) { }
 
   public listaCategorias: Categorias[];
 
-  public contentJS;
-  public contentHTML;
-  public contentCSS;
 
   paginaEstatica = true;
 
-   //froala editor
-   public contenidoEditor: string = "Escriba una descripción para su página";
-   //opciones para el editor froala
-   public options: Object = {
-     placeholderText: "Escriba algo aquí.",
-     charCounterCount: false,
-   };
- 
+  //froala editor
+  public contenidoEditor: string = "Escriba una descripción para su página";
+  //opciones para el editor froala
+  public options: Object = {
+    placeholderText: "Escriba algo aquí.",
+    charCounterCount: false,
+  };
+
 
 
 
@@ -48,39 +45,44 @@ export class VerpaginasComponent implements OnInit {
     this.traerpaginas();
 
 
-     //traer categorias 
-     this.http.get<Categorias[]>("http://localhost:8888/categorias/").subscribe((res) => {
+    //traer categorias 
+    this.http.get<Categorias[]>("http://localhost:8888/categorias/").subscribe((res) => {
       this.listaCategorias = res;
       console.log(res)
     });
 
-    this.traerCuentaDePaginas();
 
-    
+
 
   }
 
 
+  paginaEditar: Pagina;
+
+  encabezado: boolean = false;
+  footer: boolean = false;
+  activa: boolean = false;
+
+  openModal(pagina: Pagina) {
+
+    this.paginaEditar = pagina;
+
+    this.formularioPagina.get('titulo').setValue(pagina.titulo);
+    this.formularioPagina.get('descripcion').setValue(pagina.descripcion);
+    this.formularioPagina.get('titulomenu').setValue(pagina.titulomenu);
+    this.contenidoEditor = pagina.contenido;
+
+    var palabrasclave = pagina.palabrasclave.join();
+    this.formularioPagina.get('palabrasclave').setValue(palabrasclave);
+
+    this.encabezado = pagina.encabezado;
+    this.footer = pagina.footer;
+    this.activa = pagina.activa;
 
 
-
-  cantidadPaginasEnBase: number;
-
-  traerCuentaDePaginas() {
-    this.http.get("http://localhost:8888/paginas/cuenta/documentos").subscribe((res) => {
-
-      var resJson = JSON.parse(JSON.stringify(res));
-
-      this.cantidadPaginasEnBase = resJson.res;
-
-      console.log(this.cantidadPaginasEnBase);
-    })
-  }
-
-
-
-  openModal() {
     this.display = "block";
+
+
   }
 
   traerpaginas() {
@@ -90,19 +92,10 @@ export class VerpaginasComponent implements OnInit {
         console.log(res)
         this.listapaginas = res;
 
-
-
-
-       
       }
     )
 
   }
-
-
-
-
-
 
 
   formularioPagina = new FormGroup({
@@ -151,10 +144,6 @@ export class VerpaginasComponent implements OnInit {
 
 
 
-
-
-
-
   cambiarTipoPagina() {
     //hace que el editor aparezca si la pagina es estatica
 
@@ -197,6 +186,8 @@ export class VerpaginasComponent implements OnInit {
   }
 
 
+  @ViewChild('botonCerrar') botonCerrar: ElementRef;
+
   guardarPagina() {
 
 
@@ -208,6 +199,8 @@ export class VerpaginasComponent implements OnInit {
 
     nuevaPagina.titulo = valoresForm.titulo;
     nuevaPagina.descripcion = valoresForm.descripcion;
+    nuevaPagina.titulomenu = valoresForm.titulomenu;
+    nuevaPagina.palabrasclave = valoresForm.palabrasclave.split(",");
 
     nuevaPagina.categoria = this.categoriaSeleccionada();
     nuevaPagina.tipo = this.tipopaginaSeleccionada();
@@ -216,32 +209,37 @@ export class VerpaginasComponent implements OnInit {
     var encabezado = <HTMLInputElement>document.getElementById("encabezado");
     nuevaPagina.encabezado = encabezado.checked;
 
-    //verificar si quiere encabezado
+    //verificar si quiere footer
     var footer = <HTMLInputElement>document.getElementById("footer");
     nuevaPagina.footer = footer.checked;
 
-    //verificar si  esta actica o inactiva
+    //verificar si  esta activa o inactiva
     var activa = <HTMLInputElement>document.getElementById("activa");
     nuevaPagina.activa = activa.checked;
 
-    nuevaPagina.titulomenu = valoresForm.titulomenu;
-
-    nuevaPagina.palabrasclave = valoresForm.palabrasclave.split(",");
 
     //contenido del editor wysiwyg
     nuevaPagina.contenido = this.contenidoEditor;
 
-    //url
-    nuevaPagina.url = this.cantidadPaginasEnBase + 1;
 
     console.log(nuevaPagina);
 
-    //guardarlo en la base 
-    this.http.post("http://localhost:8888/paginas/", nuevaPagina).subscribe((res) => {
+    // //guardarlo en la base 
+    this.http.put("http://localhost:8888/paginas/" + this.paginaEditar._id, nuevaPagina).subscribe((res) => {
 
       var resJson = JSON.parse(JSON.stringify(res));
 
       console.log(resJson);
+
+      if (resJson.ok == 1) {
+
+        this.traerpaginas();
+
+
+        //cerrar modal
+        this.botonCerrar.nativeElement.click();
+
+      }
 
     })
 
@@ -249,17 +247,12 @@ export class VerpaginasComponent implements OnInit {
   }
 
 
-
-
-
-
-
-/*eliminar*/
+  /*eliminar*/
 
   eliminarPagina(_id: string) {
-    
-    
-    this.http.delete('http://localhost:8888/paginas/' + _id ).subscribe(
+
+
+    this.http.delete('http://localhost:8888/paginas/' + _id).subscribe(
       (res) => {
         console.log(res)
 

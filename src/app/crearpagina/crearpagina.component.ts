@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Pagina } from "../pagina.model"
 import { Categorias } from "../categorias.model";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crearpagina',
@@ -13,7 +14,7 @@ import { Categorias } from "../categorias.model";
 })
 export class CrearpaginaComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public listaCategorias: Categorias[];
 
@@ -25,6 +26,7 @@ export class CrearpaginaComponent implements OnInit {
 
   //froala editor
   public contenidoEditor: string = "Escriba una descripción para su página";
+
   //opciones para el editor froala
   public options: Object = {
     placeholderText: "Escriba algo aquí.",
@@ -184,6 +186,12 @@ export class CrearpaginaComponent implements OnInit {
     //url
     nuevaPagina.url = this.cantidadPaginasEnBase + 1;
 
+    var usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+
+    var usuario = usuarioActual.primernombre + " " + usuarioActual.primerapellido;
+
+    nuevaPagina.usuario = usuario;
+
     console.log(nuevaPagina);
 
     //guardarlo en la base 
@@ -192,6 +200,9 @@ export class CrearpaginaComponent implements OnInit {
       var resJson = JSON.parse(JSON.stringify(res));
 
       console.log(resJson);
+
+      //   //cuando se guarda, redireccionar a todos los posts
+      this.router.navigateByUrl('/admin/verpaginas');
 
     })
 

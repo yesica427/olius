@@ -3,7 +3,7 @@
 <button (click)="cambiarIdPagina(2)">Cambiar de id</button>
 <h5>Id pagina: {{idPagina}}</h5>
  -->
-
+ <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
 
 <div id="barraLinks">
   <button *ngFor="let link of listaLinks" (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</button>
