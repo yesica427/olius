@@ -17,6 +17,7 @@ import { RegistroAdminComponent } from './registro-admin/registro-admin.componen
 import { NuevotemaComponent } from  './nuevotema/nuevotema.component';
 import { TemasComponent }  from './temas/temas.component';
 import { VerpaginasComponent } from './verpaginas/verpaginas.component';
+import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
 const routes: Routes = [
   {
     path: 'admin/categorias', component: CategoriaComponent
@@ -58,6 +59,8 @@ const routes: Routes = [
   { path: 'admin/temas', component:  TemasComponent, },
   
   { path: 'admin/verpaginas', component:  VerpaginasComponent, },
+
+  { path: 'admin/configuracion', component:  ConfiguracionPaginaComponent, },
 
 
 

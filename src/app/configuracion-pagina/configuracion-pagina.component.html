@@ -1,0 +1,85 @@
+<div class="wrapper  ">
+
+  <app-sidebar></app-sidebar>
+  
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+    style="margin-left: 15% !important;width: 100% !important;">
+
+    <div class="conteiner"   style="margin-left: auto;margin-right: auto ; text-align: center;" > 
+      <div class="row" style="margin-left: auto;margin-right: auto;">
+
+        <div class="fondodiv color col col-lg-12" style=" width: 50%;height: 20em!important;  margin-bottom: 2em  !important; ">
+        
+            <h1 class="titulo" style="margin-top: 4em;margin-left: auto;margin-right: 3em; text-align: center!important; "> <i class="fas fa-cog  fa-2x fa-lg icono"></i>Configurar Pagina</h1>
+          
+        </div>
+
+
+        <div class="col col-lg-6">
+        <label class="txt" style="margin-left:7em;">Titulo</label>   <input  class="bordestxt" placeholder=" Escribir Titulo" style="margin-left:4em;">
+        </div>
+
+
+        <div class="col col-lg-6" >
+            <label  class="txt" style="margin-right:2em;">Descripcion</label>    <input class="bordestxt" placeholder=" Escribir Descripcion" style="margin-right:4em;">
+            </div>
+
+
+            <div class="col col-lg-12" style="margin-top:3em; text-align: center; margin-left: auto; margin-right: auto;" >
+                <label  class="txt" >Palabras Claves</label>    <input class="bordestxt form-control" placeholder=" Escribir Palabras Claves" style=" width: 30em;text-align: center;  margin-left: auto; margin-right: auto;">
+                </div>
+
+
+                <div class="col col-lg-6 " style="margin-top: 6em;" >
+                   <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;"><i class="fas fa-cloud-upload-alt"></i>Subir Favicon</button>
+                    </div>
+
+
+                    <div class="col col-lg-6" style="margin-top: 6em;" >
+                        <button type="button" class="btn btn-lg botonOpciones" style="margin-right: 13em;"><i class="fas fa-cloud-upload-alt"></i>Subir LogoTipo</button>
+                         </div>
+
+
+
+                         <div
+                         style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 10em;text-align: left;">
+                         <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
+               
+
+                         <div style="text-align: center;">
+                            <h4><i class="fas fa-code"></i>Editor javascript</h4>
+                          </div>
+                          <ngx-codemirror [(ngModel)]="contentJS" [options]="{
+                            lineNumbers: true,
+                            theme: 'material',
+                            mode: 'javascript'
+                          }"></ngx-codemirror>
+                        </div>
+
+
+
+                        <br>
+                        <br>
+                        <br>
+                        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                          <div style="text-align: center;">
+                            <h4> <i class="fas fa-code"></i>Editor css</h4>
+                          </div>
+                          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+                      lineNumbers: true,
+                      theme: 'material',
+                      mode: 'css'
+                    }"></ngx-codemirror>
+                        </div>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

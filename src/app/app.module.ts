@@ -32,6 +32,7 @@ import { TemasComponent } from './temas/temas.component';
 import { PostComponent } from './post/post.component';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { VerpaginasComponent } from './verpaginas/verpaginas.component';
+import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { VerpaginasComponent } from './verpaginas/verpaginas.component';
     TemasComponent,
     PostComponent,
     ComentarioComponent,
-    VerpaginasComponent
+    VerpaginasComponent,
+    ConfiguracionPaginaComponent
 
 
   ],
