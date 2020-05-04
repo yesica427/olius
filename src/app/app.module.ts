@@ -33,6 +33,7 @@ import { PostComponent } from './post/post.component';
 import { ComentarioComponent } from './comentario/comentario.component';
 import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
+import { EncabezadoComponent } from './encabezado/encabezado.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuraci
     PostComponent,
     ComentarioComponent,
     VerpaginasComponent,
-    ConfiguracionPaginaComponent
+    ConfiguracionPaginaComponent,
+    EncabezadoComponent
 
 
   ],
