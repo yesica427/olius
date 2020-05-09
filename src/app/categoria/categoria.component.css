@@ -23,6 +23,8 @@
 
 .colorfondo {
   background-color: black;
+  height: inherit!important;
+  size: cover ;
 }
 
 .color {
@@ -37,4 +39,11 @@
 
 .input-error{
   color:red;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  align-items: center;
 }

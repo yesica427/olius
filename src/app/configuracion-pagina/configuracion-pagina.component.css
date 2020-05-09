@@ -20,7 +20,7 @@
 
   .fondo{
     width: 120%!important;
-    height:  100em!important;
+    height:  150em!important;
     background-color:black;
     color:#B7378A !important;
    
@@ -65,3 +65,7 @@
     color:white;
   
   };
+
+  .input-error{
+    border-color: red 1px;
+  }

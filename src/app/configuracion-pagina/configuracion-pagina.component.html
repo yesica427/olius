@@ -16,20 +16,49 @@
 
 
         <div class="col col-lg-6">
-        <label class="txt" style="margin-left:7em;">Titulo</label>   <input  class="bordestxt" placeholder=" Escribir Titulo" style="margin-left:4em;">
+          <div [formGroup]="formularioConfiguracionPagina">
+        <label class="txt" style="margin-left:7em;">Titulo</label>   <input  [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"  
+        formControlName="titulo"    class="bordestxt" placeholder=" Escribir Titulo" style="margin-left:4em;">
+
+
+        <div class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
+        style="width: 20em;"> Campo no válido:
+        <span  class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+
+      </div>
+      </div>
+
         </div>
 
 
         <div class="col col-lg-6" >
-            <label  class="txt" style="margin-right:2em;">Descripcion</label>    <input class="bordestxt" placeholder=" Escribir Descripcion" style="margin-right:4em;">
+          <div [formGroup]="formularioConfiguracionPagina">
+            <label  class="txt" style="margin-right:2em;">Descripcion</label>    <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }" class="bordestxt" placeholder=" Escribir Descripcion" style="margin-right:4em;" formControlName="descripcion">
             </div>
 
 
+
+            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+            role="alert" style="width: 13em;"> Campo no válido:
+            <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
+
+          </div>
+        </div>
+
             <div class="col col-lg-12" style="margin-top:3em; text-align: center; margin-left: auto; margin-right: auto;" >
-                <label  class="txt" >Palabras Claves</label>    <input class="bordestxt form-control" placeholder=" Escribir Palabras Claves" style=" width: 30em;text-align: center;  margin-left: auto; margin-right: auto;">
+              <div class="col col-lg-12" style="margin-right:auto;margin-left: auto; text-align: center;" [formGroup]="formularioConfiguracionPagina">
+                <label  class="txt" >Palabras Claves</label>    <input    [ngClass]="{'input-error':palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched ) }"
+                formControlName="palabrasclave" class="bordestxt form-control" placeholder=" Escribir Palabras Claves" style=" width: 30em;text-align: center;  margin-left: auto; margin-right: auto;">
+                <div  class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;"*ngIf="palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched )"
+                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                <span  class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;" class="error" *ngIf="palabrasclave.errors.required">Error el campo es Obligatorio</span>
+
+              </div>
+
+
                 </div>
 
-
+            </div>
                 <div class="col col-lg-6 " style="margin-top: 6em;" >
                    <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;"><i class="fas fa-cloud-upload-alt"></i>Subir Favicon</button>
                     </div>
@@ -72,11 +101,11 @@
                     }"></ngx-codemirror>
                         </div>
 
+           
+                         <div class="col col-lg-8"  style=" margin-top: 5em; margin-left: auto; margin-right: 20em;" >
+                        <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;"><i class="fas fa-cloud-upload-alt"></i>GUARDAR</button>
 
-
-
-
-
+                      </div>
 
 
       </div>
