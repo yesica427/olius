@@ -34,6 +34,7 @@ import { ComentarioComponent } from './comentario/comentario.component';
 import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
+import { ConfiguracionFooterComponent } from './configuracion-footer/configuracion-footer.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
     ComentarioComponent,
     VerpaginasComponent,
     ConfiguracionPaginaComponent,
-    EncabezadoComponent
+    EncabezadoComponent,
+    ConfiguracionFooterComponent
 
 
   ],

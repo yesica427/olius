@@ -19,6 +19,7 @@ import { TemasComponent }  from './temas/temas.component';
 import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
+import { ConfiguracionFooterComponent } from './configuracion-footer/configuracion-footer.component';
 const routes: Routes = [
   {
     path: 'admin/categorias', component: CategoriaComponent
@@ -63,6 +64,9 @@ const routes: Routes = [
 
   { path: 'admin/configuracion', component:  ConfiguracionPaginaComponent, },
   { path: 'admin/encabezado', component:  EncabezadoComponent, },
+
+  { path: 'admin/configuracion/footer', component:  ConfiguracionFooterComponent, },
+  
 
 
 

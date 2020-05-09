@@ -1,0 +1,54 @@
+.fondo{
+    width: 120%!important;
+    height:  100em!important;
+    background-color:black;
+    color:#B7378A !important;
+   
+
+
+
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    background-color: black;
+    align-items: center;
+  }
+
+
+  .txt{
+    font-weight: bold;
+    font-size: 1.5rem;
+  
+   }
+
+
+   .fondodiv{
+
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 40em !important;
+    height: 30em !important;
+    background-position: center 50%;
+    
+    color: #B7378A; 
+    /* https://images.iconfu.com/sets/20-neon/icons/gearwheel_icon.png' */
+    background-image: url('~/assets/img/configuracion.jpg') !important ; 
+
+   }
+
+
+    .titulo{
+        font-family: 'Monoton', arial;
+        color:#B7378A;
+       }
+    
+    
+       .botonOpciones {
+       
+        border-color:#B7378A !important;
+        background-color:#B7378A !important;
+        color:white;
+      
+      };

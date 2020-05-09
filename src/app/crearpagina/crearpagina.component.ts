@@ -61,6 +61,7 @@ export class CrearpaginaComponent implements OnInit {
     })
   }
 
+  
   formularioPagina = new FormGroup({
     titulo: new FormControl("", [
       Validators.required,
