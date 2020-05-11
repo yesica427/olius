@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Post } from '../post.model';
 import { Categorias } from '../categorias.model';
 import { HttpClient } from '@angular/common/http';
@@ -109,6 +109,8 @@ export class PostsComponent implements OnInit {
     return this.contenidoEditor.length > 2;
   }
 
+  @ViewChild('botonCerrar') botonCerrar: ElementRef;
+
   guardarPost() {
     //aqui guardo el option seleccionado en categorias
     var valorCategoria = (<HTMLSelectElement>(
@@ -130,12 +132,10 @@ export class PostsComponent implements OnInit {
     var nuevoPost = new Post();
     nuevoPost.titulopost = tituloPost;
     nuevoPost.categoria = valorCategoria;
-    nuevoPost.fecha = new Date();
     nuevoPost.descripcion = this.contenidoEditor;
     nuevoPost.permitecomentario = estaSeleccionado;
-    nuevoPost.comentarios = [];
-    nuevoPost.usuario = nombreUsuario;
 
+    console.log(nuevoPost)
 
 
     this.http.put('http://localhost:8888/posts/' + this.postEditar._id, nuevoPost).subscribe(
@@ -143,6 +143,10 @@ export class PostsComponent implements OnInit {
         console.log(res)
         this.traerPost()
         this.postEditar = null
+
+        //cerrar modal
+        this.botonCerrar.nativeElement.click();
+
       }
     )
 

@@ -1,111 +1,196 @@
 <div class="wrapper  ">
 
   <app-sidebar></app-sidebar>
-  
+
   <div class="content fondo" style="margin-left: auto;margin-right: auto;"
     style="margin-left: 15% !important;width: 100% !important;">
 
-    <div class="conteiner"   style="margin-left: auto;margin-right: auto ; text-align: center;" > 
+    <div class="conteiner" style="margin-left: auto;margin-right: auto ; text-align: center;">
       <div class="row" style="margin-left: auto;margin-right: auto;">
 
-        <div class="fondodiv color col col-lg-12" style=" width: 50%;height: 20em!important;  margin-bottom: 2em  !important; ">
-        
-            <h1 class="titulo" style="margin-top: 4em;margin-left: auto;margin-right: 3em; text-align: center!important; "> <i class="fas fa-cog  fa-2x fa-lg icono"></i>Configurar Pagina</h1>
-          
+        <div class="fondodiv color col col-lg-12"
+          style=" width: 50%;height: 20em!important;  margin-bottom: 2em  !important; ">
+
+          <h1 class="titulo"
+            style="margin-top: 4em;margin-left: auto;margin-right: 3em; text-align: center!important; "> <i
+              class="fas fa-cog  fa-2x fa-lg icono"></i>Configurar Pagina</h1>
+
         </div>
 
 
         <div class="col col-lg-6">
           <div [formGroup]="formularioConfiguracionPagina">
-        <label class="txt" style="margin-left:7em;">Titulo</label>   <input  [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }"  
-        formControlName="titulo"    class="bordestxt" placeholder=" Escribir Titulo" style="margin-left:4em;">
+            <label class="txt" style="margin-left:7em;">Titulo</label> <input
+              [ngClass]="{'input-error':titulo.invalid && (titulo.dirty || titulo.touched ) }" formControlName="titulo"
+              class="bordestxt" placeholder=" Escribir Titulo" style="margin-left:4em;">
 
 
-        <div class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
-        style="width: 20em;"> Campo no válido:
-        <span  class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
+            <div class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;"
+              *ngIf="titulo.invalid && (titulo.dirty || titulo.touched )" class="alert alert-danger" role="alert"
+              style="width: 20em;"> Campo no válido:
+              <span class="error" *ngIf="titulo.errors.required">Error el campo es Obligatorio</span>
 
-      </div>
-      </div>
+            </div>
+          </div>
 
         </div>
 
 
-        <div class="col col-lg-6" >
+        <div class="col col-lg-6">
           <div [formGroup]="formularioConfiguracionPagina">
-            <label  class="txt" style="margin-right:2em;">Descripcion</label>    <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }" class="bordestxt" placeholder=" Escribir Descripcion" style="margin-right:4em;" formControlName="descripcion">
-            </div>
+            <label class="txt" style="margin-right:2em;">Descripcion</label> <input
+              [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched ) }"
+              class="bordestxt" placeholder=" Escribir Descripcion" style="margin-right:4em;"
+              formControlName="descripcion">
+          </div>
 
 
 
-            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
+          <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched )" class="alert alert-danger"
             role="alert" style="width: 13em;"> Campo no válido:
             <span class="error" *ngIf="descripcion.errors.required">Error el campo es Obligatorio</span>
 
           </div>
         </div>
 
-            <div class="col col-lg-12" style="margin-top:3em; text-align: center; margin-left: auto; margin-right: auto;" >
-              <div class="col col-lg-12" style="margin-right:auto;margin-left: auto; text-align: center;" [formGroup]="formularioConfiguracionPagina">
-                <label  class="txt" >Palabras Claves</label>    <input    [ngClass]="{'input-error':palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched ) }"
-                formControlName="palabrasclave" class="bordestxt form-control" placeholder=" Escribir Palabras Claves" style=" width: 30em;text-align: center;  margin-left: auto; margin-right: auto;">
-                <div  class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;"*ngIf="palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched )"
-                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-                <span  class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;" class="error" *ngIf="palabrasclave.errors.required">Error el campo es Obligatorio</span>
-
-              </div>
-
-
-                </div>
+        <div class="col col-lg-12" style="margin-top:3em; text-align: center; margin-left: auto; margin-right: auto;">
+          <div class="col col-lg-12" style="margin-right:auto;margin-left: auto; text-align: center;"
+            [formGroup]="formularioConfiguracionPagina">
+            <label class="txt">Palabras Claves</label> <input
+              [ngClass]="{'input-error':palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched ) }"
+              formControlName="palabrasclave" class="bordestxt form-control" placeholder=" Escribir Palabras Claves"
+              style=" width: 30em;text-align: center;  margin-left: auto; margin-right: auto;">
+            <div class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;"
+              *ngIf="palabrasclave.invalid && (palabrasclave.dirty || palabrasclave.touched )"
+              class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+              <span class="col col-lg-6" style="margin-right:auto;margin-left: auto; text-align: center;" class="error"
+                *ngIf="palabrasclave.errors.required">Error el campo es Obligatorio</span>
 
             </div>
-                <div class="col col-lg-6 " style="margin-top: 6em;" >
-                   <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;"><i class="fas fa-cloud-upload-alt"></i>Subir Favicon</button>
-                    </div>
 
 
-                    <div class="col col-lg-6" style="margin-top: 6em;" >
-                        <button type="button" class="btn btn-lg botonOpciones" style="margin-right: 13em;"><i class="fas fa-cloud-upload-alt"></i>Subir LogoTipo</button>
-                         </div>
+          </div>
+
+        </div>
+        <div class="col col-lg-6 " style="margin-top: 6em; text-align: center;">
+
+          <h5>Favicon Actual</h5>
+          <div *ngIf="!precargaFavicon">
+            <img src="{{urlFavicon}}" style="height: 10em; object-fit: cover;">
+          </div>
+
+          <div *ngIf="precargaFavicon">
+            <img [src]="faviconPrecargado" style="height: 10em; object-fit: cover;"> <br>
+          </div>
+
+          <br>
+
+          <div [formGroup]="formularioFavicon">
+            <input formControlName="file" id="file" type="file" class="form-control" (change)="cambioFavicon($event)"
+              placeholder="Seleccione un archivo">
+
+            <div *ngIf="fav.file.touched && fav.file.invalid" class="alert alert-danger">
+
+              <div *ngIf="fav.file.errors.required">Campo requerido</div>
+            </div>
+
+            <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: auto;margin-right: auto;"
+              [disabled]="!formularioFavicon.valid" (click)="subirFavicon()"><i
+                class="fas fa-cloud-upload-alt"></i>Subir
+              Favicon</button>
+
+          </div>
+        </div>
 
 
+        <div class="col col-lg-6" style="margin-top: 6em;text-align: center;">
 
-                         <div
-                         style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 10em;text-align: left;">
-                         <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
-               
+          <h5>Logotipo Actual</h5>
+          <div *ngIf="!precargaLogotipo">
+            <img src="{{urlLogotipo}}" style="height: 10em; object-fit: cover;">
+          </div>
 
-                         <div style="text-align: center;">
-                            <h4><i class="fas fa-code"></i>Editor javascript</h4>
-                          </div>
-                          <ngx-codemirror [(ngModel)]="contentJS" [options]="{
+          <div *ngIf="precargaLogotipo">
+            <img [src]="logotipoPrecargado" style="height: 10em; object-fit: cover;"> <br />
+          </div>
+
+          <br>
+          <div [formGroup]="formularioLogotipo">
+            <input formControlName="file" id="file" type="file" class="form-control" (change)="cambioLogo($event)"
+              placeholder="Seleccione un archivo">
+
+            <div *ngIf="logo.file.touched && logo.file.invalid" class="alert alert-danger">
+
+              <div *ngIf="logo.file.errors.required">Campo requerido</div>
+
+            </div>
+
+
+            <button type="button" class="btn btn-lg botonOpciones" style="margin-left: auto;margin-right: auto;"
+              [disabled]="!formularioLogotipo.valid" (click)="subirLogotipo()"><i
+                class="fas fa-cloud-upload-alt"></i>Subir LogoTipo</button>
+          </div>
+        </div>
+
+
+        <div class="col col-lg-10">
+          <div style="margin-left:auto !important; margin-right:auto !important; margin-top: 2em;">
+            <div [froalaEditor]="options" [(froalaModel)]="contenidoEditor"></div>
+          </div>
+
+
+          <div *ngIf="validarContenidoEditor()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+            El contenido no puede ir vacío.
+          </div>
+        </div>
+
+
+        <div
+          style="border-radius: 15px;width: 70%; margin-left: auto;margin-right: auto; margin-top: 10em;text-align: left;">
+          <!-- <h4 style="margin-left: auto;margin-right: auto;"><i class="fas fa-code"></i>Editor javascript</h4> -->
+
+
+          <div style="text-align: center;">
+            <h4><i class="fas fa-code"></i>Editor javascript</h4>
+          </div>
+          <ngx-codemirror [(ngModel)]="contentJS" [options]="{
                             lineNumbers: true,
                             theme: 'material',
                             mode: 'javascript'
                           }"></ngx-codemirror>
-                        </div>
+
+          <div *ngIf="validarContenidoJS()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+            El contenido no puede ir vacío.
+          </div>
+        </div>
 
 
 
-                        <br>
-                        <br>
-                        <br>
-                        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
-                          <div style="text-align: center;">
-                            <h4> <i class="fas fa-code"></i>Editor css</h4>
-                          </div>
-                          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+        <br>
+        <br>
+        <br>
+        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+          <div style="text-align: center;">
+            <h4> <i class="fas fa-code"></i>Editor css</h4>
+          </div>
+          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
                       lineNumbers: true,
                       theme: 'material',
                       mode: 'css'
                     }"></ngx-codemirror>
-                        </div>
 
-           
-                         <div class="col col-lg-8"  style=" margin-top: 5em; margin-left: auto; margin-right: 20em;" >
-                        <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;"><i class="fas fa-cloud-upload-alt"></i>GUARDAR</button>
+          <div *ngIf="validarContenidoCSS()==false" class="alert alert-danger" role="alert" style="width: 13em;">
+            El contenido no puede ir vacío.
+          </div>
+        </div>
 
-                      </div>
+
+        <div class="col col-lg-8" style=" margin-top: 5em; margin-left: auto; margin-right: 20em;">
+          <button type="button " class="btn  btn-lg botonOpciones" style="margin-left: 13em;" (click)="guardar()"
+            [disabled]="!formularioConfiguracionPagina.valid||validarContenidoEditor()==false||validarContenidoJS()==false||validarContenidoCSS()==false"><i
+              class="fas fa-cloud-upload-alt"></i>Guardar </button>
+          <!-- || validarContenidoEditor()==false -->
+        </div>
 
 
       </div>

@@ -56,7 +56,13 @@ export class LoginComponent implements OnInit {
       if (resJson[0].loginCorrecto) {
 
         localStorage.setItem('usuarioActual', JSON.stringify(res[1]));
-        this.navigate();
+        if (resJson[1].rol == 1) {
+          // si es admin
+          this.navigate();
+        }
+        else if (resJson[1].rol == 2) {
+          this.router.navigateByUrl('/paginacreada');
+        }
       }
       else {
 

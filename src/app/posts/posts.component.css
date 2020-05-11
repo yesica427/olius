@@ -14,45 +14,46 @@
   width: 100%;
   background-color: black;
   align-items: center;
- 
 }
 
 .botonOpciones {
   margin-left: .5em !important;
   margin-right: .5em !important;
-  border-color:#B7378A !important;
-  background-color:#B7378A !important;
-  color:white;
-
-};
-
-btn{
-  background-color:#B7378A !important;
-  color:white;
+  border-color: #B7378A !important;
+  background-color: #B7378A !important;
+  color: white;
 
 }
 
-.colorfondo{
+;
+
+btn {
+  background-color: #B7378A !important;
+  color: white;
+
+}
+
+.colorfondo {
   background-color: black;
-  size: cover ;
-  
- 
-}
+  size: cover;
 
-.color{
-  color:#B7378A !important;
 
 }
 
+.color {
+  color: #B7378A !important;
 
-#tamano{
-  width: inherit!important;
-  height: inherit!important;
 }
 
 
-.color{
-  
+#tamano {
+  width: inherit !important;
+  height: inherit !important;
+}
+
+
+.color {
+
   color: #B7378A;
 }
 
@@ -62,46 +63,90 @@ btn{
 }
 
 
-.fondodiv{
+.fondodiv {
 
   background-size: cover !important;
   background-repeat: no-repeat;
   width: inherit !important;
   height: inherit !important;
   background-position: center 100%;
-  margin-top: 0!important;
-  
-  color: #B7378A; 
- 
+  margin-top: 0 !important;
+
+  color: #B7378A;
+
   background-image: url('https://digitalbricksmarketing.com/wp-content/uploads/2017/10/Eedited-digital-bricks.jpg') !important;
-  
- 
- }
- 
 
 
-.optione{
-  background-color:black!important; 
-  color: #B7378A!important;
+}
+
+
+
+.optione {
+  background-color: black !important;
+  color: #B7378A !important;
 
 }
 
 .optione:hover {
-  background-color: #B7378A!important; 
- }
+  background-color: #B7378A !important;
+}
 
- .select{
-   border-radius: 3px black;
- }
+.select {
+  border-radius: 3px black;
+}
 
 
- .txt{
+.txt {
   font-weight: bold;
 
- }
+}
 
 
- .titulo{
+.titulo {
   font-family: 'Monoton', arial;
-  color:#B7378A;
- }
+  color: #B7378A;
+}
+
+
+.fondomodal {
+  background-image: url('~/assets/img/oleo2.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+}
+
+
+#titulo-post {
+  padding-left: 13em;
+}
+
+
+.fondobodymodal {
+  background-color: rgb(52, 52, 52) !important;
+}
+
+
+.texto {
+  font-family: 'Monoton', arial;
+}
+
+
+
+.color {
+  color: #B7378A !important;
+}
+
+.modal-body {
+  padding: 0px !important;
+}
+
+.modal-content {
+  width: 40em;
+  margin-left: -5em;
+}
+
+#btn-archivo {
+  color: white;
+  border-color: white;
+}

@@ -17,9 +17,14 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioActual = this.loginService.traerUsuarioActual();
+
     if (this.usuarioActual == null) {
-      this.navegarIndex()
+      this.navegarIndex();
     }
+    else if (this.usuarioActual.rol != 1) {
+      this.navegarIndex();
+    }
+   
   }
 
   salir() {

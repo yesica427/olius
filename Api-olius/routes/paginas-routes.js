@@ -69,18 +69,26 @@ router.get('/', async function (req, res) {
 /* obtener la cuenta de documentos en la coleccion*/
 
 
-router.get('/cuenta/documentos', async function (req, res) {
+router.get('/cuenta/documentos', async function (req, res) { //TODO:poner max
 
   console.log("Cae en cuenta")
 
-  var cuenta = await client.db("Olius").collection("paginas")
-    .countDocuments({});
+  var cuenta = await client.db("Olius").collection('paginas').find({}).sort({
+    "url": -1
+  }).limit(1);
 
 
-  console.log(cuenta);
+  cuenta.project({
+    "_id": 0,
+    "url": 1
+  });
+
+
+  var result = await cuenta.toArray();
+
 
   res.send({
-    "res": cuenta
+    "res": result[0].url
   });
 
 
@@ -143,6 +151,30 @@ router.delete('/:id', async function (req, res) {
   res.send(result.result)
 })
 
+
+/*modificar pagina principal*/
+router.put('/modificar/paginaprincipal', async (req, res, next) => {
+
+
+  result = await client.db("Olius").collection("paginas")
+    .updateOne({
+      "url": 1
+    }, {
+      $set: {
+        "titulo": req.body.titulo,
+        "descripcion": req.body.descripcion,
+        "css": req.body.css,
+        "contenido": req.body.contenido,
+        "js": req.body.js,
+        "palabrasclave": req.body.palabrasclave,
+      }
+    });
+
+
+  res.send({
+    result: 'ok'
+  });
+})
 
 
 module.exports = router;
