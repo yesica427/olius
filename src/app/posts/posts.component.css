@@ -117,6 +117,11 @@ btn {
 }
 
 
+.fondotable {
+  background-color: black !important;
+}
+
+
 #titulo-post {
   padding-left: 13em;
 }

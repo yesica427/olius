@@ -20,6 +20,8 @@ import { VerpaginasComponent } from './verpaginas/verpaginas.component';
 import { ConfiguracionPaginaComponent } from './configuracion-pagina/configuracion-pagina.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { ConfiguracionFooterComponent } from './configuracion-footer/configuracion-footer.component';
+import { GestionComentariosComponent } from './gestion-comentarios/gestion-comentarios.component';
+import { MenuComponent } from './menu/menu.component';
 const routes: Routes = [
   {
     path: 'admin/categorias', component: CategoriaComponent
@@ -66,6 +68,14 @@ const routes: Routes = [
   { path: 'admin/encabezado', component:  EncabezadoComponent, },
 
   { path: 'admin/configuracion/footer', component:  ConfiguracionFooterComponent, },
+  
+  { path: 'admin/comentarios', component:  GestionComentariosComponent, },
+
+  { path: 'admin/administrar/menu', component:  MenuComponent, },
+
+
+  
+
   
 
 

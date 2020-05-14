@@ -1,0 +1,55 @@
+<div class="wrapper  ">
+
+    <app-sidebar></app-sidebar>
+  
+    <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+      style="margin-left: 15% !important;width: 100% !important;">
+  
+      <div class="conteiner" style="margin-left: auto;margin-right: auto ; text-align: center;">
+        <div class="row" style="margin-left: auto;margin-right: auto;">
+  
+          <div class="fondodiv color col col-lg-12 estiloComentario "
+            style=" width: 50%;height: 20em!important; margin-top: 5em; margin-bottom: 6em  !important; ">
+ 
+            <h1 class="titulo"
+              style="margin-top: 3.5em;margin-left: 4em;margin-right: 3em; text-align: center!important; ">Comentarios</h1>
+  
+          </div>
+
+<div class="col col-lg-4"></div>
+         
+
+
+          <div class="col col-lg-6" id="list-example" style="text-align: center; margin-left: 10em;  margin-right: 30em;" *ngFor='let post of listaPost' class="list-group">
+            <button   (click)="traerComentarios(post._id)" style=" width:12em" class="list-group-item list-group-item-action opcion" ><h4>{{post.titulopost}}</h4></button>
+           
+          </div>
+
+
+          <div  class="col col-lg-6 estiloinformacion"   *ngIf="itemactivo==true" style="margin-left: 20em; "   >
+            <div *ngIf="listaComentarios.length==0" ><strong> hay comentarios para el post actual </strong></div>
+            
+           <div  *ngFor='let comentario of listaComentarios' >
+            <h3 class="colortitulo"><i class="far fa-user"></i>Autor</h3>  <h4 class="color" id="list-item-1">{{comentario.usuario}}</h4>
+            <p>...</p>
+            <h3  class="colortitulo"><i class="far fa-comment"></i>Comentario</h3> <h4  class="color" id="list-item-2">{{comentario.comentario}}</h4>
+            <p>...</p>
+
+            <button class="btn btn-lg botonOpciones" (click)="eliminarComentario(comentario.idcomentario)"><i class="far fa-trash-alt"></i>Eliminar</button>
+           
+          </div>
+          </div>
+
+          
+
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+

@@ -1,0 +1,129 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    background-color: black;
+    align-items: center;
+  }
+
+
+  .txt{
+    font-weight: bold;
+    font-size: 1.5rem;
+  
+   }
+   .bordestxt{
+       border-radius: 60px;
+   }
+  
+
+  .fondo{
+    width: 120%!important;
+    height:  150em!important;
+    background-color:black;
+    color:#B7378A !important;
+   
+}
+
+.titulo {
+    font-family: 'Monoton', arial;
+    color: #B7378A;
+  }
+
+ 
+.estiloComentario{
+
+   
+    width: 30em;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 80px 20px ;
+    border-color: 1px black !important;
+    background: linear-gradient(360deg,white, #B7378A) !important;
+
+    background-image: url('https://image.freepik.com/vector-gratis/hablar-burbujas-neon-coleccion-carteles-signos-globos-chat-senales-neon_72287-554.jpg') !important;
+    
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  width: inherit !important;
+  height: inherit !important;
+  background-position: center 100%;
+  opacity: 0.5;
+  }
+
+  .botonOpciones {
+    
+    background-color:#1F0917 !important;
+    color: white !important;
+    border-radius: 20px;
+  }
+
+
+  .centrar{
+     text-align:  center; 
+     margin-left: auto;margin-left:
+      auto; 
+      margin-right: 40em;
+  }
+
+
+  .optione {
+    background-color: black !important;
+    color: #B7378A !important;
+  
+  }
+  
+  .optione:hover {
+    background-color: #B7378A !important;
+  }
+
+  .fondotable {
+    background-color: black !important;
+    color:white!important;
+  }
+
+
+  body {
+    position: relative;
+  }
+
+  .opcion{
+    /* background: linear-gradient(360deg,white, #B7378A) !important; */
+
+    background-image: url('~/assets/img/fondo3.jpg') !important;
+    background-size: cover;
+    background-position: center 100%;
+    color: white;
+    font-style: oblique;
+    border-radius: 20px;
+  }
+
+
+
+  .estiloinformacion{
+    
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 80px 20px ;
+    border-color: 1px black !important;
+    background: linear-gradient(360deg,black, #B7378A) !important;
+    color :#1F0917;
+    /* opacity: 0.5; */
+
+     background-image: url('~/assets/img/fondo5.jpg') !important; 
+    
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  width: inherit !important;
+  height: inherit !important;
+  background-position: center 80%;
+  }
+
+  /* .colortitulo{
+    color: #B7378A ;
+  }
+
+  .color{
+   color: white
+  } */

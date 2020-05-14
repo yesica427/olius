@@ -1,0 +1,121 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  align-items: center;
+}
+
+
+.txt {
+  font-weight: bold;
+  font-size: 1.5rem;
+
+}
+
+.bordestxt {
+  border-radius: 60px;
+}
+
+
+.fondo {
+  width: 120% !important;
+  height: 150em !important;
+  background-color: black;
+  color:white !important;
+  background-image: url('~/assets/img/oleo2.jpg');
+  size: cover;
+  background-repeat: no-repeat;
+  padding: 5px 50px;
+  text-align: center;
+  background-position: center top;
+  position: relative;
+
+
+}
+
+
+.botonOpciones {
+ 
+  border-color: #B7378A !important;
+  background-color: #B7378A !important;
+  color: white;
+
+}
+
+.input-error{
+  border-color: red 1px;
+}
+
+
+
+.fondo:before {
+
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* .divfondo{
+    padding-right: 0mm;
+  
+    padding-left: 14em !important;
+    text-align: center!important;
+    align-items: center;
+    margin-right: auto!important;
+    margin-left: auto!important;
+    background-color:#5E1D47; 
+    opacity: 0.5;
+    color:white;
+
+} */
+
+.fondocard {
+  text-align: center !important;
+  background-image: url('~/assets/img/fondo.jpg');
+
+
+}
+
+/* .card {
+  background-image: url('~/assets/img/imagenblanca.jpg');
+
+} */
+
+.bodycard {
+  /* background-color:#5E1D47; 
+    opacity: 0.5; */
+
+
+}
+
+.texto {
+  font-family: 'Monoton', arial;
+  color: #B7378A;
+  margin-right: 5em;
+
+}
+
+
+.fondomodal{
+  background-image: url('~/assets/img/nebula.jpg') !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+
+}
+
+.texto{
+  font-family: 'Monoton', arial;
+}
+
+
+.fondoblack{
+  background: linear-gradient(360deg, #000000, #B7378A) !important;
+  color:white !important;
+
+}

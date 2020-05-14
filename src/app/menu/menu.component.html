@@ -1,0 +1,239 @@
+
+<div class="wrapper  ">
+
+    <app-sidebar></app-sidebar>
+  
+    <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+      style="margin-left: 15% !important;width: 100% !important;">
+  
+      <div class="conteiner" style="margin-left: auto;margin-right: auto ; text-align: center;">
+        <div class="row" style="margin-left: auto;margin-right: auto;">
+  
+          <div class="fondodiv color col col-lg-12 estiloComentario "
+            style=" width: 50%;height: 20em!important; margin-top: 5em; margin-bottom: 6em  !important; ">
+ 
+            <h1 class="titulo col-lg-12 texto" 
+              style="margin-top: 3.5em;margin-left: 1em;margin-right: auto; text-align: center!important; ">Menus</h1>
+  
+          </div>
+
+<div class="col col-lg-8 " style=" text-align: center!important;">
+
+    <div class="card text-center fondocard col-lg-12" style="margin-left: 10em;margin-top: 5em; margin-right: auto; text-align: center;">
+        <div class="card-header card">
+         <h3>Crear Menu</h3> 
+        </div>
+        <div class="card-body bodycard" >
+          <h5 class="card-title"></h5>
+         
+
+          <div [formGroup]="menuForm" class="col col-lg-12 ">
+            <h4>Nombre De el menu</h4><input  [ngClass]="{'input-error':nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched ) }"
+            formControlName="nombreMenu" type="text" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"placeholder="Ingrese el nombre de el menu">
+
+            <div style="text-align: center;" *ngIf="nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched )"
+                      class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                      <span class="error" *ngIf="nombreMenu.errors.required">Error el campo es Obligatorio</span>
+                      <span *ngIf="nombreMenu.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+                    </div>
+
+
+           </div>
+            <div  [formGroup]="menuForm" class="col col-lg-12 ">
+        <h4>Opciones</h4><input    [ngClass]="{'input-error':opciones.invalid && (opciones.dirty || opciones.touched ) }" type="text"  style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
+        formControlName="opciones" placeholder="Ingrese las opciones separadas por coma">
+         
+        <div style="text-align: center;" *ngIf="opciones.invalid && (opciones.dirty || opciones.touched )"
+        class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+        <span class="error" *ngIf="opciones.errors.required">Error el campo es Obligatorio</span>
+        <span *ngIf="opciones.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+      </div>
+      
+      
+      
+      
+      </div>
+
+
+            <div [formGroup]="menuForm" class="col col-lg-12">
+                <h4>Enlace</h4><input   [ngClass]="{'input-error':enlaces.invalid && (enlaces.dirty || enlaces.touched ) }" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control" formControlName="enlaces" type="text" placeholder="Ingrese los enlaces separados por coma">
+                   
+              
+                <div style="text-align: center;" *ngIf="enlaces.invalid && (enlaces.dirty || enlaces.touched )"
+                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                <span class="error" *ngIf="enlaces.errors.required">Error el campo es Obligatorio</span>
+                <span *ngIf="enlaces.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+              </div>
+              
+              
+              </div>
+
+
+
+
+                    <div class="col col-lg-12">
+                        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                            <div style="text-align: center;">
+                              <h4> <i class="fas fa-code"></i>Editor css</h4>
+                            </div>
+                            <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+                    lineNumbers: true,
+                    theme: 'material',
+                    mode: 'css'
+                  }"></ngx-codemirror>
+                          </div>
+                            </div>
+        
+
+<div class="col col-lg-12">
+    
+
+
+
+
+  <button type="button" style="margin-top:5em; margin-right:2em" class="btn  botonOpciones"  > <i
+    class="far fa-save"></i>Guardar</button>
+    
+<button type="button"  style="margin-top:5em; "class="btn  botonOpciones"  data-toggle="modal" data-target="#myModal" (click)="openMymodal()" >
+  <i class="fas fa-pen"></i>Editar</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="card-footer text-muted card">
+        
+         
+        </div>
+      </div>
+
+
+</div>
+
+
+
+
+<!-- modal  -->
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header fondomodal">
+        <h5 class="modal-title texto">Editar Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body fondoblack">
+
+        <div [formGroup]="menuForm" class="col col-lg-12 ">
+          <h4>Nombre De el menu</h4><input  [ngClass]="{'input-error':nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched ) }"
+          formControlName="nombreMenu" type="text" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"placeholder="Ingrese el nombre de el menu">
+
+          <div style="text-align: center;" *ngIf="nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched )"
+                    class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                    <span class="error" *ngIf="nombreMenu.errors.required">Error el campo es Obligatorio</span>
+                    <span *ngIf="nombreMenu.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+                  </div>
+
+
+         </div>
+          <div  [formGroup]="menuForm" class="col col-lg-12 ">
+      <h4>Opciones</h4><input    [ngClass]="{'input-error':opciones.invalid && (opciones.dirty || opciones.touched ) }" type="text"  style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
+      formControlName="opciones" placeholder="Ingrese las opciones separadas por coma">
+       
+      <div style="text-align: center;" *ngIf="opciones.invalid && (opciones.dirty || opciones.touched )"
+      class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+      <span class="error" *ngIf="opciones.errors.required">Error el campo es Obligatorio</span>
+      <span *ngIf="opciones.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+    </div>
+    
+    
+    
+    
+    </div>
+
+
+          <div [formGroup]="menuForm" class="col col-lg-12">
+              <h4>Enlace</h4><input   [ngClass]="{'input-error':enlaces.invalid && (enlaces.dirty || enlaces.touched ) }" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control" formControlName="enlaces" type="text" placeholder="Ingrese los enlaces separados por coma">
+                 
+            
+              <div style="text-align: center;" *ngIf="enlaces.invalid && (enlaces.dirty || enlaces.touched )"
+              class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+              <span class="error" *ngIf="enlaces.errors.required">Error el campo es Obligatorio</span>
+              <span *ngIf="enlaces.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+            </div>
+            
+            
+            </div>
+
+
+
+
+                  <div class="col col-lg-12">
+                      <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                          <div style="text-align: center;">
+                            <h4> <i class="fas fa-code"></i>Editor css</h4>
+                          </div>
+                          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+                  lineNumbers: true,
+                  theme: 'material',
+                  mode: 'css'
+                }"></ngx-codemirror>
+                        </div>
+                          </div>
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      </div>
+      <div class="modal-footer fondomodal">
+        <button type="button" class="btn botonOpciones" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i>Cerrar</button>
+        <button type="button" class="btn botonOpciones"><i class="fas fa-save"></i>Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+          </div>
+    </div>
+</div>
