@@ -31,7 +31,7 @@ async function conectarse(client) {
 
 
 
-/*traer comentarios*/
+/*traer  comentarios de un posts*/
 
 
 
@@ -63,6 +63,31 @@ router.get( '/:idpost',async function (req,res){
     
      
     });
+
+
+
+
+
+
+
+/*traer todos los comentarios*/
+
+// router.get( '/',async function (req,res){
+  
+//   var result = await client.db("Olius").collection("post").find({
+      
+//     },
+       
+      
+//     );
+    
+
+  
+//     res.send(await result.toArray());
+  
+   
+//   });
+
 
 
 

@@ -53,7 +53,7 @@
 
   .botonOpciones {
     
-    background-color:#1F0917 !important;
+    background-color: #B7378A !important;
     color: white !important;
     border-radius: 20px;
   }
@@ -90,12 +90,13 @@
   .opcion{
     /* background: linear-gradient(360deg,white, #B7378A) !important; */
 
-    background-image: url('~/assets/img/fondo3.jpg') !important;
+    /* background-image: url('~/assets/img/fondo3.jpg') !important; */
     background-size: cover;
     background-position: center 100%;
     color: white;
-    font-style: oblique;
+    font-style:bold;
     border-radius: 20px;
+    background: linear-gradient(360deg, #000000, #B7378A) !important;
   }
 
 
@@ -127,3 +128,14 @@
   .color{
    color: white
   } */
+
+  .estiloreportados{
+    /* background: linear-gradient(360deg,purple, #B7378A) !important; */
+    background-image: url('https://ak.picdn.net/shutterstock/videos/1016737804/thumb/1.jpg');
+    size: cover;
+    color: white;
+    
+  
+    
+
+  }

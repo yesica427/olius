@@ -16,18 +16,23 @@
   
           </div>
 
-<div class="col col-lg-4"></div>
+
+
+
+
+          
          
+         <div class="col col-lg-6">
 
-
-          <div class="col col-lg-6" id="list-example" style="text-align: center; margin-left: 10em;  margin-right: 30em;" *ngFor='let post of listaPost' class="list-group">
+          <div  id="list-example" style="text-align: center; padding: 0; margin-left: 10em;  margin-right: 30em;" *ngFor='let post of listaPost' class="">
             <button   (click)="traerComentarios(post._id)" style=" width:12em" class="list-group-item list-group-item-action opcion" ><h4>{{post.titulopost}}</h4></button>
            
           </div>
+        </div>
 
-
-          <div  class="col col-lg-6 estiloinformacion"   *ngIf="itemactivo==true" style="margin-left: 20em; "   >
-            <div *ngIf="listaComentarios.length==0" ><strong> hay comentarios para el post actual </strong></div>
+        <div class="col col-lg-6">
+          <div  class=" estiloinformacion"   *ngIf="itemactivo==true" style="  padding: 0; margin-right: 3em;"   >
+            <div *ngIf="listaComentarios.length==0" ><strong> No hay comentarios para el post actual </strong></div>
             
            <div  *ngFor='let comentario of listaComentarios' >
             <h3 class="colortitulo"><i class="far fa-user"></i>Autor</h3>  <h4 class="color" id="list-item-1">{{comentario.usuario}}</h4>
@@ -35,14 +40,35 @@
             <h3  class="colortitulo"><i class="far fa-comment"></i>Comentario</h3> <h4  class="color" id="list-item-2">{{comentario.comentario}}</h4>
             <p>...</p>
 
-            <button class="btn btn-lg botonOpciones" (click)="eliminarComentario(comentario.idcomentario)"><i class="far fa-trash-alt"></i>Eliminar</button>
+            <button class="btn btn-lg botonOpciones" style="margin-bottom: 3em;" (click)="eliminarComentario(comentario.idcomentario)"><i class="far fa-trash-alt"></i>Eliminar</button>
            
           </div>
           </div>
 
-          
+        </div>
 
 
+
+
+
+     
+
+          <div  id="" style="text-align: center; padding: 0; margin-left: 25em; margin-top: 15em; margin-right: 0;"  class="">
+            <h3 class="titulo"><i class="fas fa-ban"></i>
+              Comentarios Reportados</h3>
+            
+           
+          </div>
+
+          <div  id="" style="text-align: center; padding: 0; margin-left: 30em; margin-top: 5em; margin-right: 0;"  class="">
+          <ul class="list-group estiloreportados">
+            <li class="list-group-item estiloreportados">no me agrada este pagina</li> 
+            <li class="list-group-item estiloreportados"> no funciona</li>
+            <li class="list-group-item estiloreportados">mal servicio</li>
+            
+          </ul>
+          <button class="btn btn-lg botonOpciones" style="margin-top: 3em;" ><i class="far fa-trash-alt"></i>Eliminar</button>
+        </div>
 
 
         </div>
