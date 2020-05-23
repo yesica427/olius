@@ -10,7 +10,8 @@ var archivosRoutes = require("./routes/archivos-routes");
 var paginasRoutes = require("./routes/paginas-routes");
 var temasRoutes = require("./routes/temas-routes");
 var configuracionRoutes = require("./routes/configuracion-routes");
-var comentariosRoutes=require("./routes/comentarios-routes");
+var comentariosRoutes = require("./routes/comentarios-routes");
+var menusRoutes = require("./routes/menus-routes");
 
 
 var app = express();
@@ -32,8 +33,8 @@ app.use("/archivos", archivosRoutes);
 app.use("/paginas", paginasRoutes);
 app.use("/temas", temasRoutes);
 app.use("/configuracion", configuracionRoutes);
-app.use("/comentarios",comentariosRoutes);
-
+app.use("/comentarios", comentariosRoutes);
+app.use("/menus", menusRoutes);
 
 
 app.listen(8888, function () {

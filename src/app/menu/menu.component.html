@@ -1,196 +1,249 @@
-
 <div class="wrapper  ">
 
-    <app-sidebar></app-sidebar>
-  
-    <div class="content fondo" style="margin-left: auto;margin-right: auto;"
-      style="margin-left: 15% !important;width: 100% !important;">
-  
-      <div class="conteiner" style="margin-left: auto;margin-right: auto ; text-align: center;">
-        <div class="row" style="margin-left: auto;margin-right: auto;">
-  
-          <div class="fondodiv color col col-lg-12 estiloComentario "
-            style=" width: 50%;height: 20em!important; margin-top: 5em; margin-bottom: 6em  !important; ">
- 
-            <h1 class="titulo col-lg-12 texto" 
-              style="margin-top: 3.5em;margin-left: 1em;margin-right: auto; text-align: center!important; ">Menus</h1>
-  
-          </div>
+  <app-sidebar></app-sidebar>
 
-<div class="col col-lg-8 " style=" text-align: center!important;">
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+    style="margin-left: 15% !important;width: 100% !important;">
 
-    <div class="card text-center fondocard col-lg-12" style="margin-left: 10em;margin-top: 5em; margin-right: auto; text-align: center;">
-        <div class="card-header card">
-         <h3>Crear Menu</h3> 
+    <div class="container" style="margin-left: auto;margin-right: auto ; text-align: center;">
+      <div class="row" style="margin-left: auto;margin-right: auto;">
+
+        <div class="fondodiv color col col-lg-12 estiloComentario"
+          style=" width: 50%;height: 20em!important; margin-top: 5em; margin-bottom: 6em  !important; ">
+
+          <h1 class="titulo col-lg-12 texto"
+            style="margin-top: 3.5em;margin-left: 1em;margin-right: auto; text-align: center!important; ">Menus</h1>
+
         </div>
-        <div class="card-body bodycard" >
-          <h5 class="card-title"></h5>
-         
 
-          <div [formGroup]="menuForm" class="col col-lg-12 ">
-            <h4>Nombre De el menu</h4><input  [ngClass]="{'input-error':nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched ) }"
-            formControlName="nombreMenu" type="text" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"placeholder="Ingrese el nombre de el menu">
+        <div class="col col-lg-12" style="margin-bottom: 2em;">
+          <button type="button" style="margin-top:5em; " class="btn  botonOpciones" data-toggle="modal"
+            data-target="#myModalCrear">
+            <i class="fas fa-pen"></i>Crear Menu</button>
+        </div>
 
-            <div style="text-align: center;" *ngIf="nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched )"
-                      class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-                      <span class="error" *ngIf="nombreMenu.errors.required">Error el campo es Obligatorio</span>
-                      <span *ngIf="nombreMenu.errors.minLength"> El tamaño minimo son 5 caracteres</span>
-                    </div>
+        <div class="col col-lg-12">
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Opciones</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Shortcut</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let menu of listaMenus; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{menu.titulo}}</td>
+                <td>{{menu.opciones.length}}</td>
+                <td>{{menu.usuario}}</td>
+                <td>{{getShortcut(menu)}}</td>
+                <td>
+                  <button type="button" class="btn botonOpciones" style="margin-right: .5em;" data-toggle="modal"
+                    data-target="#myModal" (click)="openModalEditar(menu)">Editar</button>
+                  <button type="button" class="btn botonOpciones" (click)="eliminarTema(menu._id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
 
-           </div>
-            <div  [formGroup]="menuForm" class="col col-lg-12 ">
-        <h4>Opciones</h4><input    [ngClass]="{'input-error':opciones.invalid && (opciones.dirty || opciones.touched ) }" type="text"  style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
-        formControlName="opciones" placeholder="Ingrese las opciones separadas por coma">
-         
-        <div style="text-align: center;" *ngIf="opciones.invalid && (opciones.dirty || opciones.touched )"
-        class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-        <span class="error" *ngIf="opciones.errors.required">Error el campo es Obligatorio</span>
-        <span *ngIf="opciones.errors.minLength"> El tamaño minimo son 5 caracteres</span>
-      </div>
-      
-      
-      
-      
-      </div>
 
 
-            <div [formGroup]="menuForm" class="col col-lg-12">
-                <h4>Enlace</h4><input   [ngClass]="{'input-error':enlaces.invalid && (enlaces.dirty || enlaces.touched ) }" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control" formControlName="enlaces" type="text" placeholder="Ingrese los enlaces separados por coma">
-                   
-              
-                <div style="text-align: center;" *ngIf="enlaces.invalid && (enlaces.dirty || enlaces.touched )"
-                class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-                <span class="error" *ngIf="enlaces.errors.required">Error el campo es Obligatorio</span>
-                <span *ngIf="enlaces.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+        <!-- modal crear -->
+
+        <div class="modal" id="myModalCrear" tabindex="-1" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header fondomodal">
+                <h5 class="modal-title texto">Crear Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              
-              
-              </div>
+              <div class="modal-body fondoblack">
 
+                <div [formGroup]="menuForm" class="col col-lg-12 ">
+                  <h4>Nombre De el menu</h4><input
+                    [ngClass]="{'input-error':nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched ) }"
+                    formControlName="nombreMenu" type="text"
+                    style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
+                    placeholder="Ingrese el nombre de el menu">
 
-
-
-                    <div class="col col-lg-12">
-                        <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
-                            <div style="text-align: center;">
-                              <h4> <i class="fas fa-code"></i>Editor css</h4>
-                            </div>
-                            <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
-                    lineNumbers: true,
-                    theme: 'material',
-                    mode: 'css'
-                  }"></ngx-codemirror>
-                          </div>
-                            </div>
-        
-
-<div class="col col-lg-12">
-    
-
-
-
-
-  <button type="button" style="margin-top:5em; margin-right:2em" class="btn  botonOpciones"  > <i
-    class="far fa-save"></i>Guardar</button>
-    
-<button type="button"  style="margin-top:5em; "class="btn  botonOpciones"  data-toggle="modal" data-target="#myModal" (click)="openMymodal()" >
-  <i class="fas fa-pen"></i>Editar</button>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-        </div>
-        <div class="card-footer text-muted card">
-        
-         
-        </div>
-      </div>
-
-
-</div>
-
-
-
-
-<!-- modal  -->
-
-<div class="modal" id="myModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header fondomodal">
-        <h5 class="modal-title texto">Editar Menu</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body fondoblack">
-
-        <div [formGroup]="menuForm" class="col col-lg-12 ">
-          <h4>Nombre De el menu</h4><input  [ngClass]="{'input-error':nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched ) }"
-          formControlName="nombreMenu" type="text" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"placeholder="Ingrese el nombre de el menu">
-
-          <div style="text-align: center;" *ngIf="nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched )"
-                    class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                  <div style="text-align: center;"
+                    *ngIf="nombreMenu.invalid && (nombreMenu.dirty || nombreMenu.touched )" class="alert alert-danger"
+                    role="alert" style="width: 13em;"> Campo no válido:
                     <span class="error" *ngIf="nombreMenu.errors.required">Error el campo es Obligatorio</span>
                     <span *ngIf="nombreMenu.errors.minLength"> El tamaño minimo son 5 caracteres</span>
                   </div>
+                </div>
+
+                <div class="col col-lg-12" style="margin-top:1em;">
+
+                  <div *ngFor="let opcion of listaOpciones; let i=index" class="opcion-menu">
+                    <p><strong>Tipo: </strong> {{opcion.tipo}}</p>
+                    <p> <strong>Valor: </strong> {{opcion.valor}}</p>
+                    <button class="btn botonOpciones" (click)="eliminarOpcion(i)">Eliminar</button>
+                  </div>
+                  <h4>Agrega una opción</h4>
+                  <div class="container">
+                    <div style="text-align: left;margin-left: auto;margin-right: auto;" class="row">
+                      <div class="col col-lg-6">
+                        <p>Tipo de opcion:</p>
+                        <input type="radio" id="pagina" name="tipoOpcion" value="pagina" [ngModel]="nuevaOpcion.tipo"
+                          (change)="cambiarTipoOpcion($event)">
+                        <label for="pagina">Enlace a página creada.</label><br>
+                        <input type="radio" id="externo" name="tipoOpcion" value="externo" [ngModel]="nuevaOpcion.tipo"
+                          (change)="cambiarTipoOpcion($event)">
+                        <label for="externo">Enlace externo.</label><br>
+                      </div>
+                      <div class="col col-lg-6" *ngIf="nuevaOpcion.tipo=='pagina'">
+                        <p>Selecciona la página: </p>
+                        <select name="" id="selectPagina" class="form-control" [(ngModel)]="paginaSeleccionada">
+                          <option value="null" selected>Seleccione una opción</option>
+                          <option value="{{pagina.url}}" *ngFor="let pagina of listaPaginas">{{pagina.titulo}}</option>
+
+                        </select>
+                      </div>
+                      <div class="col col-lg-6" *ngIf="nuevaOpcion.tipo=='externo'">
+                        <p>Ingrese el enlace:</p>
+                        <input type="text" placeholder="Valor" class="form-control" style="width: 70%;"
+                          [(ngModel)]="valorOpcionExterna">
+
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn botonOpciones" (click)="agregarOpcion()">Agregar
+                    Opcion</button>
+                </div>
+                <div class="col col-lg-12">
+                  <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                    <div style="text-align: center;">
+                      <h4> <i class="fas fa-code"></i>Editor css</h4>
+                    </div>
+                    <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+                      lineNumbers: true,
+                      theme: 'material',
+                      mode: 'css'
+                    }"></ngx-codemirror>
+
+                    <div class="alert alert-danger" *ngIf="!validarContentCSS()">
+                      El css es requerido
+                    </div>
+                  </div>
+                </div>
 
 
-         </div>
-          <div  [formGroup]="menuForm" class="col col-lg-12 ">
-      <h4>Opciones</h4><input    [ngClass]="{'input-error':opciones.invalid && (opciones.dirty || opciones.touched ) }" type="text"  style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
-      formControlName="opciones" placeholder="Ingrese las opciones separadas por coma">
-       
-      <div style="text-align: center;" *ngIf="opciones.invalid && (opciones.dirty || opciones.touched )"
-      class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-      <span class="error" *ngIf="opciones.errors.required">Error el campo es Obligatorio</span>
-      <span *ngIf="opciones.errors.minLength"> El tamaño minimo son 5 caracteres</span>
-    </div>
-    
-    
-    
-    
-    </div>
+              </div>
+              <div class="modal-footer fondomodal">
 
+                <button type="button" class="btn botonOpciones" data-dismiss="modal" #cerrarModalCrear><i
+                    class="fas fa-sign-out-alt"></i>Cerrar</button>
 
-          <div [formGroup]="menuForm" class="col col-lg-12">
-              <h4>Enlace</h4><input   [ngClass]="{'input-error':enlaces.invalid && (enlaces.dirty || enlaces.touched ) }" style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control" formControlName="enlaces" type="text" placeholder="Ingrese los enlaces separados por coma">
-                 
-            
-              <div style="text-align: center;" *ngIf="enlaces.invalid && (enlaces.dirty || enlaces.touched )"
-              class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
-              <span class="error" *ngIf="enlaces.errors.required">Error el campo es Obligatorio</span>
-              <span *ngIf="enlaces.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+                <button type="button" class="btn  botonOpciones"
+                  [disabled]="!menuForm.valid || validarContentCSS()==false||validarListaOpciones()==false"
+                  (click)="guardarMenu()"> <i class="far fa-save"></i>Guardar</button>
+              </div>
             </div>
-            
-            
-            </div>
+          </div>
+        </div>
 
 
 
+        <!-- modal  editar  -->
 
-                  <div class="col col-lg-12">
-                      <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
-                          <div style="text-align: center;">
-                            <h4> <i class="fas fa-code"></i>Editor css</h4>
-                          </div>
-                          <ngx-codemirror [(ngModel)]="contentCSS" [options]="{
+        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header fondomodal">
+                <h5 class="modal-title texto">Editar Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body fondoblack">
+
+                <div [formGroup]="menuFormEditar" class="col col-lg-12 ">
+                  <h4>Nombre De el menu</h4><input
+                    [ngClass]="{'input-error':nombreMenuEditar.invalid && (nombreMenuEditar.dirty || nombreMenuEditar.touched ) }"
+                    formControlName="nombreMenuEditar" type="text"
+                    style=" width: 20em;text-align: center; margin-left: auto;margin-right: auto;" class=" form-control"
+                    placeholder="Ingrese el nombre de el menu">
+
+                  <div style="text-align: center;"
+                    *ngIf="nombreMenuEditar.invalid && (nombreMenuEditar.dirty || nombreMenuEditar.touched )"
+                    class="alert alert-danger" role="alert" style="width: 13em;"> Campo no válido:
+                    <span class="error" *ngIf="nombreMenuEditar.errors.required">Error el campo es Obligatorio</span>
+                    <span *ngIf="nombreMenuEditar.errors.minLength"> El tamaño minimo son 5 caracteres</span>
+                  </div>
+                </div>
+
+                <div class="col col-lg-12" style="margin-top:1em">
+
+                  <div *ngFor="let opcion of listaOpcionesEditar; let i=index" class="opcion-menu">
+                    <p> <strong>Tipo: </strong> {{opcion.tipo}}</p>
+                    <p> <strong>Valor: </strong> {{opcion.valor}}</p>
+                    <button class="btn botonOpciones" (click)="eliminarOpcionEditar(i)">Eliminar</button>
+                  </div>
+                  <h4>Agrega una opción</h4>
+                  <div class="container">
+                    <div style="text-align: left;margin-left: auto;margin-right: auto;" class="row">
+                      <div class="col col-lg-6">
+                        <p>Tipo de opcion:</p>
+                        <input type="radio" id="pagina" name="tipoOpcion" value="pagina"
+                          [ngModel]="nuevaOpcionEditar.tipo" (change)="cambiarTipoOpcionEditar($event)">
+                        <label for="pagina">Enlace a pagina creada.</label><br>
+                        <input type="radio" id="externo" name="tipoOpcion" value="externo"
+                          [ngModel]="nuevaOpcionEditar.tipo" (change)="cambiarTipoOpcionEditar($event)">
+                        <label for="externo">Enlace externo</label><br>
+                      </div>
+                      <div class="col col-lg-6" *ngIf="nuevaOpcionEditar.tipo=='pagina'">
+                        <p>Selecciona la página:</p>
+                        <select name="" id="selectPagina" class="form-control" [(ngModel)]="paginaSeleccionadaEditar">
+                          <option value="null" selected>Seleccione una opción:</option>
+                          <option value="{{pagina.url}}" *ngFor="let pagina of listaPaginas">{{pagina.titulo}}</option>
+
+                        </select>
+                      </div>
+                      <div class="col col-lg-6" *ngIf="nuevaOpcionEditar.tipo=='externo'">
+                        <p>Ingrese el enlace:</p>
+                        <input type="text" placeholder="Valor" class="form-control" style="width: 70%;"
+                          [(ngModel)]="valorOpcionExternaEditar">
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn botonOpciones" (click)="agregarOpcionEditar()">Agregar Opción</button>
+                </div>
+
+                <div class="col col-lg-12">
+                  <div style="width: 70%; margin-left: auto;margin-right: auto; margin-top: 5em; text-align: left;">
+                    <div style="text-align: center;">
+                      <h4> <i class="fas fa-code"></i>Editor css</h4>
+                    </div>
+                    <ngx-codemirror [(ngModel)]="contentCssEditar" [options]="{
                   lineNumbers: true,
                   theme: 'material',
                   mode: 'css'
                 }"></ngx-codemirror>
-                        </div>
-                          </div>
-         
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="modal-footer fondomodal">
+                <button type="button" class="btn botonOpciones" data-dismiss="modal" #cerrarModalEditar><i
+                    class="fas fa-sign-out-alt"></i>Cerrar</button>
+                <button type="button" class="btn botonOpciones"
+                  [disabled]="!menuFormEditar.valid || validarContentCSSEditar()==false||validarListaOpcionesEditar()==false"
+                  (click)="guardarMenuEditar()"><i class="fas fa-save"></i>Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 
@@ -204,36 +257,14 @@
 
 
 
-      
-      </div>
-      <div class="modal-footer fondomodal">
-        <button type="button" class="btn botonOpciones" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i>Cerrar</button>
-        <button type="button" class="btn botonOpciones"><i class="fas fa-save"></i>Guardar</button>
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          </div>
-          </div>
-    </div>
 </div>

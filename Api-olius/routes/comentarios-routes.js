@@ -119,6 +119,46 @@ router.get( '/:idpost',async function (req,res){
 
 
 
+/*traer comentarios reportados*/
+
+router.get( '/reportados/:idpost',async function (req,res){
+
+  var idpost = ObjectID(req.params.idpost);
+
+  
+  var result = await client.db("Olius").collection("post").find({
+      "_id": idpost
+    },
+
+    {
+      $filter: {
+    
+        "comentarios": {
+          "reportado":true
+        }
+      }
+    
+       
+      
+    })
+    
+
+    result.project({
+        "titulopost":true,
+      "_id": true,
+      "usuario": true,
+      "comentarios": true,
+      "fecha":true,
+      
+    });
+  
+  
+    res.send(await result.toArray());
+  
+   
+  });
+
+
 
 
 

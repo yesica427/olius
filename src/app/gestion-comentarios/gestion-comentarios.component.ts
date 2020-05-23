@@ -16,14 +16,17 @@ export class GestionComentariosComponent implements OnInit {
   public postActual: Post;
   public listaPost:Post[];
   public listaComentarios:Comentario[]=[];
+  public listaReportados:Comentario[]=[];
+
+
   
   itemactivo:boolean=false;
-
+    public filtro;
   ngOnInit(): void {
 
     this.traerPost();
-   
 
+   
 
   }
 
@@ -56,9 +59,15 @@ export class GestionComentariosComponent implements OnInit {
         console.log(res)
         this.postActual = res[0];
         this.listaComentarios=this.postActual.comentarios;
+        this.listaReportados=this.listaComentarios.filter((elemento)=>{
+          return elemento.reportado==true;
+          console.log(this.listaReportados)
+        });
       }
     )
   }
+
+  
 
 
 
@@ -75,5 +84,23 @@ export class GestionComentariosComponent implements OnInit {
 
 
 
+  
+
+
+/*comentarios reportados*/
+
+
+  
+
+ 
+
+   
+
+  
+
+   
+  
+     
+  
 
 }

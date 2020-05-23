@@ -19,4 +19,5 @@ export class Comentario {
     idcomentario: number;
     usuario: string;
     comentario: string;
+    reportado: boolean;
 }

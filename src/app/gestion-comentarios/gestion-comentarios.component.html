@@ -25,7 +25,7 @@
          <div class="col col-lg-6">
 
           <div  id="list-example" style="text-align: center; padding: 0; margin-left: 10em;  margin-right: 30em;" *ngFor='let post of listaPost' class="">
-            <button   (click)="traerComentarios(post._id)" style=" width:12em" class="list-group-item list-group-item-action opcion" ><h4>{{post.titulopost}}</h4></button>
+            <button   (click)="traerComentarios(post._id)" style=" width:12em" class="list-group-item list-group-item-action opcion" ><h4 class="texto">{{post.titulopost}}</h4></button>
            
           </div>
         </div>
@@ -53,22 +53,61 @@
 
      
 
-          <div  id="" style="text-align: center; padding: 0; margin-left: 25em; margin-top: 15em; margin-right: 0;"  class="">
+          <div class="col col-lg-12" id="" style="text-align: center; padding: 0; margin-left: 25em; margin-top: 15em; margin-right: 0; margin-bottom: 10em;"  class="">
             <h3 class="titulo"><i class="fas fa-ban"></i>
               Comentarios Reportados</h3>
             
            
           </div>
 
-          <div  id="" style="text-align: center; padding: 0; margin-left: 30em; margin-top: 5em; margin-right: 0;"  class="">
-          <ul class="list-group estiloreportados">
-            <li class="list-group-item estiloreportados">no me agrada este pagina</li> 
-            <li class="list-group-item estiloreportados"> no funciona</li>
-            <li class="list-group-item estiloreportados">mal servicio</li>
+          <div  class="col col-lg-6" style="margin-bottom: 10em;">
+
+
+            <div    id="list-example" style="text-align: center; padding: 0;  margin-left: 10em;  margin-right: 30em;" *ngFor='let post of listaPost' class="">
+              <button  (click)="traerComentarios(post._id)" style=" width:12em" class="list-group-item list-group-item-action opcion" ><h4 class="texto">{{post.titulopost}}</h4></button>
+            </div>
+          </div>
             
-          </ul>
-          <button class="btn btn-lg botonOpciones" style="margin-top: 3em;" ><i class="far fa-trash-alt"></i>Eliminar</button>
+         <div class="col col-lg-6" >
+          <table
+            class="table  table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg fondotable" >
+            <thead>
+              <tr>
+               
+                <th scope="col" class="texto">Nombre</th>
+                <th scope="col" class="texto">Comentarios</th>
+                
+                <th scope="col" class="texto">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let comentarioreportado of listaReportados'>
+                <td scope="col">{{comentarioreportado.usuario}}</td>
+                <td scope="col">{{comentarioreportado.comentario}}</td>
+                <td>
+                  <button type="button" class="btn  botonOpciones" (click)="eliminarComentario(comentarioreportado.idcomentario)"> <i
+                      class="fas fa-trash"></i>Eliminar</button>
+                  
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div class="input-error alert alert-error" *ngIf="listaReportados.length==0" ><strong> No hay comentarios Reportados para el post actual </strong></div>
+
+
         </div>
+
+
+
+
+
+
+
+
+
+
+          
 
 
         </div>

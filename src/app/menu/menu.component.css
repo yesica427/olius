@@ -21,7 +21,7 @@
   width: 120% !important;
   height: 150em !important;
   background-color: black;
-  color:white !important;
+  color: white !important;
   background-image: url('~/assets/img/oleo2.jpg');
   size: cover;
   background-repeat: no-repeat;
@@ -35,14 +35,14 @@
 
 
 .botonOpciones {
- 
+
   border-color: #B7378A !important;
   background-color: #B7378A !important;
   color: white;
 
 }
 
-.input-error{
+.input-error {
   border-color: red 1px;
 }
 
@@ -101,21 +101,43 @@
 }
 
 
-.fondomodal{
+.fondomodal {
   background-image: url('~/assets/img/nebula.jpg') !important;
   background-repeat: no-repeat;
   background-size: cover;
- 
+
 
 }
 
-.texto{
+.texto {
   font-family: 'Monoton', arial;
 }
 
 
-.fondoblack{
+.fondoblack {
   background: linear-gradient(360deg, #000000, #B7378A) !important;
-  color:white !important;
+  color: white !important;
 
+}
+
+.modal-content {
+  width: 35em !important;
+}
+
+
+.table-dark {
+  background-color: black !important;
+}
+
+
+.opcion-menu {
+  background-color: rgb(131, 52, 103) !important;
+  border-radius: 15px !important;
+  padding: .5em;
+  margin-bottom: .5em;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
