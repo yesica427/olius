@@ -87,9 +87,14 @@
                   <div *ngFor="let opcion of listaOpciones; let i=index" class="opcion-menu">
                     <p><strong>Tipo: </strong> {{opcion.tipo}}</p>
                     <p> <strong>Valor: </strong> {{opcion.valor}}</p>
+                    <p> <strong>Nombre: </strong> {{opcion.nombre}}</p>
                     <button class="btn botonOpciones" (click)="eliminarOpcion(i)">Eliminar</button>
                   </div>
                   <h4>Agrega una opción</h4>
+                  <div style="text-align: center;margin-left: auto;margin-right: auto;">
+                    <input type="text" placeholder="Nombre de la opción" id="nombreOpcion" class="form-control"
+                      style="width: 80%;margin-left: auto;margin-right: auto;" [(ngModel)]="nombreOpcion">
+                  </div>
                   <div class="container">
                     <div style="text-align: left;margin-left: auto;margin-right: auto;" class="row">
                       <div class="col col-lg-6">
@@ -187,9 +192,14 @@
                   <div *ngFor="let opcion of listaOpcionesEditar; let i=index" class="opcion-menu">
                     <p> <strong>Tipo: </strong> {{opcion.tipo}}</p>
                     <p> <strong>Valor: </strong> {{opcion.valor}}</p>
+                    <p> <strong>Nombre: </strong> {{opcion.nombre}}</p>
                     <button class="btn botonOpciones" (click)="eliminarOpcionEditar(i)">Eliminar</button>
                   </div>
                   <h4>Agrega una opción</h4>
+                  <div style="text-align: center;margin-left: auto;margin-right: auto;">
+                    <input type="text" placeholder="Nombre de la opción" id="nombreOpcion" class="form-control"
+                      style="width: 80%;margin-left: auto;margin-right: auto;" [(ngModel)]="nombreOpcion">
+                  </div>
                   <div class="container">
                     <div style="text-align: left;margin-left: auto;margin-right: auto;" class="row">
                       <div class="col col-lg-6">
@@ -216,7 +226,8 @@
                       </div>
                     </div>
                   </div>
-                  <button class="btn botonOpciones" (click)="agregarOpcionEditar()">Agregar Opción</button>
+                  <button class="btn botonOpciones" (click)="agregarOpcionEditar()"
+                    [disabled]="!validarNombreOpcion()">Agregar Opción</button>
                 </div>
 
                 <div class="col col-lg-12">

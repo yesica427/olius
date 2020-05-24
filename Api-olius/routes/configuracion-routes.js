@@ -36,6 +36,19 @@ router.post('/', async function (req, res) {
 
   res.send(result.ops[0]);
 
+  if (req.params.nombre == "encabezado") {
+
+    // sobreescribir los archivos css 
+    fs.writeFile('./public/estilos/estilos_encabezado.css', req.body.css, (err) => {
+      if (err) throw err;
+    });
+  } else {
+
+    // sobreescribir los archivos css 
+    fs.writeFile('./public/estilos/estilos_footer.css', req.body.css, (err) => {
+      if (err) throw err;
+    });
+  }
 
 })
 
@@ -70,6 +83,20 @@ router.put('/:nombre', async function (req, res) {
     }, {
       $set: req.body
     });
+
+  if (req.params.nombre == "encabezado") {
+
+    // sobreescribir los archivos css 
+    fs.writeFile('./public/estilos/estilos_encabezado.css', req.body.css, (err) => {
+      if (err) throw err;
+    });
+  } else {
+
+    // sobreescribir los archivos css 
+    fs.writeFile('./public/estilos/estilos_footer.css', req.body.css, (err) => {
+      if (err) throw err;
+    });
+  }
 
   res.send(result.result)
 })

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Archivo } from "./archivo.model";
+import { Post } from './post.model';
 
 
 @Injectable({
@@ -143,6 +144,10 @@ export class ShortcutService {
 
   traerArchivo(id) {
     return this.http.get<Archivo>("http://localhost:8888/archivos/" + id);
+  }
+
+  traerPost(id) {
+    return this.http.get<Post>("http://localhost:8888/posts/" + id);
   }
 
 }

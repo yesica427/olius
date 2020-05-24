@@ -3,26 +3,42 @@
 <button (click)="cambiarIdPagina(2)">Cambiar de id</button>
 <h5>Id pagina: {{idPagina}}</h5>
  -->
- <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
 
+<link rel="icon" href="http://localhost:8888/kaneki.jpg">
+
+
+<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_encabezado.css">
+
+<div>
+  <div [innerHTML]="contenidoEncabezado"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
 <div id="barraLinks">
   <button *ngFor="let link of listaLinks" (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</button>
 </div>
-<!-- 
-<link rel="stylesheet" href="http://localhost:8888/estilos/pagina1.css"> -->
+
+<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
 
 
-<div style="margin-left: auto;margin-right: auto; text-align: center;" [innerHTML]="contenidoPagina" id="div-pagina">
+<div [innerHTML]="contenidoPagina" id="div-pagina"
+  style="width: 80%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em;">
 </div>
 
 
-
-
-<div  class="estilopost" *ngIf="!esPaginaEstatica">
+<div *ngIf="!esPaginaEstatica"
+  style="width: 80%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em;">
   <!-- <h2>Utilizando Post component</h2> -->
 
-  <app-post  *ngFor="let post of listaPosts" [post]="post"></app-post>
+  <app-post *ngFor="let post of listaPosts" [post]="post"></app-post>
 
 </div>
 
-<!-- <script src="http://localhost:8888/js/pagina1.js"></script> -->
+<br>
+
+<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_footer.css">
+<div [innerHTML]="contenidoFooter"></div>
+
+<script src="http://localhost:8888/js/js_pagina.js"></script>

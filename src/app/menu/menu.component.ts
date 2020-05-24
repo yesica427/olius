@@ -83,6 +83,7 @@ export class MenuComponent implements OnInit {
   paginaSeleccionada;
 
 
+  nombreOpcion = "";
   agregarOpcion() {
     console.log("click");
 
@@ -95,6 +96,7 @@ export class MenuComponent implements OnInit {
 
       opcion.tipo = "pagina";
       opcion.valor = paginaSeleccionada;
+      opcion.nombre = this.nombreOpcion;
 
       console.log(opcion);
 
@@ -107,6 +109,7 @@ export class MenuComponent implements OnInit {
 
       opcion.tipo = "externa";
       opcion.valor = this.valorOpcionExterna;
+      opcion.nombre = this.nombreOpcion;
 
       if (this.valorOpcionExterna != undefined) {
 
@@ -116,6 +119,8 @@ export class MenuComponent implements OnInit {
       console.log(opcion);
 
     }
+
+    this.nombreOpcion = "";
   }
 
   eliminarOpcion(index: number) {
@@ -138,6 +143,15 @@ export class MenuComponent implements OnInit {
     }
     else {
       return false;
+    }
+  }
+
+  validarNombreOpcion() {
+    if (this.nombreOpcion == "") {
+      return false;
+    }
+    else {
+      return true;
     }
   }
 
@@ -222,6 +236,8 @@ export class MenuComponent implements OnInit {
 
       opcion.tipo = "pagina";
       opcion.valor = paginaSeleccionada;
+      opcion.nombre = this.nombreOpcion;
+
 
       console.log(opcion);
 
@@ -234,6 +250,8 @@ export class MenuComponent implements OnInit {
 
       opcion.tipo = "externa";
       opcion.valor = this.valorOpcionExternaEditar;
+      opcion.nombre = this.nombreOpcion;
+
 
       if (this.valorOpcionExternaEditar != undefined) {
 
@@ -243,6 +261,8 @@ export class MenuComponent implements OnInit {
       console.log(opcion);
 
     }
+
+    this.nombreOpcion = "";
   }
 
   eliminarOpcionEditar(index: number) {

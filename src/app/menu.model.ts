@@ -10,4 +10,5 @@ export class Menu {
 export class OpcionMenu {
     tipo: string;
     valor: string;
+    nombre: string;
 }
