@@ -6,6 +6,7 @@
 	============================================================================================ */
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:700");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
+@import url("https://fonts.googleapis.com/css2?family=Rozha+One&display=swap");
 /* mixin start
 	============================================================================================ */
 /* Medium Layout: 1280px */
@@ -17,13 +18,21 @@
 /* global style start
 	============================================================================================ */
 body {
-  color: #888888;
+
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.667;
 }
 
+.texto{
+   font-family: 'Rozha One', serif!important;
+  color:rgb(136, 47, 27) !important;
+}
+
+.btn{
+ 
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -41,6 +50,7 @@ button {
 button:focus {
   outline: 0 !important;
   box-shadow: none !important;
+ 
 }
 
 h1,
@@ -376,7 +386,7 @@ h3, .h3 {
 }
 
 .header_area.white_menu .navbar .nav .nav-item .nav-link {
-  color: #fff;
+  color: rgb(16, 69, 118)!important;
 }
 
 .header_area.white_menu.navbar_fixed .main_menu .navbar .navbar-brand img {
@@ -398,7 +408,7 @@ h3, .h3 {
 .top_menu .float-left a {
   line-height: 40px;
   display: inline-block;
-  color: #fff;
+  color: rgb(16, 69, 118);
   text-transform: uppercase;
   font-size: 12px;
   margin-right: 50px;
@@ -413,7 +423,7 @@ h3, .h3 {
 }
 
 .top_menu .float-right .pur_btn {
-  color: #fff;
+  color: rgb(16, 69, 118);
   line-height: 40px;
   display: block;
   padding: 0px 40px;

@@ -3,7 +3,7 @@
 
 .fondo{
     width: 120%!important;
-    height:  100em!important;
+    height:  150em!important;
     background-color:black;
     color:#B7378A !important;
    
@@ -12,7 +12,8 @@
 
 .wrapper {
     display: flex;
-    width: 100%;
+    width: 100%!important;
+    background-color:black!important;
   }
 
 
