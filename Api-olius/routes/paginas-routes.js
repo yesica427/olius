@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
+var fs = require("fs");
 
 
 /*conexion mongodb*/
@@ -30,6 +30,17 @@ async function conectarse(client) {
 router.post('/', async function (req, res) {
 
   const result = await client.db("Olius").collection("paginas").insertOne(req.body);
+
+  if (req.body.url == 1) {
+    // si es la pagina principal. giarda el js en el archivo
+
+    fs.writeFile('./public/js/js_inicio.js', req.body.js, (err) => {
+      if (err) throw err;
+
+    });
+
+
+  }
 
   res.send(result.ops[0]);
 
@@ -127,6 +138,7 @@ router.put('/:id', async function (req, res) {
       $set: req.body
     });
 
+
   res.send(result.result)
 
 
@@ -169,6 +181,15 @@ router.put('/modificar/paginaprincipal', async (req, res, next) => {
         "palabrasclave": req.body.palabrasclave,
       }
     });
+
+  // si es la pagina principal. giarda el js en el archivo
+
+  fs.writeFile('./public/js/js_inicio.js', req.body.js, (err) => {
+    if (err) throw err;
+  });
+
+
+
 
 
   res.send({

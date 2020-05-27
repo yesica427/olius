@@ -9,8 +9,11 @@
 
 <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_encabezado.css">
 
-<div>
-  <div [innerHTML]="contenidoEncabezado"></div>
+
+<div *ngIf="permiteEncabezado">
+  <div>
+    <div [innerHTML]="contenidoEncabezado"></div>
+  </div>
 </div>
 <br>
 <br>
@@ -20,11 +23,51 @@
   <button *ngFor="let link of listaLinks" (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</button>
 </div>
 
+<!--  formulario de login  -->
+<div style="width: 50%; margin-left: 0px;margin-right: auto; padding: 1em;" *ngIf="permiteLogin">
+  <form [formGroup]="formularioInicioSesion" id="login">
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Correo electrónico</label>
+      <input formControlName="email" type="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div *ngIf="email.invalid && (email.dirty || email.touched ) " class="alert alert-danger" role="alert"
+        style="width: 13em;padding: 0em;">¡Error su Email no es correcto!
+        <span class="error" *ngIf="email.errors.required">Error el campo es Obligatorio</span>
+        <span *ngIf="email.errors.pattern">El Email no es valido</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Contraseña</label>
+      <input formControlName="password" id="exampleInputPassword1" type="password">
+      <div *ngIf="password.invalid && (password.dirty || password.touched ) " class="alert alert-danger" role="alert"
+        style="width: 13em;padding: 0em;">¡Error su password no es correcto!
+        <span *ngIf="password.errors.required">Error el campo es Obligatorio</span>
+        <span *ngIf="password.errors.minLength">El tamaño minimo son 8 caracteres</span>
+        <span *ngIf="password.errors.pattern">Al menos 1 Digito y una letra mayuscula </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button [disabled]="!formularioInicioSesion.valid" type="button" (click)="entrar()" id="btnentrar"
+        class="btn btn-lg "><i class="fas fa-sign-in-alt"></i>Entrar</button>
+    </div>
+
+  </form>
+</div>
+
 <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
 
 
-<div [innerHTML]="contenidoPagina" id="div-pagina"
-  style="width: 80%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em; text-align: center;">
+<div *ngIf="idPagina!=1">
+  <div [innerHTML]="contenidoPagina" id="div-pagina"
+    style="width: 80%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em;">
+  </div>
+</div>
+
+
+<div *ngIf="idPagina==1" [innerHTML]="contenidoPaginaPrincipal">
+
 </div>
 
 
@@ -39,6 +82,7 @@
 <br>
 
 <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_footer.css">
-<div [innerHTML]="contenidoFooter"></div>
 
-<script src="http://localhost:8888/js/js_pagina.js"></script>
+<div *ngIf="permiteFooter">
+  <div [innerHTML]="contenidoFooter"></div>
+</div>

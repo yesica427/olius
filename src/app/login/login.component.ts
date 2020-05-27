@@ -11,8 +11,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
 
+
   constructor(private loginService: LoginService, private router: Router) { }
 
+
+  displayMensaje: string = 'none';
+  mensajeRegistro: string = "Registro Exitoso.";
 
   formularioInicioSesion = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
@@ -66,6 +70,7 @@ export class LoginComponent implements OnInit {
       }
       else {
 
+        this.mostrarMensaje(2500, resJson[0].mensaje)
         console.log(resJson[0].mensaje);
       }
     });
@@ -78,6 +83,22 @@ export class LoginComponent implements OnInit {
   navigate() {
     this.router.navigateByUrl('/admin/dashboard');
   }
+
+
+ 
+
+  async mostrarMensaje(ms: number, mensaje: string) {
+
+    this.mensajeRegistro = mensaje;
+
+    this.displayMensaje = "block";
+
+    await new Promise(resolve => setTimeout(resolve, ms));
+
+    this.displayMensaje = "none";
+
+  }
+
 
 }
 

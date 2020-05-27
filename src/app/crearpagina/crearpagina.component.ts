@@ -175,7 +175,11 @@ export class CrearpaginaComponent implements OnInit {
 
     //verificar si  esta actica o inactiva
     var activa = <HTMLInputElement>document.getElementById("activa");
+
     nuevaPagina.activa = activa.checked;
+    //verificar si es publica
+    var publica = <HTMLInputElement>document.getElementById("publica");
+    nuevaPagina.publica = publica.checked;
 
     nuevaPagina.titulomenu = valoresForm.titulomenu;
 

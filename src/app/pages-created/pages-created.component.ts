@@ -1,13 +1,15 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ShortcutService } from "../shortcut.service";
 import { Post } from "../post.model";
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Pagina } from '../pagina.model';
 import { Menu } from '../menu.model';
+import { LoginService } from '../login.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { Menu } from '../menu.model';
 })
 export class PagesCreatedComponent implements OnInit {
 
-  constructor(private shortcut: ShortcutService, private http: HttpClient, private route: ActivatedRoute, private router: Router, private renderer: Renderer2, @Inject(DOCUMENT) private _document, private sanitizer: DomSanitizer) { }
+  constructor(private shortcut: ShortcutService, private http: HttpClient, private route: ActivatedRoute, private router: Router, private renderer: Renderer2, @Inject(DOCUMENT) private _document, private sanitizer: DomSanitizer, private loginService: LoginService) { }
 
   listaPosts: Post[];
 
@@ -46,14 +48,35 @@ export class PagesCreatedComponent implements OnInit {
     this.insertarJS();
 
     //this.traerFooter()
+
+    this.traerPaginaPrincipal();
+
+    this.verificarUsuarioLogueado();
+
+
+  }
+
+  usuarioLogueado: any;
+  verificarUsuarioLogueado() {
+    this.usuarioLogueado = this.loginService.traerUsuarioActual();
+
+    console.log("usuario logueado: ", this.usuarioLogueado);
   }
 
   insertarJS() {
+    // js de tema
     const s = this.renderer.createElement('script');
     s.type = 'text/javascript';
     s.src = 'http://localhost:8888/js/js_pagina.js';
     s.text = ``;
     this.renderer.appendChild(this._document.body, s);
+
+    //js de pagina principal
+    const inicioScript = this.renderer.createElement('script');
+    inicioScript.type = 'text/javascript';
+    inicioScript.src = 'http://localhost:8888/js/js_inicio.js';
+    inicioScript.text = ``;
+    this.renderer.appendChild(this._document.body, inicioScript);
   }
 
   traerFooter() {
@@ -130,8 +153,6 @@ export class PagesCreatedComponent implements OnInit {
 
   intercambiar(viejo: string, nuevo: string) {
     this.contenidoPagina = this.contenidoPagina.replace(viejo.trim(), nuevo);
-    //this.contenidoPaginaSegura = this.sanitizer.bypassSecurityTrustHtml(this.contenidoPagina);
-    //this.contenidoPaginaSegura = this.sanitizer.bypassSecurityTrustScript(this.contenidoPagina);
   }
 
 
@@ -142,48 +163,83 @@ export class PagesCreatedComponent implements OnInit {
   }
 
   esPaginaEstatica: boolean = false;
+  permiteEncabezado = false;
+  permiteFooter = false;
+
   async cargarPagina(idpagina: number) {
+
+    this.verificarUsuarioLogueado();
+
     this.contenidoPagina = "";
 
+    this.permiteLogin = false;
+
     var res = await this.http.get("http://localhost:8888/paginas/" + idpagina).toPromise()
+
+    if (res == null) {
+      this.contenidoPagina = `<h1>La pagína a la que intentas acceder no existe.</h1><br><a href="/paginacreada?idpagina=1">Página principal</a>`;
+
+      return;
+    }
 
 
     var resJson = JSON.parse(JSON.stringify(res));
 
+    this.permiteEncabezado = resJson.encabezado;
+    this.permiteFooter = resJson.footer;
+
     //console.log(resJson);
 
-    if (resJson.tipo == "dinamica") {
-      this.esPaginaEstatica = false;
-
-      this.contenidoPagina += `<h3>${resJson.descripcion}</h3>`
-
-      //traer los post con la categoria de la pagina
-      this.traerPost(resJson.categoria);
-
-      if (resJson.footer) {
-        this.traerFooter();
-      }
-
-      if (resJson.encabezado) {
-        this.traerEncabezado();
-      }
-
-    } else if (resJson.tipo == "estatica") {
-
+    if (resJson.publica == false && this.usuarioLogueado == null) {
       this.esPaginaEstatica = true;
 
-      this.contenidoPagina = resJson.contenido;
+      this.contenidoPagina = `<h1>No tienes acceso a esta página.</h1><br><a href="/paginacreada?idpagina=1">Página principal</a>`;
+    }
+    else {
+      if (resJson.activa) {
+        if (resJson.tipo == "dinamica") {
+          this.esPaginaEstatica = false;
 
-      this.cargarElementos(resJson);
+          this.contenidoPagina += `<h3>${resJson.descripcion}</h3>`
 
-      if (resJson.footer) {
-        this.traerFooter();
+          //traer los post con la categoria de la pagina
+          this.traerPost(resJson.categoria);
+
+          if (resJson.footer) {
+            this.traerFooter();
+          }
+
+          if (resJson.encabezado) {
+            this.traerEncabezado();
+          }
+
+        } else if (resJson.tipo == "estatica") {
+
+          this.esPaginaEstatica = true;
+
+          this.contenidoPagina = resJson.contenido;
+
+          this.cargarElementos(resJson);
+
+          if (resJson.footer) {
+            this.traerFooter();
+          }
+
+          if (resJson.encabezado) {
+            this.traerEncabezado();
+          }
+        }
       }
+      else {
+        this.esPaginaEstatica = true;
 
-      if (resJson.encabezado) {
-        this.traerEncabezado();
+        this.contenidoPagina = `<h1>Página actualmente inactiva.</h1><br><a href="/paginacreada?idpagina=1">Página principal</a>`;
       }
     }
+
+
+
+
 
 
   }
@@ -306,18 +362,9 @@ export class PagesCreatedComponent implements OnInit {
           break;
 
         case "login":
+          this.permiteLogin = true;
 
-          var htmlLogin = `
-        <div>
-        <input type="mail" placeholder="Ingresa tu correo">
-        <input type="password" placeholder="Ingresa tu contraseña">
-        <button type="button">Login</button>
-        </div>
-        `;
-
-          this.intercambiar(JSON.stringify(elemento.json), htmlLogin);
-
-
+          this.intercambiar(JSON.stringify(elemento.json), '<div></div>')
           break;
       }
     }
@@ -406,4 +453,95 @@ export class PagesCreatedComponent implements OnInit {
   <p>Mi primer pagina</p>
   `;
 
+
+  contenidoPaginaPrincipal;
+
+  traerPaginaPrincipal() {
+    this.http.get("http://localhost:8888/paginas/1").subscribe((res) => {
+
+      var resJson = JSON.parse(JSON.stringify(res));
+
+      var divPaginaPrincipal = `<div style="${resJson.css}">`;
+
+      divPaginaPrincipal += resJson.contenido;
+
+      divPaginaPrincipal += `</div>`;
+
+      console.log(divPaginaPrincipal);
+
+      this.contenidoPaginaPrincipal = this.sanitizer.bypassSecurityTrustHtml(divPaginaPrincipal);
+
+      console.log(res)
+    });
+  }
+
+  urlEstiloPaginaPrincipal: SafeUrl;
+  getURLsegura() {
+    this.urlEstiloPaginaPrincipal = this.sanitizer.bypassSecurityTrustUrl(`http://localhost:8888/estilos/estilos_pagina_principal.css`);
+
+    return this.urlEstiloPaginaPrincipal;
+
+    //return this.urlEstiloPaginaPrincipal;
+
+  }
+
+
+  // login 
+  permiteLogin: boolean = false;//variable para ngIf si encuentra un shortcut de login 
+
+  formularioInicioSesion = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,12}$/)])
+  });
+
+
+  get email() {
+    return this.formularioInicioSesion.get('email');
+  }
+
+  get password() {
+    return this.formularioInicioSesion.get('password');
+  }
+
+
+  entrar() {
+
+    console.log(this.formularioInicioSesion.value);
+    //console.log('iniciovalido:', this.formularioInicioSesion.valid)
+
+    var valores = this.formularioInicioSesion.value;
+
+
+    var respuesta = this.loginService.login(valores.email.toLowerCase(), valores.password);
+    //console.log(res);
+
+    respuesta.subscribe((res) => {
+
+      console.log(res)
+
+      var resJson = JSON.parse(JSON.stringify(res));
+
+
+      if (resJson[0].loginCorrecto) {
+
+        localStorage.setItem('usuarioActual', JSON.stringify(res[1]));
+
+        if (resJson[1].rol == 1) {
+          // si es admin
+          //this.navigate();
+        }
+        else if (resJson[1].rol == 2) {
+          //this.router.navigateByUrl('/paginacreada');
+        }
+      }
+      else {
+
+        console.log(resJson[0].mensaje);
+
+        //this.mostrarMensaje(2500, resJson[0].mensaje);
+      }
+    });
+
+
+  }
 }

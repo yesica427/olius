@@ -121,42 +121,40 @@ router.get( '/:idpost',async function (req,res){
 
 /*traer comentarios reportados*/
 
-router.get( '/reportados/:idpost',async function (req,res){
 
-  var idpost = ObjectID(req.params.idpost);
 
-  
-  var result = await client.db("Olius").collection("post").find({
-      "_id": idpost
-    },
 
-    {
-      $filter: {
+
+  router.put("/:idpost/:idcomentario", async function(req, res){
+    var idpost =  ObjectID(req.params.idpost);
+    var idcomentario = req.params.idcomentario;
+    console.log(idpost);
+
+    console.log(idcomentario);
     
-        "comentarios": {
-          "reportado":true
+    var result = await client.db("Olius").collection("post").updateOne({
+      _id: idpost,
+    }, {
+      $set: {
+    
+        'comentarios': {
+          "idcomentario": parseInt(idcomentario),
+          "reportado":false
+
+
+
+
+          
+
         }
       }
     
-       
-      
-    })
-    
-
-    result.project({
-        "titulopost":true,
-      "_id": true,
-      "usuario": true,
-      "comentarios": true,
-      "fecha":true,
-      
     });
-  
-  
-    res.send(await result.toArray());
-  
-   
-  });
+    
+    res.send(result);
+    
+    });
+
 
 
 

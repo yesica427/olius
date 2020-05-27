@@ -14,10 +14,16 @@
     </div>
   
      
-    <div class="col col-lg-12" style="text-align: center;" > 
-    <input type="text" id="input-comentario"  class="confondo round curved form-control" style="width: 15em; text-align: center; margin-right: auto; margin-left: auto;" placeholder="Ingresa un nuevo comentario." [(ngModel)]="inputComentario">
-    <button (click)="nuevoComentario()" class="btn botonOpciones " style="margin-top: 2em;"> <i class="fas fa-comment-dots"></i>Comenta</button>
-  </div>
+    <div *ngIf="verificarUsuarioLogueado()">
+      <div class="col col-lg-12" style="text-align: center;">
+        <input type="text" id="input-comentario" class="confondo round curved form-control"
+          style="width: 15em; text-align: center; margin-right: auto; margin-left: auto;"
+          placeholder="Ingresa un nuevo comentario." [(ngModel)]="inputComentario">
+        <button (click)="nuevoComentario()" class="btn botonOpciones " style="margin-top: 2em;"> <i
+            class="fas fa-comment-dots"></i>Comenta</button>
+      </div>
+    </div>
+    
     <div class="col col-lg-6">
     
   </div>

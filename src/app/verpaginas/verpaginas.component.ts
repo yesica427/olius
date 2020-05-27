@@ -62,6 +62,7 @@ export class VerpaginasComponent implements OnInit {
   encabezado: boolean = false;
   footer: boolean = false;
   activa: boolean = false;
+  publica: boolean = false;
 
   openModal(pagina: Pagina) {
 
@@ -78,6 +79,7 @@ export class VerpaginasComponent implements OnInit {
     this.encabezado = pagina.encabezado;
     this.footer = pagina.footer;
     this.activa = pagina.activa;
+    this.publica=pagina.publica;
 
 
     this.display = "block";
@@ -216,6 +218,8 @@ export class VerpaginasComponent implements OnInit {
     //verificar si  esta activa o inactiva
     var activa = <HTMLInputElement>document.getElementById("activa");
     nuevaPagina.activa = activa.checked;
+    var publica = <HTMLInputElement>document.getElementById("publica");
+    nuevaPagina.publica = publica.checked;
 
 
     //contenido del editor wysiwyg

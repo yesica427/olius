@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post, Comentario } from '../post.model';
 import { ShortcutService } from '../shortcut.service';
 import { HttpClient } from '@angular/common/http';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-post',
@@ -14,10 +15,11 @@ export class PostComponent implements OnInit {
   @Input()
   public post: Post = new Post();
 
-  constructor(private shortcut: ShortcutService, private http: HttpClient) { }
+  constructor(private shortcut: ShortcutService,  private http: HttpClient, private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.cargarElementosEnPost()
+    this.verificarUsuarioLogueado();
   }
 
   ngAfterViewInit() {
@@ -77,6 +79,25 @@ export class PostComponent implements OnInit {
           <source src="${res.url}" type="audio/ogg">
         </audio>`);
           break;
+
+
+          case "enlace":
+          //convierto el observable en promesa y asi puedo usar await para esperar el resultado
+          var res = await this.shortcut.traerArchivo(elemento.json._id).toPromise();
+
+          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}">${elemento.json.titulo}</a>`);
+          break;
+
+        case "galeria":
+          console.log("galeria")
+
+          var html = await this.traerGaleria(elemento.json.imagenes);
+          console.log(html)
+
+          this.intercambiar(JSON.stringify(elemento.json), html);
+          break;
+
+
       }
     }
   }
@@ -118,6 +139,32 @@ export class PostComponent implements OnInit {
     })
 
     this.inputComentario = ""
+  }
+
+
+  async traerGaleria(imagenesID: string[]) {
+    var imagenesHTML = `<div class="galeria">`;
+
+    for (let i = 0; i < imagenesID.length; i++) {
+      var res = await this.shortcut.traerArchivo(imagenesID[i]).toPromise();
+
+      imagenesHTML += `<img src="${res.url}"  height="170" width="170" style="margin-left:0.5em">`;
+    }
+
+    imagenesHTML += `</div>`
+
+    return imagenesHTML;
+  }
+
+  verificarUsuarioLogueado() {
+    const usuarioActual = this.loginService.traerUsuarioActual();
+
+    if (usuarioActual != null) {
+      // usuario loguead
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

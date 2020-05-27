@@ -69,7 +69,7 @@
                 <td>{{post.usuario}}</td>
                 <td>{{post.categoria}}</td>
                 <td>{{post.comentarios.length}}</td>
-                <td>{{post.fecha}}</td>
+                <td>{{getDiaMes(post.fecha)}}</td>
 
                 <td> <button type="button" class="btn botonOpciones" (click)="eliminarPost(post._id) "
                     style="margin-bottom: 2em;"> <i class="fas fa-trash"></i>Eliminar</button>

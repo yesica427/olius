@@ -50,7 +50,9 @@ export class ConfiguracionPaginaComponent implements OnInit {
           "favicon": "http://localhost:8888/configuracion/favicon.jpg",
           "logotipo": "http://localhost:8888/configuracion/logotipo.png",
           "css": "p{color:red;}",
-          "js": `console.log("Hola, mundo")`
+          "js": `console.log("Hola, mundo")`,
+          "publica": true
+          
         }).subscribe((res) => {
           this.obtenerPaginaPrincipal();
         })

@@ -12,5 +12,6 @@ export class Pagina {
     encabezado: boolean;
     footer: boolean;
     usuario: string;
+    publica:boolean;
 
 }
