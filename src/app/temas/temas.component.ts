@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { Tema } from "../tema.model";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-temas',
@@ -24,7 +25,7 @@ export class TemasComponent implements OnInit {
 
   cuentaIncorrecta: boolean = false;
 
-  constructor(private http: HttpClient, private _sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private _sanitizer: DomSanitizer, public mensajeService: MensajesService) { }
 
   ngOnInit(): void {
 
@@ -81,6 +82,7 @@ export class TemasComponent implements OnInit {
   traerTemas() {
     this.http.get<Tema[]>("http://localhost:8888/temas/").subscribe((res) => {
       this.listaTemas = res;
+      this.copiaListaTema = res;
 
       console.log(this.listaTemas);
     });
@@ -153,14 +155,19 @@ export class TemasComponent implements OnInit {
 
     console.log(nuevoTema);
 
-    this.http.put("http://localhost:8888/temas/" + this.temaEditar._id, nuevoTema).subscribe((res) => {
+    this.http.put("http://localhost:8888/temas/" + this.temaEditar._id, nuevoTema).subscribe(async (res) => {
 
       //console.log(res);
 
       var resJSON = JSON.parse(JSON.stringify(res));
 
       if (resJSON.ok == 1) {
-        console.log("correcto")
+        console.log("correcto");
+
+
+        this.mensajeService.mostrarMensaje(1500, "Editado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
         //cerrar modal
         this.botonCerrar.nativeElement.click();
@@ -176,6 +183,22 @@ export class TemasComponent implements OnInit {
 
     });
 
+
+  }
+
+  inputBusqueda: string;
+  copiaListaTema: Tema[];
+  busqueda() {
+    this.listaTemas = this.copiaListaTema;
+
+
+    if (this.inputBusqueda != "") {
+
+      this.listaTemas = this.listaTemas.filter((tema) => {
+        return tema.titulo.toLocaleLowerCase().includes(this.inputBusqueda.toLocaleLowerCase()) ||
+          tema.descripcion.toLocaleLowerCase().includes(this.inputBusqueda.toLocaleLowerCase());
+      });
+    }
 
   }
 

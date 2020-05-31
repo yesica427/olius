@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, public mensajeService: MensajesService) { }
 
 
   displayMensaje: string = 'none';
@@ -70,7 +71,8 @@ export class LoginComponent implements OnInit {
       }
       else {
 
-        this.mostrarMensaje(2500, resJson[0].mensaje)
+        // this.mostrarMensaje(2500, resJson[0].mensaje)
+        this.mensajeService.mostrarMensaje(2500, resJson[0].mensaje)
         console.log(resJson[0].mensaje);
       }
     });
@@ -85,19 +87,6 @@ export class LoginComponent implements OnInit {
   }
 
 
- 
-
-  async mostrarMensaje(ms: number, mensaje: string) {
-
-    this.mensajeRegistro = mensaje;
-
-    this.displayMensaje = "block";
-
-    await new Promise(resolve => setTimeout(resolve, ms));
-
-    this.displayMensaje = "none";
-
-  }
 
 
 }

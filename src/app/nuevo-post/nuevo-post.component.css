@@ -22,8 +22,13 @@
 
 #select-categorias {
   width: 50%;
-  margin-top: 3em;
+  /* margin-top: 3em; */
   margin-bottom: 3em;
+}
+
+#select-categorias-div {
+
+  margin-top: 5em;
 }
 
 #btn-guardar-post {}

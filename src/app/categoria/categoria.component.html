@@ -8,7 +8,8 @@
       <div class="row">
         <div class="col col-lg-5">
           <br>
-          <h3 class="color titulo" style="margin-left: auto; margin-right: auto; text-align: center;"><i class="fas fa-list"></i>Categorías</h3>
+          <h3 class="color titulo" style="margin-left: auto; margin-right: auto; text-align: center;"><i
+              class="fas fa-list"></i>Categorías</h3>
 
           <hr>
 
@@ -66,8 +67,8 @@
 
           <div class="busquedaForm">
             <input type="text" class="form-control " id="iputBusqueda" style="width: 30%; display: inline;"
-              placeholder="Buscar una categoria">
-            <button type="button" class="btn btn-outline-secondary"  (click)="busquedaNombrecategoria()"> Buscar</button>
+              placeholder="Buscar una categoria" [(ngModel)]="busquedaInput" (ngModelChange)="busquedanombre()">
+            <!-- <button type="button" class="btn btn-outline-secondary" (click)="busquedaNombrecategoria()"> Buscar</button> -->
 
           </div>
 

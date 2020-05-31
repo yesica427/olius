@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/login.service';
 import { Usuario } from 'src/app/usuario.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { MensajesService } from '../mensajes.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, public mensajeService: MensajesService) { }
 
   public listaUsuarios: Usuario[];
   usuarioEditar: Usuario;
@@ -27,6 +28,7 @@ export class UsersComponent implements OnInit {
     this.loginService.traerUsuarios().subscribe((usuarios) => {
 
       this.listaUsuarios = usuarios;
+      this.copiaListaUsuarios = usuarios;
       console.log(this.listaUsuarios)
     });
   }
@@ -52,6 +54,9 @@ export class UsersComponent implements OnInit {
   }
 
   editarUsuario(usuario) {
+
+    this.formularioActualizar.markAsPristine();
+    this.formularioActualizar.markAsUntouched();
 
     this.mensajeModificado = false;
     this.usuarioEditar = usuario;
@@ -126,6 +131,9 @@ export class UsersComponent implements OnInit {
     }
   }
 
+
+  @ViewChild('botonCerrar') botonCerrar: ElementRef;
+
   guardar() {
     //console.log(this.formularioActualizar.value);
     //console.log('iniciovalido:', this.formularioActualizar.valid)
@@ -140,17 +148,58 @@ export class UsersComponent implements OnInit {
 
     var resultado = this.loginService.actualizarUsuario(this.usuarioEditar._id, usuarioModificado);
 
-    resultado.subscribe((res) => {
+    resultado.subscribe(async (res) => {
       console.log(res);
 
       var resJson = JSON.parse(JSON.stringify(res))
 
       if (resJson.ok == 1) {
-        this.mensajeModificado = true;
 
         this.traerUsuarios();
+
+        this.mensajeService.mostrarMensaje(1500, "Editado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        //cerrar modal
+        this.botonCerrar.nativeElement.click();
+
+
+        //reset a los inputs del formularios
+        this.formularioActualizar.markAsPristine();
+        this.formularioActualizar.markAsUntouched();
+      } else {
+        // mostrar mensaje de error
+        this.mensajeService.mostrarMensaje(2500, "Hubo un error.");
       }
     })
 
+  }
+
+
+  tipoUsuarioSeleccionado: number;
+  copiaListaUsuarios: Usuario[];
+
+  filtroUsuario() {
+
+    console.log(this.tipoUsuarioSeleccionado)
+
+    this.listaUsuarios = this.copiaListaUsuarios;
+
+    if (this.tipoUsuarioSeleccionado != 0) {
+
+      this.listaUsuarios = this.listaUsuarios.filter((usuario) => {
+        return usuario.rol == this.tipoUsuarioSeleccionado;
+      });
+    }
+  }
+
+  obtenerRol(rol: number) {
+    if (rol == 1) {
+      return "Administrador";
+    }
+    else {
+      return "Normal";
+    }
   }
 }

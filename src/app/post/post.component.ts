@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
   @Input()
   public post: Post = new Post();
 
-  constructor(private shortcut: ShortcutService,  private http: HttpClient, private loginService:LoginService) { }
+  constructor(private shortcut: ShortcutService, private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.cargarElementosEnPost()
@@ -80,12 +80,19 @@ export class PostComponent implements OnInit {
         </audio>`);
           break;
 
+        case "documento":
+          var res = await this.shortcut.traerArchivo(elemento.json._id).toPromise();
 
-          case "enlace":
+          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}" target="_blank">${res.titulo}</a>`);
+
+          break;
+
+
+        case "enlace":
           //convierto el observable en promesa y asi puedo usar await para esperar el resultado
           var res = await this.shortcut.traerArchivo(elemento.json._id).toPromise();
 
-          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}">${elemento.json.titulo}</a>`);
+          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}" target="_blank">${elemento.json.titulo}</a>`);
           break;
 
         case "galeria":

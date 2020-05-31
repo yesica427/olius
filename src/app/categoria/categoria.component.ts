@@ -31,7 +31,7 @@ export class CategoriaComponent implements OnInit {
       (res) => {
         console.log(res)
         this.listaCategorias = res;
-        this.copiaCategorias=res;
+        this.copiaListaCategorias = res;
       }
     )
 
@@ -117,7 +117,7 @@ export class CategoriaComponent implements OnInit {
           this.traerCategorias();
 
 
-          
+
           this.categoriasForm.get('nombreCategorias').reset();
           this.categoriasForm.get('descripcion').reset();
         }
@@ -157,28 +157,48 @@ export class CategoriaComponent implements OnInit {
 
 
 
-  copiaCategorias:Categorias[];
+  copiaCategorias: Categorias[];
 
-  busquedaNombrecategoria(){
+  busquedaNombrecategoria() {
     var categoriaseleccionada = (<HTMLSelectElement>(
       document.getElementById("iputBusqueda")
     )).value;
-   
-    
-    
-
-    this.listaCategorias=this.copiaCategorias;
 
 
-    if (categoriaseleccionada !=""){
-      
-      this.listaCategorias=this.listaCategorias.filter((categorias) => {
+
+
+    this.listaCategorias = this.copiaCategorias;
+
+
+    if (categoriaseleccionada != "") {
+
+      this.listaCategorias = this.listaCategorias.filter((categorias) => {
         return categorias.nombrecategoria.includes(categoriaseleccionada);
       });
-     
-    
 
 
+
+
+    }
+  }
+
+
+  busquedaInput: string;
+  copiaListaCategorias: Categorias[];
+
+  busquedanombre() {
+
+    console.log("llamado a busquedanombre")
+
+    this.listaCategorias = this.copiaListaCategorias;
+
+
+    if (this.busquedaInput != "") {
+
+      this.listaCategorias = this.listaCategorias.filter((categoria) => {
+        return categoria.nombrecategoria.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase())
+          || categoria.descripcion.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase());
+      });
     }
   }
 

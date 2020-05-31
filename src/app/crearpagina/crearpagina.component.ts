@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pagina } from "../pagina.model"
 import { Categorias } from "../categorias.model";
 import { Router } from '@angular/router';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-crearpagina',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CrearpaginaComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public mensajeService: MensajesService) { }
 
   public listaCategorias: Categorias[];
 
@@ -61,7 +62,7 @@ export class CrearpaginaComponent implements OnInit {
     })
   }
 
-  
+
   formularioPagina = new FormGroup({
     titulo: new FormControl("", [
       Validators.required,
@@ -200,11 +201,15 @@ export class CrearpaginaComponent implements OnInit {
     console.log(nuevaPagina);
 
     //guardarlo en la base 
-    this.http.post("http://localhost:8888/paginas/", nuevaPagina).subscribe((res) => {
+    this.http.post("http://localhost:8888/paginas/", nuevaPagina).subscribe(async (res) => {
 
       var resJson = JSON.parse(JSON.stringify(res));
 
       console.log(resJson);
+
+      this.mensajeService.mostrarMensaje(1500, "Creado exitosamente.");
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
       //   //cuando se guarda, redireccionar a todos los posts
       this.router.navigateByUrl('/admin/verpaginas');

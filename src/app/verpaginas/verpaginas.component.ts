@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Categorias } from "../categorias.model";
+import { MensajesService } from '../mensajes.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-verpaginas',
@@ -15,7 +17,7 @@ export class VerpaginasComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
 
   public listaCategorias: Categorias[];
 
@@ -79,7 +81,7 @@ export class VerpaginasComponent implements OnInit {
     this.encabezado = pagina.encabezado;
     this.footer = pagina.footer;
     this.activa = pagina.activa;
-    this.publica=pagina.publica;
+    this.publica = pagina.publica;
 
 
     this.display = "block";
@@ -93,6 +95,7 @@ export class VerpaginasComponent implements OnInit {
       (res) => {
         console.log(res)
         this.listapaginas = res;
+        this.copiaListaPaginas = res;
 
       }
     )
@@ -229,7 +232,7 @@ export class VerpaginasComponent implements OnInit {
     console.log(nuevaPagina);
 
     // //guardarlo en la base 
-    this.http.put("http://localhost:8888/paginas/" + this.paginaEditar._id, nuevaPagina).subscribe((res) => {
+    this.http.put("http://localhost:8888/paginas/" + this.paginaEditar._id, nuevaPagina).subscribe(async (res) => {
 
       var resJson = JSON.parse(JSON.stringify(res));
 
@@ -239,10 +242,15 @@ export class VerpaginasComponent implements OnInit {
 
         this.traerpaginas();
 
+        this.mensajeService.mostrarMensaje(1500, "Editado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
         //cerrar modal
         this.botonCerrar.nativeElement.click();
 
+      } else {
+        this.mensajeService.mostrarMensaje(2500, "Ocurrió un error.");
       }
 
     })
@@ -271,6 +279,38 @@ export class VerpaginasComponent implements OnInit {
 
 
 
+  copiaListaPaginas: Pagina[];
+  tipoSeleccionado: string;
+
+  filtroTipo() {
+
+    console.log(this.categoriaSeleccionada)
+
+    this.listapaginas = this.copiaListaPaginas;
+
+    if (this.tipoSeleccionado != "null") {
+      this.listapaginas = this.listapaginas.filter((pagina) => {
+        return pagina.tipo.toLowerCase() == this.tipoSeleccionado;
+      });
+    }
+  }
+
+
+  busquedaInput: string;
+
+  busquedanombre() {
+
+    this.listapaginas = this.copiaListaPaginas;
+
+
+    if (this.busquedaInput != "") {
+
+      this.listapaginas = this.listapaginas.filter((pagina) => {
+        return pagina.titulo.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase()) ||
+          pagina.descripcion.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase());
+      });
+    }
+  }
 
 
 

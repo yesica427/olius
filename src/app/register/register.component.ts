@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { async } from '@angular/core/testing';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,8 @@ import { async } from '@angular/core/testing';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
-  
+  constructor(private loginService: LoginService, private router: Router, public mensajeService: MensajesService) { }
+
   displayMensaje: string = 'none';
   mensajeRegistro: string = "Registro Exitoso.";
 
@@ -105,20 +106,20 @@ export class RegisterComponent implements OnInit {
     var resultado = this.loginService.registrarUsuario(valores.primerNombre.toLowerCase(), valores.segundoNombre.toLowerCase(), valores.PrimerApellido.toLowerCase(), valores.segundoApellido.toLowerCase(), valores.contrasena1, valores.correo.toLowerCase(), valores.identidad, 2);
 
 
-    resultado.subscribe (async(res) => {
+    resultado.subscribe(async (res) => {
       console.log(res)
 
       var resJson = JSON.parse(JSON.stringify(res));
       if (resJson.registroCorrecto != false) {
 
-        this.mostrarMensaje(2500, "Registro correcto.");
+        this.mensajeService.mostrarMensaje(2500, "Registro correcto.");
 
         await new Promise(resolve => setTimeout(resolve, 2500));
         this.navigate();
       }
       else {
         //alert(res.mensaje)
-        this.mostrarMensaje(2500, resJson.mensaje);
+        this.mensajeService.mostrarMensaje(2500, resJson.mensaje);
 
         console.log(resJson.mensaje)
       }
@@ -132,19 +133,6 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-
-
-  async mostrarMensaje(ms: number, mensaje: string) {
-
-    this.mensajeRegistro = mensaje;
-
-    this.displayMensaje = "block";
-
-    await new Promise(resolve => setTimeout(resolve, ms));
-
-    this.displayMensaje = "none";
-
-  }
 
 }
 

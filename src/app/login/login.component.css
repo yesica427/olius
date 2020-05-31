@@ -70,3 +70,8 @@
 .error{
     color: red!important;
 }
+
+#registroExitoso{
+    border-radius: 10px;
+    border-color:white 4px;
+}

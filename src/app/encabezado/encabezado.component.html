@@ -63,6 +63,15 @@
           <button class="btn" (click)="guardar()">Guardar</button>
         </div>
 
+        <div class="col col-lg-12">
+          <div class="alert alert-success" role="alert" id="registroExitoso"
+            style="width:70%; background-color: #7A346B;margin-top:1em; color:white; margin-left: auto;margin-right: auto;padding: 0px;text-align: center;width: 30%;display: block;"
+            [ngStyle]="{'display': mensajeService.displayMensaje}">
+            <p> {{mensajeService.mensajeRegistro}}</p>
+            <!-- [ngStyle]="{'display': mensajeService.displayMensaje}" -->
+          </div>
+        </div>
+
 
 
 

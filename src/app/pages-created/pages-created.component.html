@@ -19,9 +19,17 @@
 <br>
 <br>
 <br>
-<div id="barraLinks">
-  <button *ngFor="let link of listaLinks" (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</button>
+<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
+<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina_principal.css">
+
+
+<div id="enlaces-div" style="float: right;">
+  <div class="enlace" *ngFor="let link of listaLinks" style="margin: 0.5em; display: inline;">
+    <a (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</a>
+  </div>
 </div>
+<br>
+<div></div>
 
 <!--  formulario de login  -->
 <div style="width: 50%; margin-left: 0px;margin-right: auto; padding: 1em;" *ngIf="permiteLogin">
@@ -56,7 +64,6 @@
   </form>
 </div>
 
-<link rel="stylesheet" href="http://localhost:8888/estilos/estilos_pagina.css">
 
 
 <div *ngIf="idPagina!=1">
@@ -66,7 +73,11 @@
 </div>
 
 
-<div *ngIf="idPagina==1" [innerHTML]="contenidoPaginaPrincipal">
+<div *ngIf="idPagina==1" id="paginaPrincipal">
+
+  <div [innerHTML]="contenidoPaginaPrincipal">
+
+  </div>
 
 </div>
 

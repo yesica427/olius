@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
 import { Categorias } from '../categorias.model';
 import { Archivo } from '../archivo.model';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-archivos',
@@ -22,7 +23,9 @@ export class ArchivosComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
+
+
   close() {
     this.display = 'none';
   }
@@ -157,6 +160,8 @@ export class ArchivosComponent implements OnInit {
 
   }
 
+  @ViewChild('cerrarModalSubir') botonCerrarModalSubir: ElementRef;
+
   guardarArchivo() {
 
     const formData = new FormData();
@@ -179,7 +184,7 @@ export class ArchivosComponent implements OnInit {
 
     this.http.post(this.backendURL, formData)
 
-      .subscribe(res => {
+      .subscribe(async (res) => {
 
         console.log(res);
 
@@ -187,6 +192,13 @@ export class ArchivosComponent implements OnInit {
 
         if (resJson.success == true) {
           console.log("Subido Exitosamente");
+
+
+          this.mensajeService.mostrarMensaje(2500, "Subido exitosamente.");
+
+          await new Promise(resolve => setTimeout(resolve, 2500));
+
+          this.botonCerrarModalSubir.nativeElement.click();
 
 
           //resetear el formulario
@@ -250,6 +262,7 @@ export class ArchivosComponent implements OnInit {
     return this.archivosFormEditar.get("descripcionEditar");
   }
 
+  @ViewChild('cerrarModalEditar') botonCerrarModalEditar: ElementRef;
   actualizarArchivo() {
 
     console.log("Click")
@@ -266,11 +279,20 @@ export class ArchivosComponent implements OnInit {
     archivoNuevo.categoria = categoria;
 
 
-    this.http.put(this.backendURL + "/" + this.archivoEditar._id, archivoNuevo).subscribe((res) => {
+    this.http.put(this.backendURL + "/" + this.archivoEditar._id, archivoNuevo).subscribe(async (res) => {
 
       console.log(res);
 
       this.traerArchivos();
+
+
+      this.mensajeService.mostrarMensaje(2500, "Editado exitosamente.");
+
+      await new Promise(resolve => setTimeout(resolve, 2500));
+
+      this.botonCerrarModalEditar.nativeElement.click();
+
+
       this.closeModalEditar();
     });
   }
@@ -314,23 +336,20 @@ export class ArchivosComponent implements OnInit {
 
   }
 
-
+  public busquedaInput: string;
   busquedanombre() {
-    var valortitulo = (<HTMLSelectElement>(
-      document.getElementById("busquedaArchivo")
-    )).value;
-
 
     this.listaArchivos = this.copiaListaArchivos;
 
 
-    if (valortitulo != "") {
+    if (this.busquedaInput != "") {
 
       this.listaArchivos = this.listaArchivos.filter((archivo) => {
-        return archivo.titulo.includes(valortitulo);
+        return archivo.nombrearchivo.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase());
       });
     }
   }
+
 
 }
 

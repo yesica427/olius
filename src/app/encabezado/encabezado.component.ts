@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-encabezado',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EncabezadoComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
   public contentCSS = `p{color:black;}`;
 
   public contentJS;
@@ -77,7 +78,9 @@ export class EncabezadoComponent implements OnInit {
 
       var resJSON = JSON.parse(JSON.stringify(res));
 
-      console.log(resJSON)
+      console.log(resJSON);
+
+      this.mensajeService.mostrarMensaje(2500, "Editado exitosamente.");
 
     });
   }

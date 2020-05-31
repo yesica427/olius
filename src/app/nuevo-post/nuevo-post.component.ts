@@ -5,6 +5,7 @@ import { Post } from "../post.model";
 import { HttpClient } from "@angular/common/http";
 import { Categorias } from '../categorias.model';
 import { Router } from '@angular/router';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: "app-nuevo-post",
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class NuevoPostComponent implements OnInit {
 
 
-  constructor(private loginService: LoginService, private http: HttpClient, private router: Router) { }
+  constructor(private loginService: LoginService, private http: HttpClient, private router: Router, public mensajeService: MensajesService) { }
 
   ngOnInit(): void {
 
@@ -89,7 +90,14 @@ export class NuevoPostComponent implements OnInit {
 
 
     this.http.post('http://localhost:8888/posts', nuevoPost).subscribe(
-      (res) => { console.log(res); this.router.navigateByUrl('/admin/posts'); }
+      async (res) => {
+
+        this.mensajeService.mostrarMensaje(2500, "Registro exitoso.");
+
+        await new Promise(resolve => setTimeout(resolve, 2500));
+
+        console.log(res); this.router.navigateByUrl('/admin/posts');
+      }
     )
 
 

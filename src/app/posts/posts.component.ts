@@ -3,6 +3,7 @@ import { Post } from '../post.model';
 import { Categorias } from '../categorias.model';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class PostsComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
 
   public listaPost: Post[];
   public listaCategorias: Categorias[];
@@ -33,7 +34,6 @@ export class PostsComponent implements OnInit {
       (res) => {
         console.log(res)
         this.listaCategorias = res;
-        this.copiascategorias = res;
       }
     )
   }
@@ -48,7 +48,7 @@ export class PostsComponent implements OnInit {
       (res) => {
         console.log(res)
         this.listaPost = res;
-        this.copiaPost = res;
+        this.copiaListaPost = res;
       }
     )
 
@@ -72,14 +72,22 @@ export class PostsComponent implements OnInit {
 
   /*editar post*/
 
+  generarShortcut(_id: string) {
+    return `{"tipo":"entrada","_id":"${_id}"}`;
+  }
 
 
   public postEditar: Post;
+  public incluirComentarios: boolean;
+  public shortcutPost: string = "";
 
   editarPost(post: Post) {
     this.postEditar = post;
     this.nombrePostForm.get('nombrePost').setValue(post.titulopost);
     this.contenidoEditor = post.descripcion;
+    this.incluirComentarios = post.permitecomentario;
+
+    this.shortcutPost = this.generarShortcut(post._id);
 
   }
 
@@ -139,10 +147,14 @@ export class PostsComponent implements OnInit {
 
 
     this.http.put('http://localhost:8888/posts/' + this.postEditar._id, nuevoPost).subscribe(
-      (res) => {
+      async (res) => {
         console.log(res)
         this.traerPost()
-        this.postEditar = null
+        this.postEditar = null;
+
+        this.mensajeService.mostrarMensaje(2500, "Editado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 2500));
 
         //cerrar modal
         this.botonCerrar.nativeElement.click();
@@ -162,53 +174,37 @@ export class PostsComponent implements OnInit {
 
 
 
-  copiascategorias: Categorias[];
-  filtrocategoria() {
-    var categoriaSeleccionada = (<HTMLSelectElement>(
-      document.getElementById("select-categoria")
-    )).value;
+  copiaListaPost: Post[];
+  categoriaSeleccionada: string;
 
-    this.listaCategorias = this.copiascategorias;
+  filtroCategoria() {
 
-    if (categoriaSeleccionada != "null") {
-      this.listaCategorias = this.listaCategorias.filter((Categorias) => {
-        return Categorias.nombrecategoria == categoriaSeleccionada;
+    console.log(this.categoriaSeleccionada)
+
+    this.listaPost = this.copiaListaPost;
+
+    if (this.categoriaSeleccionada != "null") {
+      this.listaPost = this.listaPost.filter((post) => {
+        return post.categoria == this.categoriaSeleccionada;
       });
-
-
-
-
-
-
-
-
     }
   }
 
 
-  copiaPost: Post[];
+  busquedaInput: string;
 
-  /*filtro por autor*/
-  filtroAutor() {
+  busquedanombre() {
 
-    var valornombre = (<HTMLSelectElement>(
-      document.getElementById("buscarautor")
-    )).value;
+    console.log("llamado a busquedanombre")
 
+    this.listaPost = this.copiaListaPost;
 
 
-
-    this.listaPost = this.copiaPost;
-
-
-    if (valornombre != "") {
+    if (this.busquedaInput != "") {
 
       this.listaPost = this.listaPost.filter((post) => {
-        return post.usuario.includes(valornombre);
+        return post.usuario.toLocaleLowerCase().includes(this.busquedaInput.toLocaleLowerCase());
       });
-
-
-
     }
   }
 

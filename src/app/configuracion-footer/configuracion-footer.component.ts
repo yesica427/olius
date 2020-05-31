@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-configuracion-footer',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ConfiguracionFooterComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
 
   public contentCSS = `p{color:black;}`;
 
@@ -71,7 +72,9 @@ export class ConfiguracionFooterComponent implements OnInit {
 
       var resJSON = JSON.parse(JSON.stringify(res));
 
-      console.log(resJSON)
+      console.log(resJSON);
+
+      this.mensajeService.mostrarMensaje(2500, "Editado exitosamente.")
 
     });
   }

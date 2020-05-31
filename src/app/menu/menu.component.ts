@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Menu, OpcionMenu } from "../menu.model";
 import { Pagina } from "../pagina.model";
 import { HttpClient } from '@angular/common/http';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +13,10 @@ import { HttpClient } from '@angular/common/http';
 export class MenuComponent implements OnInit {
   public contentCSS = `p{color:black;}`;
 
+  inputBusqueda: string;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
 
   ngOnInit(): void {
     this.nuevaOpcion.tipo = "pagina";
@@ -29,6 +32,7 @@ export class MenuComponent implements OnInit {
   traerMenus() {
     this.http.get<Menu[]>("http://localhost:8888/menus").subscribe((res) => {
       this.listaMenus = res;
+      this.copiaListaMenu = res;
     })
   }
 
@@ -181,11 +185,15 @@ export class MenuComponent implements OnInit {
 
     console.log(nuevoMenu);
 
-    this.http.post("http://localhost:8888/menus", nuevoMenu).subscribe((res) => {
+    this.http.post("http://localhost:8888/menus", nuevoMenu).subscribe(async (res) => {
       console.log(res);
 
       if (res) {
         //cerrar modal
+        this.mensajeService.mostrarMensaje(1500, "Creado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
         this.cerrarModalCrear.nativeElement.click();
         this.traerMenus();
       }
@@ -333,12 +341,17 @@ export class MenuComponent implements OnInit {
 
 
 
-    this.http.put("http://localhost:8888/menus/" + this.menuEditar._id, nuevoMenu).subscribe((res) => {
+    this.http.put("http://localhost:8888/menus/" + this.menuEditar._id, nuevoMenu).subscribe(async (res) => {
       console.log(res);
 
       var resJson = JSON.parse(JSON.stringify(res));
 
       if (resJson.ok == 1) {
+
+        this.mensajeService.mostrarMensaje(1500, "Editado exitosamente.");
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
 
         this.traerMenus();
 
@@ -347,5 +360,21 @@ export class MenuComponent implements OnInit {
 
 
     })
+  }
+
+
+  copiaListaMenu: Menu[];
+  busqueda() {
+
+
+    this.listaMenus = this.copiaListaMenu;
+
+
+    if (this.inputBusqueda != "") {
+
+      this.listaMenus = this.listaMenus.filter((menu) => {
+        return menu.titulo.toLocaleLowerCase().includes(this.inputBusqueda.toLocaleLowerCase());
+      });
+    }
   }
 }

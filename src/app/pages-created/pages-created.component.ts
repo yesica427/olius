@@ -286,6 +286,13 @@ export class PagesCreatedComponent implements OnInit {
           </audio>`);
           break;
 
+        case "documento":
+          var res = await this.shortcut.traerArchivo(elemento.json._id).toPromise();
+
+          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}" target="_blank">${res.titulo}</a>`);
+
+          break;
+
         case "entrada":
           //convierto el observable en promesa y asi puedo usar await para esperar el resultado
           var res2: Post = await this.shortcut.traerPost(elemento.json._id).toPromise();
@@ -308,7 +315,7 @@ export class PagesCreatedComponent implements OnInit {
           //convierto el observable en promesa y asi puedo usar await para esperar el resultado
           var res = await this.shortcut.traerArchivo(elemento.json._id).toPromise();
 
-          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}">${elemento.json.titulo}</a>`);
+          this.intercambiar(JSON.stringify(elemento.json), `<a href="${res.url}" target="_blank">${elemento.json.titulo}</a>`);
           break;
 
         case "galeria":

@@ -25,10 +25,10 @@
         </div>
 
 
-        <div class="col-lg-12 " style="margin-top: 5em; text-align: center;">
+        <!-- <div class="col-lg-12 " style="margin-top: 5em; text-align: center;">
           <button class=" btn btn-lg borde" type="button" id="btn-archivo">Seleccionar
             Archivo</button>
-        </div>
+        </div> -->
 
       </div>
 
@@ -49,14 +49,18 @@
 
         <div class="col col-lg-12">
           <div>
-            <select id="select-categorias" class="form-control">
-              <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
-                {{categoria.nombrecategoria}}
-              </option>
-            </select>
+            <div id="select-categorias-div">
+              <label for="select-categorias" class="color">Seleccione una categoría: </label>
+              <select id="select-categorias" class="form-control">
+                <option *ngFor="let categoria of listaCategorias" value="{{categoria.nombrecategoria}}">
+                  {{categoria.nombrecategoria}}
+                </option>
+              </select>
+            </div>
 
-            <label for="comentarios" style="color: white;">Incluir comentarios</label><br>
-            <input type="checkbox" id="comentarios" name="comentarios" value="true" style="color: white;">
+            <label for="comentarios" class="color" style="display: inline;">Incluir comentarios</label><br>
+            <input type="checkbox" id="comentarios" name="comentarios" value="true"
+              style="color: white; display: inline;">
 
             <br>
             <br>
@@ -65,6 +69,17 @@
             <button type="button" id="btn-guardar-post" class="btn btn-outline-success" (click)="guardarPost()"
               [disabled]="!nombrePostForm.valid || validarContenidoEditor()==false">Guardar</button>
 
+
+
+          </div>
+        </div>
+
+        <div class="col col-lg-12">
+          <div class="alert alert-success" role="alert" id="registroExitoso"
+            style="width:70%; background-color: #7A346B; color:white; margin-left: auto;margin-right: auto;text-align: center;"
+            [ngStyle]="{'display': mensajeService.displayMensaje}">
+            <p> {{mensajeService.mensajeRegistro}}</p>
+            <!-- [ngStyle]="{'display': mensajeService.displayMensaje}" -->
           </div>
         </div>
       </div>

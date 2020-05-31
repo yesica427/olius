@@ -24,9 +24,12 @@
 
 
               <h6 class="color" style=" margin-top: 2em; margin-bottom: 2em;">Aplica filtros: </h6>
-              <select id="tipoUsuarioSelect" class="form-control color" style="display: inline;">
-                <option class="color" value="">Administrador</option>
-                <option value="">Usuario</option>
+              <select id="tipoUsuarioSelect" class="form-control color" style="width: auto; text-align: center;"
+                [(ngModel)]="tipoUsuarioSeleccionado" (change)="filtroUsuario()">
+                <option selected style="text-align: center;" value="0" [selected]="true">Seleccione un tipo de usuario.
+                </option>
+                <option style="text-align: center;" class="color" value="1">Administrador</option>
+                <option style="text-align: center;" value="2">Normal</option>
 
               </select>
             </div>
@@ -42,6 +45,7 @@
                     <th scope="col">#</th>
                     <th scope="col"> <span>Nombre de Usuario</span></th>
                     <th scope="col">Correo</th>
+                    <th scope="col">Rol</th>
                     <th scope="col">Opciones</th>
 
                   </tr>
@@ -54,17 +58,18 @@
                       {{convertirPrimeraLetraMayuscula(usuario.primernombre)+" "+ convertirPrimeraLetraMayuscula(usuario.primerapellido)}}
                     </td>
                     <td>{{usuario.correo}}</td>
+                    <td>{{obtenerRol(usuario.rol)}}</td>
                     <td> <button type="button" class="btn botonOpciones" (click)="eliminarUsuario(usuario.correo)"><i
                           class="fas fa-trash"></i>Eliminar</button>
-                      <button type="button" class="btn  botonOpciones" (click)="editarUsuario(usuario)"><i
-                          class="fas fa-edit"></i>Editar</button> </td>
+                      <button type="button" class="btn  botonOpciones" (click)="editarUsuario(usuario)"
+                        data-toggle="modal" data-target="#myModal"><i class="fas fa-edit"></i>Editar</button> </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <div class="col col-lg-12">
+          <!-- <div class="col col-lg-12">
             <div *ngIf="usuarioEditar">
               <br>
               <button type="button" (click)="usuarioEditar=null;mensajeModificado=null" id="btn-cerrar-formulario"
@@ -180,11 +185,145 @@
                 Usuario Modificado Correctamente
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
     </body>
 
+  </div>
+</div>
+
+
+<!-- modal editar post -->
+<div id="myModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color: black;">
+      <div class="modal-header  fondomodal">
+        <h5 class="modal-title  color texto"> <i class="fas fa-eye-dropper"></i>Editar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="formularioActualizar" style="align-items: center;" id="fc">
+          <div style="align-items: center; margin-left: 4em;" class="form-row " id="row-formulario">
+
+            <div class="col col-lg-3  ">
+              <input [ngClass]="{'input-error':primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) }"
+                formControlName="primerNombre" type="text" class=" tamano" placeholder="Primer Nombre">
+              <div *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em;"> campo no valido
+                <span class="error" *ngIf="primerNombre.errors.required">Error el campo es Obligatorio</span>
+                <span *ngIf="primerNombre.errors.pattern">solo se admiten letras</span>
+                <span *ngIf="primerNombre.errors.minLength"> El tamaño minimo son 8 caracteres</span>
+              </div>
+
+            </div>
+            <div class="col col-lg-4 ">
+              <input
+                [ngClass]="{'input-error':segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) }"
+                formControlName="segundoNombre" type="text" class=" tamano ajuste" placeholder="segundo nombre">
+              <div *ngIf="segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em"> ¡Error campo no valido!
+
+
+                <span class="error" *ngIf="segundoNombre.errors.required">Error el campo es Obligatorio</span>
+                <span *ngIf="segundoNombre.errors.pattern">solo se admiten letras</span>
+                <span *ngIf="segundoNombre.errors.minLength">El tamaño minimo son 5 caracteres</span>
+              </div>
+            </div>
+            <div class="col col-lg-5">
+            </div>
+            <div class="col col-lg-3 ">
+              <input
+                [ngClass]="{'input-error':PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) }"
+                formControlName="PrimerApellido" type="text" class=" tamano" placeholder="Primer apellido">
+              <div *ngIf="PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
+                <span *ngIf="PrimerApellido.errors.pattern">solo se admiten letras</span>
+                <span *ngIf="PrimerApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
+              </div>
+            </div>
+            <div class="col col-lg-4 ">
+              <input
+                [ngClass]="{'input-error':segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) }"
+                formControlName="segundoApellido" type="text" class="  tamano" placeholder="segundo Apellido">
+              <div *ngIf="segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em"> Error campo vacio
+                <span *ngIf="segundoApellido.errors.pattern">solo se admiten letras</span>
+                <span *ngIf="segundoApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
+              </div>
+            </div>
+            <div class="col col-lg-5">
+            </div>
+            <div class="col col-lg-3 ">
+              <input [ngClass]="{'input-error':contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) }"
+                formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
+              <div *ngIf="contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em"> Error campo invalido
+                <span *ngIf="contrasena1.errors.pattern">Al menos 1 Digito y una letra mayuscula</span>
+                <span *ngIf="contrasena1.errors.minLength">El tamaño minimo son 8 caracteres</span>
+              </div>
+            </div>
+            <div class="col col-lg-4">
+              <input [ngClass]="{'input-error':contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) }"
+                formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
+              <div *ngIf="contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) "
+                class="alert alert-danger" role="alert" style="width: 13em"> Error campo no valido</div><br>
+              <span class="error"
+                *ngIf=" contrasenavalida()==false && (contrasena2.dirty || contrasena2.touched )">Contrasena
+                no coincide</span>
+            </div>
+            <div class="col col-lg-5">
+            </div>
+            <div class="col col-lg-3">
+              <input [ngClass]="{'input-error':identidad.invalid && (identidad.dirty || identidad.touched ) }"
+                formControlName="identidad" type="text" class=" tamano" placeholder="Ingresa Tu Identidad">
+              <div *ngIf="identidad.invalid && (identidad.dirty || identidad.touched ) " class="alert alert-danger"
+                role="alert" style="width: 13em"> Error campo no valido
+                <span *ngIf="identidad.errors.minLength">se requieren 13 Digitos </span>
+              </div>
+            </div>
+            <div class="col col-lg-7">
+              <input [ngClass]="{'input-error':correo.invalid && (correo.dirty || correo.touched ) }"
+                formControlName="correo" type="text" class=" tamano" placeholder="Ingresa Tu correo Electronico">
+              <div *ngIf="correo.invalid && (correo.dirty || correo.touched ) " class="alert alert-danger" role="alert"
+                style="width: 13em"> Error campo no valido
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8" style="margin-left:5em !important;">
+            <h3 class="color">Tipo de usuario</h3>
+
+            <select id="select-tipoUsuario">
+              <option value="1">Administrador</option>
+              <option value="2">Normal</option>
+            </select>
+          </div>
+
+          <!-- <button [disabled]="!formularioActualizar.valid" type="button" (click)="guardar()" id="btnregistrar"
+            class="btn btn-lg"><i class="fas fa-address-book fa-1x fa-lg "></i>Registrarse</button> -->
+        </form>
+
+      </div>
+      <!-- footer modal -->
+      <div class="modal-footer fondomodal">
+        <button type="button" class="btn btn-primary botonOpciones" [disabled]="!formularioActualizar.valid"
+          (click)="guardar()">
+          <!-- [disabled]="!nombrePostForm.valid || validarContenidoEditor()==false" -->
+          <i class="far fa-save"></i>Guardar</button>
+        <button type="button" class="btn btn-secondary botonOpciones" data-dismiss="modal" #botonCerrar><i
+            class="fas fa-times"></i>cerrar</button>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success" role="alert" id="registroExitoso"
+    style="width:70%; background-color: #7A346B; color:white; margin-left: auto;margin-right: auto;padding: 0px;text-align: center;width: 30%;display: block;"
+    [ngStyle]="{'display': mensajeService.displayMensaje}">
+    <p> {{mensajeService.mensajeRegistro}}</p>
+    <!-- [ngStyle]="{'display': mensajeService.displayMensaje}" -->
   </div>
 </div>

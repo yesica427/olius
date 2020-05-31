@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MensajesService } from '../mensajes.service';
 @Component({
   selector: 'app-configuracion-pagina',
   templateUrl: './configuracion-pagina.component.html',
@@ -10,7 +11,7 @@ export class ConfiguracionPaginaComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public mensajeService: MensajesService) { }
   public contentJS = `console.log("Hola, mundo")`;
   public contentCSS = `p{color:black;}`;
 
@@ -52,7 +53,7 @@ export class ConfiguracionPaginaComponent implements OnInit {
           "css": "p{color:red;}",
           "js": `console.log("Hola, mundo")`,
           "publica": true
-          
+
         }).subscribe((res) => {
           this.obtenerPaginaPrincipal();
         })
@@ -167,7 +168,9 @@ export class ConfiguracionPaginaComponent implements OnInit {
 
 
     this.http.put("http://localhost:8888/paginas/modificar/paginaprincipal", paginaPrincipal).subscribe((res) => {
-      console.log(res)
+      console.log(res);
+
+      this.mensajeService.mostrarMensaje(2500, "Editado exitosamente.")
     })
   }
 

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tema } from '../tema.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MensajesService } from '../mensajes.service';
 
 @Component({
   selector: 'app-nuevotema',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NuevotemaComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public mensajeService: MensajesService) { }
   public contentJS = `console.log("Hola, mundo")`;
   public contentCSS = `p{color:black;}`;
 
@@ -146,11 +147,16 @@ export class NuevotemaComponent implements OnInit {
 
 
     this.http.post<any>('http://localhost:8888/temas/', formData).subscribe(
-      (res) => {
+      async (res) => {
 
         var resJson = JSON.parse(JSON.stringify(res));
 
         if (resJson.result == "ok") {
+
+          this.mensajeService.mostrarMensaje(1500, "Creado exitosamente.");
+
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
 
           //cuando se guarda, redireccionar a todos los posts
           this.router.navigateByUrl('/admin/temas');
