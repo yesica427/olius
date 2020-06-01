@@ -105,3 +105,8 @@ hr {
 
 
 }
+
+#registroExitoso{
+  border-radius: 10px;
+    border-color:white 2px;
+}

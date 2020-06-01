@@ -4,10 +4,12 @@ img {
 }
 
 
-#discontinuo {
+.discontinuo {
   border-style: dashed;
-  border-color: #B7378A;
+  border-color: white;
   text-align: center;
+  width: inherit!important;
+  height: inherit!important;
 
 }
 
@@ -50,11 +52,15 @@ h4 {
 .wrapper {
   display: flex;
   width: 100%;
+
+background-color: black;
 }
 
 #content {
   /* margin-left: 20% !important;
   width: 80% !important; */
+
+
 }
 .fondodash{
   background-image: url('~/assets/img/fondoled3.jpg') !important ;
@@ -69,5 +75,28 @@ h4 {
 
 .colortexto{
   color:white!important;
+  transition: .4s all;
+
+}
+
+
+.colortxt{
+  color:white!important;
+}
+.backgroudcard{
+  background:#B7378A!important;
+   /* linear-gradient(360deg, #000000, #B7378A) !important; */
+}
+
+.backgrounfooter{
+  background-color: white!important;
+
+
+}
+
+
+
+.colortexto:hover{
+  transform: rotate(360deg);
 
 }

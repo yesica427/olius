@@ -32,11 +32,16 @@ router.post('/', async function (req, res) {
   const result = await client.db("Olius").collection("paginas").insertOne(req.body);
 
   if (req.body.url == 1) {
-    // si es la pagina principal. giarda el js en el archivo
+    // si es la pagina principal. guarda el js en el archivo
 
     fs.writeFile('./public/js/js_inicio.js', req.body.js, (err) => {
       if (err) throw err;
 
+    });
+
+    // si es la pagina principal. guarda el css en el archivo
+    fs.writeFile('./public/estilos/estilos_pagina_principal.css', req.body.css, (err) => {
+      if (err) throw err;
     });
 
 
@@ -82,7 +87,7 @@ router.get('/', async function (req, res) {
 
 router.get('/cuenta/documentos', async function (req, res) { //TODO:poner max
 
-  console.log("Cae en cuenta")
+
 
   var cuenta = await client.db("Olius").collection('paginas').find({}).sort({
     "url": -1
@@ -111,7 +116,9 @@ router.get('/get/links', async function (req, res) {
 
 
   var result = await client.db("Olius").collection("paginas")
-    .find({});
+    .find({
+      activa: true
+    });
 
   //retorna solo los campos que coloco aca
   result.project({
@@ -182,9 +189,17 @@ router.put('/modificar/paginaprincipal', async (req, res, next) => {
       }
     });
 
-  // si es la pagina principal. giarda el js en el archivo
+  // si es la pagina principal.guarda el js en el archivo
+
+  console.log("JS:", req.body.js)
 
   fs.writeFile('./public/js/js_inicio.js', req.body.js, (err) => {
+    if (err) throw err;
+  });
+
+  console.log("CSS: ", req.body.css)
+  // si es la pagina principal.guarda el css en el archivo
+  fs.writeFile('./public/estilos/estilos_pagina_principal.css', req.body.css, (err) => {
     if (err) throw err;
   });
 

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   public listaUsuarios: Usuario[];
   public listaPost: Post[];
   public listaComentarios:Comentario[]=[];
+  public listaImagenes:Archivo[];
 
  
   
@@ -41,6 +42,8 @@ export class DashboardComponent implements OnInit {
   public contarUsuarios:any="";
   public contarPosts:any="";
   public contarComentarios:any="";
+  public contarImagenes:any="";
+  public comentariosPermitido:any="";
 
   traerLinksPaginas() {
     this.http.get<Pagina[]>("http://localhost:8888/paginas/get/links").subscribe((res) => {
@@ -67,8 +70,15 @@ traerArchivos() {
    this.contarArchivos=res.length;
    console.log(this.contarArchivos);
 
+   this.listaImagenes=this.listaArchivos.filter((elemento)=>{
+    return elemento.tipo=="imagen";
+   
   });
+  this.contarImagenes=this.listaImagenes.length;
+  console.log("imagenes" +this.contarImagenes);
+})
 }
+
 
 
 traerUsuarios() {
@@ -88,7 +98,14 @@ traerPost() {
       console.log(res)
       this.listaPost = res;
       this.contarPosts=res.length
-    
+
+
+      this.comentariosPermitido=this.listaPost.filter((elemento)=>{
+        return elemento.permitecomentario==true;
+
+      });
+      this.comentariosPermitido=this.comentariosPermitido.length;
+      console.log("comentario" +this.comentariosPermitido);
      
     }
 

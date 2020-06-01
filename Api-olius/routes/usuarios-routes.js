@@ -140,6 +140,23 @@ router.get('/', async function (req, res) {
   res.send(await result.toArray());
 })
 
+/*obtener cuenta de usuarios*/
+router.get('/obtener/cuenta', async function (req, res) {
+  // res.send(usuarios)
+
+  result = await client.db("Olius").collection("usuarios")
+    .find({
+      rol: 1
+    }).count();
+
+
+
+  // res.send(await result.toArray());
+  res.send({
+    cuenta: result
+  });
+})
+
 /* Eliminar usuario*/
 router.delete('/:correo', async function (req, res) {
 

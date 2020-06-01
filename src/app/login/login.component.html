@@ -36,8 +36,7 @@
       </div>
     </div>
     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    
       <button [disabled]="!formularioInicioSesion.valid" type="button" (click)="entrar()" id="btnentrar"
         class="btn btn-lg "><i class="fas fa-sign-in-alt"></i>Entrar</button>
 
@@ -45,9 +44,10 @@
     </div>
 
     <div class="alert alert-success" style="text-align: center; margin-right: auto; margin-left: auto;" role="alert" id="registroExitoso"
-      style="width:70%; background-color: #962D71; color:white; margin-left: auto;margin-right: auto;"
+      style="width:70%; background-color: #C89499; color:#491217; margin-left: auto;margin-right: auto;"
       [ngStyle]="{'display': mensajeService.displayMensaje}">
-      <p  style="text-align: center; margin-right: auto; margin-left: auto;" > {{mensajeService.mensajeRegistro}}</p>
+      <i style="text-align: center; margin-right: auto; margin-left: auto;" class="fas fa-times "></i><hr style="color: #962D71 ;">
+      <p  style="text-align: center; margin-right: auto; margin-left: auto;" ><strong> {{mensajeService.mensajeRegistro}}</strong></p>
     </div>
 
   </form>

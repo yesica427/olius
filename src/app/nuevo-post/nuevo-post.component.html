@@ -4,7 +4,7 @@
 
   <div class="content fondo" style="margin-left: 15% !important;width: 100% !important;">
 
-    <div class="container colorfondo" id="tamano">
+    <div class="container colorfondo" id="tamano" >
       <div class="row">
         <!-- <div class="col col-lg-12" style="margin-top: 5em;">
           <h3 class="color"> Titulo post</h3>
@@ -66,7 +66,7 @@
             <br>
 
 
-            <button type="button" id="btn-guardar-post" class="btn btn-outline-success" (click)="guardarPost()"
+            <button type="button" id="btn-guardar-post" class="btn botonOpciones" (click)="guardarPost()"
               [disabled]="!nombrePostForm.valid || validarContenidoEditor()==false">Guardar</button>
 
 
@@ -76,9 +76,9 @@
 
         <div class="col col-lg-12">
           <div class="alert alert-success" role="alert" id="registroExitoso"
-            style="width:70%; background-color: #7A346B; color:white; margin-left: auto;margin-right: auto;text-align: center;"
+            style="width:70%; background-color:#B7378A; color:white; margin-left: auto;margin-right: auto;text-align: center;"
             [ngStyle]="{'display': mensajeService.displayMensaje}">
-            <p> {{mensajeService.mensajeRegistro}}</p>
+            <p> <i class="fas fa-check-circle"></i><strong>{{mensajeService.mensajeRegistro}}</strong></p>
             <!-- [ngStyle]="{'display': mensajeService.displayMensaje}" -->
           </div>
         </div>
