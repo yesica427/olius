@@ -39,6 +39,13 @@
 }
 
 
+#registroExitoso{
+  border-radius: 10px;
+  border-color:white 2px;
+}
+
+
+
 .titulo {
   font-family: 'Monoton', arial;
   color: #B7378A;

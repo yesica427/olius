@@ -69,3 +69,9 @@
   .input-error{
     border-color: red 1px;
   }
+
+
+  #registroExitoso{
+    border-radius: 10px;
+    border-color:white 2px;
+}

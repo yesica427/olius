@@ -29,27 +29,72 @@
           </div>
         </div>
 
-        <div class="col col-lg-6">
-          <div class=" estiloinformacion" *ngIf="itemactivo==true" style="  padding: 0; margin-right: 3em;">
-            <div *ngIf="listaComentarios.length==0"><strong> No hay comentarios para el post actual </strong></div>
+        
 
-            <div *ngFor='let comentario of listaComentarios'>
-              <h3 class="colortitulo"><i class="far fa-user"></i>Autor</h3>
-              <h4 class="color" id="list-item-1">{{comentario.usuario}}</h4>
-              <p>...</p>
-              <h3 class="colortitulo"><i class="far fa-comment"></i>Comentario</h3>
-              <h4 class="color" id="list-item-2">{{comentario.comentario}}</h4>
-              <p>...</p>
 
-              <button class="btn btn-lg botonOpciones" style="margin-bottom: 3em;"
+ 
+        <div class="col col-lg-6   " *ngIf="itemactivo==true" >
+          <div *ngIf="listaComentarios.length==0"><strong> No hay comentarios para el post actual </strong></div>
+          <table
+            class="table  table-hover table-dark table-responsive-sm table-responsive-md table-responsive-lg fondotable">
+            <thead>
+              <tr>
+
+                <th scope="col" class="texto"><i class="far fa-user"></i>Autor</th>
+                <th scope="col" class="texto"><i class="far fa-comment"></i>Comentario</th>
+
+                <th scope="col" class="texto">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let comentario of listaComentarios'>
+                <td scope="col">{{comentario.usuario}}</td>
+                <td scope="col">{{comentario.comentario}}</td>
+                <td>
+                  <button class="btn btn-lg botonOpciones" style="margin-bottom: 3em;"
                 (click)="eliminarComentario(comentario.idcomentario)"><i class="far fa-trash-alt"></i>Eliminar</button>
-              <button type="button" class="btn btn-lg botonOpciones" style="margin-bottom:3em;"
-                (click)="reportarComentario(comentario)">Reportar</button>
+                      <button type="button" class="btn btn-lg botonOpciones" style="margin-bottom:2em;"
+                (click)="reportarComentario(comentario)">
+                <i class="far fa-flag"></i>Reportar</button>
 
-            </div>
-          </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+         
+
 
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

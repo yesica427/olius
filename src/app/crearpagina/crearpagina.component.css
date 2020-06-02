@@ -51,6 +51,11 @@
   border-color: red 1px;
 }
 
+#registroExitoso{
+  border-radius: 10px;
+  border-color:white 2px;
+}
+
 
 .fondodiv{
   background-image: url('~/assets/img/fondo3.gif') !important ;

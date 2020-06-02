@@ -1,0 +1,111 @@
+<div class="wrapper  ">
+
+  <app-sidebar></app-sidebar>
+
+  <div class="content fondo" style="margin-left: auto;margin-right: auto;"
+    style="margin-left: 15% !important;width: 100% !important;">
+
+    <div class="container" style="margin-left: auto;margin-right: auto ; text-align: center;">
+      <div class="row" style="margin-left: auto;margin-right: auto;">
+
+        <div class="fondodiv color col col-lg-12 estiloComentario"
+          style=" width: 50%;height: 20em!important; margin-top: 5em; margin-bottom: 6em  !important; ">
+
+          <h1 class="titulo col-lg-12 texto"
+            style="margin-top: 3.5em;margin-left: 1em;margin-right: auto; text-align: center!important; ">Shortcuts</h1>
+
+        </div>
+
+        <div class="col col-lg-12">
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Shortcut</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Disponible en:</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Imagen</td>
+                <td>{{getShortcut("imagen", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta una imagen</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Video</td>
+                <td>{{getShortcut("video", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta un reproductor de video</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Audio</td>
+                <td>{{getShortcut("audio", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta un reproductor de audio.</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Documento</td>
+                <td>{{getShortcut("documento", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta un enlace al documento</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Enlace</td>
+                <td>{{getShortcutEnlace()}}</td>
+                <td>Inserta un enlace</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>Galeria</td>
+                <td>{{getShortcutGaleria()}}</td>
+                <td>Inserta una galeria</td>
+                <td>Páginas, Posts</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>Entrada</td>
+                <td>{{getShortcut("entrada", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta un post</td>
+                <td>Páginas</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <td>Breadcrumb</td>
+                <td>{{getEnlaceBreadCrumb()}}</td>
+                <td>Inserta un breadcrumb</td>
+                <td>Páginas</td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td>Menú</td>
+                <td>{{getShortcut("menu", "5e97ba717149473bacc8d0d6")}}</td>
+                <td>Inserta un menú</td>
+                <td>Páginas</td>
+              </tr>
+              <tr>
+                <th scope="row">10</th>
+                <td>Login</td>
+                <td>{{getShorcutLogin()}}</td>
+                <td>Muestra una seccion de login</td>
+                <td>Páginas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -61,18 +61,18 @@
 
 
 /* .divfondo{
-    padding-right: 0mm;
+      padding-right: 0mm;
+    
+      padding-left: 14em !important;
+      text-align: center!important;
+      align-items: center;
+      margin-right: auto!important;
+      margin-left: auto!important;
+      background-color:#5E1D47; 
+      opacity: 0.5;
+      color:white;
   
-    padding-left: 14em !important;
-    text-align: center!important;
-    align-items: center;
-    margin-right: auto!important;
-    margin-left: auto!important;
-    background-color:#5E1D47; 
-    opacity: 0.5;
-    color:white;
-
-} */
+  } */
 
 .fondocard {
   text-align: center !important;
@@ -82,13 +82,13 @@
 }
 
 /* .card {
-  background-image: url('~/assets/img/imagenblanca.jpg');
-
-} */
+    background-image: url('~/assets/img/imagenblanca.jpg');
+  
+  } */
 
 .bodycard {
   /* background-color:#5E1D47; 
-    opacity: 0.5; */
+      opacity: 0.5; */
 
 
 }
@@ -140,9 +140,4 @@
   width: 70%;
   margin-left: auto;
   margin-right: auto;
-}
-
-#registroExitoso{
-  border-radius: 10px;
-  border-color:white 2px;
 }

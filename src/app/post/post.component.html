@@ -1,8 +1,18 @@
 <div class="estilopost bg-gradient-light">
-  <h3><em>{{post.titulopost}}</em></h3>
+
+
+  <div class="card text-center  col-lg-10 fondo" style="margin-left: 10em;">
+    <div class="card-header   estilotarjeta">
+    
+    </div>
+    <div class="card-body">
+  <h3 class="letra"><em>{{post.titulopost}}</em></h3>
   <div class="descripcion-post" [innerHTML]="post.descripcion">
+    <h3 class="letra"><em>{{post.fecha}}</em></h3>
+    <hr>
   </div>
-  <p>Creado por: <strong>{{post.usuario}}</strong> </p>
+  <img src="https://www.underconsideration.com/artofthemenu/images/divider_squiggly_318.gif" alt="^^^">
+  <p class="letra">Creado por: <strong>{{post.usuario}}</strong> </p>
   <br>
   <div *ngIf="post.permitecomentario">
     <h5 class="coloricono"> <i class="far fa-comments coloricono"> </i>Comentarios</h5>
@@ -12,11 +22,30 @@
 
       <!-- <app-comentario *ngFor="let comentario of post.comentarios" [comentario]="comentario"></app-comentario> -->
 
-      <div *ngFor="let comentario of post.comentarios">
+      <div  class="letra" *ngFor="let comentario of post.comentarios">
         <app-comentario [comentario]="comentario" (onReportarComentario)="reportarComentario($event)"></app-comentario>
       </div>
 
     </div>
+
+   
+    <div class="card-footer text-muted  estilotarjeta">
+     
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div *ngIf="verificarUsuarioLogueado()">

@@ -22,6 +22,7 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { ConfiguracionFooterComponent } from './configuracion-footer/configuracion-footer.component';
 import { GestionComentariosComponent } from './gestion-comentarios/gestion-comentarios.component';
 import { MenuComponent } from './menu/menu.component';
+import { ShortcutsComponent } from './shortcuts/shortcuts.component';
 const routes: Routes = [
   {
     path: 'admin/categorias', component: CategoriaComponent
@@ -72,6 +73,9 @@ const routes: Routes = [
   { path: 'admin/comentarios', component:  GestionComentariosComponent, },
 
   { path: 'admin/administrar/menu', component:  MenuComponent, },
+
+  { path: 'admin/shorcuts', component:  ShortcutsComponent, },
+
 
 
   

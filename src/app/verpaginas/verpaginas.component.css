@@ -3,7 +3,7 @@
 
 .fondo{
     width: 120%!important;
-    height:  150em!important;
+    height:  200em!important;
     background-color:black;
     color:#B7378A !important;
    
@@ -88,4 +88,31 @@
   font-weight: bold;
   
 
+}
+
+.colorlinea{
+  background-color:#B7378A!important;
+
+}
+
+.estilofondo2{
+
+
+
+  background-image: url('https://image.freepik.com/free-photo/close-up-splash-purple-paint_23-2147745461.jpg') !important ;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  height: 30rem!important;
+  width: 100% !important;
+  
+  position: relative;
+  height:200px;
+  width:400px;
+  border-radius:400px;
+
+}
+
+.colortext{
+  color:white;
+  font-family: 'Monoton', arial;
 }

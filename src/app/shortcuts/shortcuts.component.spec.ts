@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionComentariosComponent } from './gestion-comentarios.component';
+import { ShortcutsComponent } from './shortcuts.component';
 
-describe('GestionComentariosComponent', () => {
-  let component: GestionComentariosComponent;
-  let fixture: ComponentFixture<GestionComentariosComponent>;
+describe('ShortcutsComponent', () => {
+  let component: ShortcutsComponent;
+  let fixture: ComponentFixture<ShortcutsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestionComentariosComponent ]
+      declarations: [ ShortcutsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GestionComentariosComponent);
+    fixture = TestBed.createComponent(ShortcutsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

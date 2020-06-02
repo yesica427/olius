@@ -1,3 +1,17 @@
-body{
-background-color:black;
+#div-pagina{
+  background-color:white;
+  color:#FF5733;
+  
+}
+
+p{
+  color:rgb(217, 84, 1);
+}
+
+#div-pagina h3{
+  color:black;
+}
+
+.letra{
+  color:black;
 }

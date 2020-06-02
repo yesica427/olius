@@ -1,10 +1,18 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 img {
   align-items: center;
   text-align: center;
 }
 
+.color{
+  color:#04091E
+}
+
 #formlogin {
   margin-top: 40em;
+ 
   padding-left: 5em;
   margin-right: 5em;
   margin-right: 30em;
@@ -35,4 +43,19 @@ img {
 
 .error {
   color: red !important;
+}
+
+
+.estilotarjeta{
+  background-image: url('https://images.unsplash.com/photo-1543005472-1b1d37fa4eae?ixlib=rb-1.2.1&w=1000&q=80')!important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: medium bold;
+  color: rgb(217, 84, 1)!important;
+
+  
+}
+
+.letra{
+  font-family: 'Roboto', sans-serif;
 }

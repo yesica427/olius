@@ -121,8 +121,8 @@
     background-image: url('https://elcorso.es/wp-content/uploads/2017/04/portada-buena.jpeg') !important ;
     background-size: cover !important;
     background-repeat: no-repeat;
-    width: 40em !important;
-    height: 50em !important;
+   height: 100% !important;
+   width: 100% !important;
     background-position: center 100%;
     position: relative;
 

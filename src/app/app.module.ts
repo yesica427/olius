@@ -37,6 +37,7 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { ConfiguracionFooterComponent } from './configuracion-footer/configuracion-footer.component';
 import { GestionComentariosComponent } from './gestion-comentarios/gestion-comentarios.component';
 import { MenuComponent } from './menu/menu.component';
+import { ShortcutsComponent } from './shortcuts/shortcuts.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MenuComponent } from './menu/menu.component';
     EncabezadoComponent,
     ConfiguracionFooterComponent,
     GestionComentariosComponent,
-    MenuComponent
+    MenuComponent,
+    ShortcutsComponent
 
 
   ],
