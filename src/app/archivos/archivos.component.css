@@ -9,8 +9,7 @@
   width: 40em !important;
   height: 15em !important;
   background-position: center 50%;
-  width:400px;
-  border-radius:400px;
+
 
 
   
@@ -72,7 +71,10 @@
   box-sizing: border-box;
 }
 
-
+#registroExitoso{
+  border-radius: 10px;
+  border-color:white 2px;
+}
 
 #colorborder1 {
  

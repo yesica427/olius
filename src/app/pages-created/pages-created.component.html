@@ -8,6 +8,7 @@
 
 
 <link rel="stylesheet" href="http://localhost:8888/estilos/estilos_encabezado.css">
+<button type="button" routerLink='/admin/dashboard' class="btn btn-lg botonOpciones" data-dismiss="modal">Dashboard</button>
 
 
 <div *ngIf="permiteEncabezado">
@@ -28,6 +29,7 @@
   <div class="enlace color " *ngFor="let link of listaLinks" style="margin: 0.5em; display: inline;margin-bottom: 2em;">
   
    <strong> <a (click)="cambiarIdPagina(link.url)">{{link.titulomenu}}</a></strong>
+   
     
   </div>
   <strong><hr></strong>

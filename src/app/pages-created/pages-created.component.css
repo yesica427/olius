@@ -68,6 +68,14 @@ img {
   
 }
 
+
+.botonOpciones {
+ 
+  background-color: #B7378A !important;
+  color: white !important;
+}
+
+
 .letra{
   font-family: 'Roboto', sans-serif!important;
 }

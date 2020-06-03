@@ -1,1 +1,25 @@
-p{color:red;}
+
+
+
+#paginaPrincipal{
+    background-image: url('https://data2.1freewallpapers.com/download/new-jersey-george-washington-bridge-black-and-white.jpg')!important;
+  
+  background-repeat: no-repeat;
+  color: white;
+  
+  
+  padding: 100px 100px;
+  text-align: center;
+  background-position: center center;
+  background-size: cover;
+  }
+  
+  #paginaPrincipal:before{
+  content:'';
+      
+          top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.6);
+  }
