@@ -2,6 +2,7 @@
   background-color:white;
   color:#FF5733;
   
+  
 }
 
 p{
@@ -15,3 +16,30 @@ p{
 .letra{
   color:black;
 }
+
+
+#pagina-post{
+  background-image: url('https://i.pinimg.com/originals/e2/25/8f/e2258f01851e72005beacd6bccfbcf14.jpg')!important;
+
+background-repeat: no-repeat;
+color: white;
+
+
+padding: 100px 100px;
+text-align: center;
+background-position: center center;
+background-size: cover;
+}
+
+#pagina-post:before{
+content:'';
+	
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.6);
+}
+
+
+

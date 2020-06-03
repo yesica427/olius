@@ -31,7 +31,7 @@
 .fondo {
   width: 120% !important;
   height: 100em !important;
-  background-color: #202020;
+  background-color:rgb(1, 1, 27);
   color: #B7378A !important;
 
 
@@ -62,9 +62,11 @@
 
   color: #B7378A;
 
-  background-image: url('https://image.freepik.com/vector-gratis/explosion-color-polvo-pintura-holi-realista_107791-1821.jpg') !important;
+  background-image: url('https://images.alphacoders.com/100/1007239.jpg') !important;
 
   border-image: fill !important;
   border-image-outset: 1.5;
+  position: relative;
 
 }
+

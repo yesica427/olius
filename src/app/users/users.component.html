@@ -196,7 +196,7 @@
 
 
 <!-- modal editar post -->
-<div id="myModal" class="modal" tabindex="-1" role="dialog">
+<div id="myModal"  class="modal " tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="background-color: black;">
       <div class="modal-header  fondomodal">
@@ -205,12 +205,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body ">
 
         <form [formGroup]="formularioActualizar" style="align-items: center;" id="fc">
           <div style="align-items: center; margin-left: 4em;" class="form-row " id="row-formulario">
 
-            <div class="col col-lg-3  ">
+            <div class="col col-lg-12  " style="margin-right: 3;">
               <input [ngClass]="{'input-error':primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) }"
                 formControlName="primerNombre" type="text" class=" tamano" placeholder="Primer Nombre">
               <div *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched ) "
@@ -221,7 +221,7 @@
               </div>
 
             </div>
-            <div class="col col-lg-4 ">
+            <div class="col col-lg-12">
               <input
                 [ngClass]="{'input-error':segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched ) }"
                 formControlName="segundoNombre" type="text" class=" tamano ajuste" placeholder="segundo nombre">
@@ -234,9 +234,9 @@
                 <span *ngIf="segundoNombre.errors.minLength">El tamaño minimo son 5 caracteres</span>
               </div>
             </div>
-            <div class="col col-lg-5">
+            <div class="col col-lg-12">
             </div>
-            <div class="col col-lg-3 ">
+            <div class="col col-lg-12">
               <input
                 [ngClass]="{'input-error':PrimerApellido.invalid && (PrimerApellido.dirty || PrimerApellido.touched ) }"
                 formControlName="PrimerApellido" type="text" class=" tamano" placeholder="Primer apellido">
@@ -246,7 +246,7 @@
                 <span *ngIf="PrimerApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
               </div>
             </div>
-            <div class="col col-lg-4 ">
+            <div class="col col-lg-12 ">
               <input
                 [ngClass]="{'input-error':segundoApellido.invalid && (segundoApellido.dirty || segundoApellido.touched ) }"
                 formControlName="segundoApellido" type="text" class="  tamano" placeholder="segundo Apellido">
@@ -256,9 +256,9 @@
                 <span *ngIf="segundoApellido.errors.minLength">El tamaño minimo son 5 caracteres</span>
               </div>
             </div>
-            <div class="col col-lg-5">
+            <div class="col col-lg-12">
             </div>
-            <div class="col col-lg-3 ">
+            <div class="col col-lg-12">
               <input [ngClass]="{'input-error':contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) }"
                 formControlName="contrasena1" type="text" class=" tamano" placeholder="Ingresa tu contraseña ">
               <div *ngIf="contrasena1.invalid && (contrasena1.dirty || contrasena1.touched ) "
@@ -267,7 +267,7 @@
                 <span *ngIf="contrasena1.errors.minLength">El tamaño minimo son 8 caracteres</span>
               </div>
             </div>
-            <div class="col col-lg-4">
+            <div class="col col-lg-12">
               <input [ngClass]="{'input-error':contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) }"
                 formControlName="contrasena2" type="text" class=" tamano" placeholder="Escribe tu contraseña de nuevo">
               <div *ngIf="contrasena2.invalid && (contrasena2.dirty || contrasena2.touched ) "
@@ -276,9 +276,9 @@
                 *ngIf=" contrasenavalida()==false && (contrasena2.dirty || contrasena2.touched )">Contrasena
                 no coincide</span>
             </div>
-            <div class="col col-lg-5">
+            <div class="col col-lg-12">
             </div>
-            <div class="col col-lg-3">
+            <div class="col col-lg-12">
               <input [ngClass]="{'input-error':identidad.invalid && (identidad.dirty || identidad.touched ) }"
                 formControlName="identidad" type="text" class=" tamano" placeholder="Ingresa Tu Identidad">
               <div *ngIf="identidad.invalid && (identidad.dirty || identidad.touched ) " class="alert alert-danger"
@@ -286,7 +286,7 @@
                 <span *ngIf="identidad.errors.minLength">se requieren 13 Digitos </span>
               </div>
             </div>
-            <div class="col col-lg-7">
+            <div class="col col-lg-12">
               <input [ngClass]="{'input-error':correo.invalid && (correo.dirty || correo.touched ) }"
                 formControlName="correo" type="text" class=" tamano" placeholder="Ingresa Tu correo Electronico">
               <div *ngIf="correo.invalid && (correo.dirty || correo.touched ) " class="alert alert-danger" role="alert"

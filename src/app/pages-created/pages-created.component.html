@@ -77,31 +77,9 @@
 </div>
 
 
-<div *ngIf="idPagina==1" id="paginaPrincipal" class="letra">
+<div *ngIf="idPagina==1" id="paginaPrincipal" class="letra  ">
 
-  <div class="card text-center  letra col-lg-3 fondo" style="margin-left: 10em;">
-    <div class="card-header   estilotarjeta">
-    
-    </div>
-    <div class="card-body">
-
- <p>
-      Resultados de búsqueda
-      Resultados de la Web
-      
-      Café - Wikipedia, la enciclopedia libre
-      es.wikipedia.org › wiki › Café
-      El café es la bebida que se obtiene a partir de los granos tostados 
-      y molidos de los frutos de la ... Sin embargo, se obtuvo suficiente información para ver 
-      que el 75 % de las plantas modificadas resistió la plaga mientras que las plantas 
-
-    </p>
-      
-    <div class="card-footer text-muted  estilotarjeta">
-     
-    </div>
-  </div>
-  </div>
+ <div class="letra divfondo "></div>
 
   
 
@@ -117,8 +95,8 @@
 </div>
 
 
-<div *ngIf="!esPaginaEstatica" class="letra"
-  style="width: 80%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em;">
+<div *ngIf="!esPaginaEstatica" class="letra col col-g-12" id="pagina-post"
+  style="width: 100%; margin-left: auto;margin-right: auto;padding-top: 1.5em;padding-bottom: 1em;">
   <!-- <h2>Utilizando Post component</h2> -->
 
   <app-post *ngFor="let post of listaPosts" [post]="post"></app-post>

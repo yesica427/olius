@@ -7,8 +7,11 @@
   background-size: cover !important;
   background-repeat: no-repeat;
   width: 40em !important;
-  height: 20em !important;
-  background-position: center 100%;
+  height: 15em !important;
+  background-position: center 50%;
+  width:400px;
+  border-radius:400px;
+
 
   
   /* https://images.iconfu.com/sets/20-neon/icons/gearwheel_icon.png' */

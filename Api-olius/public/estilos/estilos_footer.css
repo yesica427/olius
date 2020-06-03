@@ -44,7 +44,8 @@ button:focus {
 }
 
 h1,
-h2,
+
+
 h3,
 h4,
 h5,
@@ -806,7 +807,7 @@ h3, .h3 {
 
 .hero-banner h1 {
   text-transform: uppercase;
-  color: rgb(255, 87, 51);
+  
   margin-bottom: 15px;
 }
 
@@ -838,7 +839,7 @@ h3, .h3 {
 
 .hero-banner-sm h1 {
   text-transform: uppercase;
-  color: rgb(255, 87, 51);
+  
 }
 
 @media (max-width: 991px) {

@@ -7,7 +7,11 @@ img {
 }
 
 .color{
-  color:#04091E
+  color:#882F1B;
+}
+
+.color:hover{
+  cursor: pointer
 }
 
 #formlogin {
@@ -19,6 +23,14 @@ img {
   margin-top: 10em;
   /* background-image: url('/img/fondo4.jpg')!important; */
 
+
+
+}
+
+
+.divfondo{
+  background-color: rgb(0, 0, 0); 
+  opacity: 0.5;
 
 
 }
@@ -57,5 +69,5 @@ img {
 }
 
 .letra{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif!important;
 }
